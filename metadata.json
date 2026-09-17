@@ -1,0 +1,6 @@
+{
+  "name": "DevVault",
+  "description": "The developer resource vault you wish you had when you started coding. Centralized, searchable, organized developer tools, repos, APIs, and student benefits.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
