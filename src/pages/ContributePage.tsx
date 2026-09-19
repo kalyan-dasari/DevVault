@@ -9,6 +9,8 @@ import {
   Sparkles,
   ShieldCheck,
   Check,
+  Star,
+  Lightbulb,
 } from 'lucide-react';
 import { useToast } from '../context/ToastContext';
 import { ResourceCategory, PricingType } from '../types';
@@ -18,9 +20,11 @@ export function ContributePage() {
   const [name, setName] = useState('');
   const [websiteUrl, setWebsiteUrl] = useState('');
   const [githubUrl, setGithubUrl] = useState('');
-  const [category, setCategory] = useState<ResourceCategory>('developer-tools');
-  const [pricingType, setPricingType] = useState<PricingType>('Free');
+  const [stars, setStars] = useState('');
+  const [category, setCategory] = useState<ResourceCategory>('github');
+  const [pricingType, setPricingType] = useState<PricingType>('Open Source');
   const [shortDesc, setShortDesc] = useState('');
+  const [proTip, setProTip] = useState('');
   const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -31,7 +35,7 @@ export function ContributePage() {
     }
 
     setSubmitted(true);
-    toast('Resource submission received for community review!', 'success');
+    toast('Repository / tool submission received for community review!', 'success');
   };
 
   return (
@@ -43,14 +47,14 @@ export function ContributePage() {
             <Share2 className="w-4 h-4" />
           </div>
           <h1 className="text-2xl sm:text-3xl font-bold text-slate-100 tracking-tight">
-            Contribute to DevVault
+            Contribute a Trending Repo or Tool
           </h1>
           <span className="px-2 py-0.5 rounded text-xs font-mono font-semibold bg-indigo-500/15 text-indigo-300 border border-indigo-500/30">
-            Open Source Catalog
+            Community Driven
           </span>
         </div>
         <p className="text-xs sm:text-sm text-slate-400 mt-1">
-          Help expand DevVault by submitting new developer tools, updating inaccurate pricing tiers, or opening pull requests.
+          Found a viral GitHub repo or free AI tool on Instagram, TikTok, or Reddit? Submit it here to feature in the vault.
         </p>
       </div>
 
@@ -65,19 +69,15 @@ export function ContributePage() {
           <ul className="space-y-2 text-xs text-slate-300 leading-relaxed">
             <li className="flex items-start gap-2">
               <span className="text-emerald-400 font-bold">•</span>
-              <span>Tools with an accessible free tier, free trial, or 100% open-source license.</span>
+              <span>Trending open-source GitHub repositories with active communities.</span>
             </li>
             <li className="flex items-start gap-2">
               <span className="text-emerald-400 font-bold">•</span>
-              <span>Developer-centric APIs with published interactive documentation.</span>
+              <span>Free and open-weights AI models, local runners, and developer gateways.</span>
             </li>
             <li className="flex items-start gap-2">
               <span className="text-emerald-400 font-bold">•</span>
-              <span>Active GitHub repositories with clear READMEs and recent commit activity.</span>
-            </li>
-            <li className="flex items-start gap-2">
-              <span className="text-emerald-400 font-bold">•</span>
-              <span>Generous student programs or educational discounts with official verification steps.</span>
+              <span>Generous free-tier developer APIs and CLI utilities with real pro tips.</span>
             </li>
           </ul>
         </div>
@@ -99,92 +99,87 @@ export function ContributePage() {
             </li>
             <li className="flex items-start gap-2">
               <span className="text-rose-400 font-bold">•</span>
-              <span>Spammy, duplicate, or purely commercial non-developer marketing software.</span>
-            </li>
-            <li className="flex items-start gap-2">
-              <span className="text-rose-400 font-bold">•</span>
-              <span>Tools with fabricated or unverified student claims.</span>
+              <span>Fake 'free tier' claims that require upfront credit cards for trial.</span>
             </li>
           </ul>
         </div>
       </div>
 
-      {/* GitHub PR Instructions */}
-      <div className="rounded-xl border border-slate-800 bg-slate-900/60 p-6 space-y-3">
-        <div className="flex items-center gap-2 text-indigo-300 font-semibold text-xs font-mono uppercase tracking-wider">
-          <GitPullRequest className="w-4 h-4" />
-          <span>Contributing via GitHub Pull Request</span>
-        </div>
-        <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-          DevVault's data architecture is modular. All resources live in clean TypeScript arrays in <code className="font-mono text-indigo-300">src/data/</code>. To add a resource directly to git:
-        </p>
-        <div className="p-3.5 rounded-lg bg-slate-950/80 font-mono text-xs text-slate-300 border border-slate-800 space-y-1">
-          <div className="text-slate-500"># 1. Fork the repo and create your branch</div>
-          <div>git checkout -b add-resource/my-tool</div>
-          <div className="text-slate-500 mt-2"># 2. Add resource object to src/data/[category].ts</div>
-          <div>// Ensure verified, pricingType, and freeTier details are filled accurately</div>
-          <div className="text-slate-500 mt-2"># 3. Commit and open a Pull Request</div>
-          <div>git commit -m "feat(data): add MyTool to developer-tools"</div>
-        </div>
-      </div>
-
-      {/* Client-side Submission Form */}
-      <div className="rounded-2xl border border-slate-800 bg-slate-900/60 p-6 sm:p-8 space-y-6">
-        <div className="flex items-center justify-between pb-3 border-b border-slate-800">
-          <div>
-            <h2 className="text-lg font-bold text-slate-100">
-              Submit a Developer Resource
-            </h2>
-            <p className="text-xs text-slate-400 mt-0.5">
-              Submissions undergo community review and verification before catalog inclusion.
-            </p>
-          </div>
-          <Sparkles className="w-5 h-5 text-indigo-400" />
-        </div>
-
+      {/* Submission Form Card */}
+      <div className="rounded-2xl border border-slate-800 bg-slate-900/60 p-6 sm:p-8 backdrop-blur-sm shadow-xl">
         {submitted ? (
-          <div className="p-8 text-center space-y-3 bg-emerald-950/20 border border-emerald-500/30 rounded-xl">
-            <Check className="w-8 h-8 text-emerald-400 mx-auto" />
-            <h3 className="text-base font-semibold text-slate-100">
-              Thank You for Contributing!
-            </h3>
-            <p className="text-xs text-slate-300 max-w-md mx-auto">
-              Your submission for "{name}" has been recorded. Our verification checklist will audit the free tier and website before publishing to the main index.
+          <div className="text-center py-12 space-y-4 animate-in fade-in">
+            <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 mx-auto">
+              <Check className="w-7 h-7" />
+            </div>
+            <h2 className="text-xl font-bold text-slate-100">
+              Submission Received!
+            </h2>
+            <p className="text-sm text-slate-300 max-w-md mx-auto leading-relaxed">
+              Thank you for contributing <strong className="text-slate-100">{name}</strong> to DevVault. Our maintainers will verify its free tier, stars, and licensing before adding it to the main catalog.
             </p>
-            <button
-              type="button"
-              onClick={() => {
-                setSubmitted(false);
-                setName('');
-                setWebsiteUrl('');
-                setGithubUrl('');
-                setShortDesc('');
-              }}
-              className="px-4 py-2 rounded-xl bg-slate-800 text-xs text-slate-200 hover:bg-slate-700"
-            >
-              Submit Another Resource
-            </button>
+            <div className="pt-4">
+              <button
+                type="button"
+                onClick={() => {
+                  setSubmitted(false);
+                  setName('');
+                  setWebsiteUrl('');
+                  setGithubUrl('');
+                  setShortDesc('');
+                  setStars('');
+                  setProTip('');
+                }}
+                className="px-5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-medium transition-colors"
+              >
+                Submit Another Resource
+              </button>
+            </div>
           </div>
         ) : (
-          <form onSubmit={handleSubmit} className="space-y-4 text-xs">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <div className="flex items-center gap-2 pb-4 border-b border-slate-800">
+              <FileCode className="w-5 h-5 text-indigo-400" />
+              <h2 className="text-lg font-bold text-slate-100">
+                Resource Details
+              </h2>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
               <div>
-                <label className="block text-slate-300 mb-1 font-mono uppercase tracking-wider">
-                  Resource Name *
+                <label className="block text-slate-300 font-medium mb-1.5 font-mono">
+                  Tool or Repository Name <span className="text-rose-400">*</span>
                 </label>
                 <input
                   type="text"
                   required
-                  placeholder="e.g. Supabase, Bruno, Coolify"
+                  placeholder="e.g. Supabase, Ollama, Coolify"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="w-full px-3 py-2 rounded-lg border border-slate-700 bg-slate-900 text-slate-100 focus:outline-none focus:border-indigo-500 font-medium"
+                  className="w-full px-3.5 py-2.5 rounded-xl border border-slate-700 bg-slate-800 text-slate-100 focus:outline-none focus:border-indigo-500 font-medium"
                 />
               </div>
 
               <div>
-                <label className="block text-slate-300 mb-1 font-mono uppercase tracking-wider">
-                  Official Website URL *
+                <label className="block text-slate-300 font-medium mb-1.5 font-mono">
+                  Category <span className="text-rose-400">*</span>
+                </label>
+                <select
+                  value={category}
+                  onChange={(e) => setCategory(e.target.value as ResourceCategory)}
+                  className="w-full px-3.5 py-2.5 rounded-xl border border-slate-700 bg-slate-800 text-slate-100 focus:outline-none focus:border-indigo-500 font-medium"
+                >
+                  <option value="github">Trending GitHub Repositories</option>
+                  <option value="ai-tools">Free & Open Source AI</option>
+                  <option value="apis">Developer APIs</option>
+                  <option value="developer-tools">Developer Tools</option>
+                  <option value="hosting">Hosting & Cloud</option>
+                </select>
+              </div>
+
+              <div>
+                <label className="block text-slate-300 font-medium mb-1.5 font-mono">
+                  Website URL <span className="text-rose-400">*</span>
                 </label>
                 <input
                   type="url"
@@ -192,79 +187,87 @@ export function ContributePage() {
                   placeholder="https://..."
                   value={websiteUrl}
                   onChange={(e) => setWebsiteUrl(e.target.value)}
-                  className="w-full px-3 py-2 rounded-lg border border-slate-700 bg-slate-900 text-slate-100 focus:outline-none focus:border-indigo-500 font-mono"
+                  className="w-full px-3.5 py-2.5 rounded-xl border border-slate-700 bg-slate-800 text-slate-100 focus:outline-none focus:border-indigo-500 font-mono"
                 />
               </div>
 
               <div>
-                <label className="block text-slate-300 mb-1 font-mono uppercase tracking-wider">
-                  GitHub URL (Optional)
+                <label className="block text-slate-300 font-medium mb-1.5 font-mono">
+                  GitHub Repository URL (Optional)
                 </label>
                 <input
                   type="url"
-                  placeholder="https://github.com/..."
+                  placeholder="https://github.com/owner/repo"
                   value={githubUrl}
                   onChange={(e) => setGithubUrl(e.target.value)}
-                  className="w-full px-3 py-2 rounded-lg border border-slate-700 bg-slate-900 text-slate-100 focus:outline-none focus:border-indigo-500 font-mono"
+                  className="w-full px-3.5 py-2.5 rounded-xl border border-slate-700 bg-slate-800 text-slate-100 focus:outline-none focus:border-indigo-500 font-mono"
                 />
               </div>
 
               <div>
-                <label className="block text-slate-300 mb-1 font-mono uppercase tracking-wider">
-                  Category *
+                <label className="block text-slate-300 font-medium mb-1.5 font-mono">
+                  Stars Count (e.g. "85k+ ⭐")
                 </label>
-                <select
-                  value={category}
-                  onChange={(e) => setCategory(e.target.value as ResourceCategory)}
-                  className="w-full px-3 py-2 rounded-lg border border-slate-700 bg-slate-900 text-slate-100 focus:outline-none focus:border-indigo-500"
-                >
-                  <option value="ai-tools">AI Tools</option>
-                  <option value="github">GitHub Repositories</option>
-                  <option value="apis">Developer APIs</option>
-                  <option value="developer-tools">Developer Tools</option>
-                  <option value="hosting">Hosting & Cloud</option>
-                  <option value="courses">Learning & Courses</option>
-                </select>
+                <input
+                  type="text"
+                  placeholder="e.g. 75k+ ⭐"
+                  value={stars}
+                  onChange={(e) => setStars(e.target.value)}
+                  className="w-full px-3.5 py-2.5 rounded-xl border border-slate-700 bg-slate-800 text-slate-100 focus:outline-none focus:border-indigo-500 font-mono"
+                />
               </div>
 
               <div>
-                <label className="block text-slate-300 mb-1 font-mono uppercase tracking-wider">
-                  Pricing Model *
+                <label className="block text-slate-300 font-medium mb-1.5 font-mono">
+                  Pricing Type
                 </label>
                 <select
                   value={pricingType}
                   onChange={(e) => setPricingType(e.target.value as PricingType)}
-                  className="w-full px-3 py-2 rounded-lg border border-slate-700 bg-slate-900 text-slate-100 focus:outline-none focus:border-indigo-500"
+                  className="w-full px-3.5 py-2.5 rounded-xl border border-slate-700 bg-slate-800 text-slate-100 focus:outline-none focus:border-indigo-500 font-medium"
                 >
+                  <option value="Open Source">Open Source (100% Free)</option>
                   <option value="Free">Free</option>
-                  <option value="Open Source">Open Source</option>
                   <option value="Freemium">Freemium</option>
                   <option value="Paid">Paid</option>
                 </select>
               </div>
 
               <div className="sm:col-span-2">
-                <label className="block text-slate-300 mb-1 font-mono uppercase tracking-wider">
-                  Short Description & What Makes It Great *
+                <label className="block text-slate-300 font-medium mb-1.5 font-mono">
+                  Short Description & Killer Feature <span className="text-rose-400">*</span>
                 </label>
                 <textarea
-                  rows={3}
+                  rows={2}
                   required
-                  placeholder="Explain what problem it solves for developers and why it deserves a spot in the vault..."
+                  placeholder="What does it do and why is it special? (e.g. Open source Firebase alternative with real-time Postgres...)"
                   value={shortDesc}
                   onChange={(e) => setShortDesc(e.target.value)}
-                  className="w-full px-3 py-2 rounded-lg border border-slate-700 bg-slate-900 text-slate-100 focus:outline-none focus:border-indigo-500 leading-relaxed"
+                  className="w-full px-3.5 py-2.5 rounded-xl border border-slate-700 bg-slate-800 text-slate-100 focus:outline-none focus:border-indigo-500 leading-relaxed font-sans"
+                />
+              </div>
+
+              <div className="sm:col-span-2">
+                <label className="block text-slate-300 font-medium mb-1.5 font-mono">
+                  Useful Pro Tip & Trick
+                </label>
+                <textarea
+                  rows={2}
+                  placeholder="Share a killer tip developers should know when using this (e.g. Use 'npx supabase start' to spin up locally without internet...)"
+                  value={proTip}
+                  onChange={(e) => setProTip(e.target.value)}
+                  className="w-full px-3.5 py-2.5 rounded-xl border border-slate-700 bg-slate-800 text-slate-100 focus:outline-none focus:border-indigo-500 leading-relaxed font-sans"
                 />
               </div>
             </div>
 
-            <div className="flex justify-end pt-2">
+            <div className="pt-4 border-t border-slate-800 flex items-center justify-end">
               <button
                 type="submit"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-medium shadow-md shadow-indigo-600/20 transition-all text-xs"
+                className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs sm:text-sm font-semibold shadow-md shadow-indigo-600/20 transition-all"
               >
-                <Send className="w-3.5 h-3.5" />
-                <span>Submit for Verification</span>
+                <Send className="w-4 h-4" />
+                <span>Submit Resource</span>
               </button>
             </div>
           </form>
