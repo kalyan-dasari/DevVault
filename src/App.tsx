@@ -10,9 +10,6 @@ import { Footer } from './components/Footer';
 import { HomePage } from './pages/HomePage';
 import { ExplorePage } from './pages/ExplorePage';
 import { ResourceDetailPage } from './pages/ResourceDetailPage';
-import { StackBuilderPage } from './pages/StackBuilderPage';
-import { StudentPackPage } from './pages/StudentPackPage';
-import { ProjectIdeasPage } from './pages/ProjectIdeasPage';
 import { MyVaultPage } from './pages/MyVaultPage';
 import { SocialImportPage } from './pages/SocialImportPage';
 import { ContributePage } from './pages/ContributePage';
@@ -32,9 +29,6 @@ export default function App() {
                   <Route path="/" element={<HomePage />} />
                   <Route path="/explore" element={<ExplorePage />} />
                   <Route path="/resource/:slug" element={<ResourceDetailPage />} />
-                  <Route path="/stack-builder" element={<StackBuilderPage />} />
-                  <Route path="/student-pack" element={<StudentPackPage />} />
-                  <Route path="/project-ideas" element={<ProjectIdeasPage />} />
                   <Route path="/my-vault" element={<MyVaultPage />} />
                   <Route path="/social-import" element={<SocialImportPage />} />
                   <Route path="/contribute" element={<ContributePage />} />
