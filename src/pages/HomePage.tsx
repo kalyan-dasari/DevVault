@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import {
   Compass,
-  Layers,
-  GraduationCap,
   Sparkles,
   ArrowRight,
   ShieldCheck,
@@ -13,16 +11,27 @@ import {
   Bot,
   Wrench,
   Cloud,
+  Star,
+  Flame,
+  Lightbulb,
   Terminal,
 } from 'lucide-react';
-import { categoryMeta, getFeaturedResources } from '../data';
+import { categoryMeta, getTrendingSocialRepos, allResources } from '../data';
 import { ResourceCard } from '../components/ResourceCard';
 import { SearchBar } from '../components/SearchBar';
 
 export function HomePage() {
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
-  const featured = getFeaturedResources(6);
+
+  // Trending social repos
+  const trendingRepos = getTrendingSocialRepos().slice(0, 6);
+
+  // Top free & open-source AI tools
+  const topAiTools = allResources.filter((r) => r.category === 'ai-tools').slice(0, 4);
+
+  // Resources with pro tips
+  const tipsResources = allResources.filter((r) => r.proTips && r.proTips.length > 0).slice(0, 3);
 
   const handleSearchSubmit = (query: string) => {
     navigate(`/explore?q=${encodeURIComponent(query)}`);
@@ -40,8 +49,6 @@ export function HomePage() {
         return Wrench;
       case 'Cloud':
         return Cloud;
-      case 'GraduationCap':
-        return GraduationCap;
       default:
         return Compass;
     }
@@ -50,25 +57,26 @@ export function HomePage() {
   return (
     <div className="space-y-16 sm:space-y-24">
       {/* Hero Section */}
-      <section className="relative pt-8 sm:pt-14 pb-8 overflow-hidden">
-        {/* Subtle decorative glow */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-64 bg-gradient-to-b from-indigo-500/10 via-sky-500/5 to-transparent blur-3xl -z-10 pointer-events-none" />
+      <section className="relative pt-10 sm:pt-16 pb-8 overflow-hidden">
+        {/* Glowing backdrop */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-5xl h-80 bg-gradient-to-b from-indigo-500/15 via-pink-500/5 to-transparent blur-3xl -z-10 pointer-events-none" />
 
         <div className="max-w-4xl mx-auto text-center px-4">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-indigo-500/30 bg-indigo-500/10 text-indigo-300 text-xs font-mono font-medium mb-6 animate-in fade-in duration-300">
-            <Sparkles className="w-3.5 h-3.5 text-indigo-400" />
-            <span>Curated Developer Resource Vault • 75+ Verified Tools</span>
+          {/* Trending Badge */}
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-pink-500/30 bg-gradient-to-r from-pink-500/10 via-indigo-500/10 to-sky-500/10 text-pink-300 text-xs font-mono font-medium mb-6 animate-in fade-in duration-300 shadow-sm">
+            <Flame className="w-3.5 h-3.5 text-pink-400 animate-pulse" />
+            <span>Trending on Instagram & Social Media • Verified Free & OSS</span>
           </div>
 
           <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-100 leading-[1.15]">
-            Stop Googling tools. <br className="hidden sm:inline" />
-            <span className="bg-gradient-to-r from-indigo-400 via-sky-300 to-indigo-300 bg-clip-text text-transparent">
-              Discover, save, and build.
+            The Developer Vault for <br className="hidden sm:inline" />
+            <span className="bg-gradient-to-r from-pink-400 via-indigo-300 to-sky-400 bg-clip-text text-transparent">
+              Trending Repos & Free AI Tools
             </span>
           </h1>
 
           <p className="mt-4 sm:mt-6 text-base sm:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed">
-            The developer directory where AI tools, open-source repositories, free APIs, student perks, and architecture stack builders live in one clean, scalable platform.
+            Stop losing tools you saw in Instagram reels and tech feeds. Discover viral open-source repositories with real star counts, free AI models, developer APIs, and battle-tested pro tips & tricks.
           </p>
 
           {/* Search Hero Bar */}
@@ -76,7 +84,7 @@ export function HomePage() {
             <SearchBar
               value={searchQuery}
               onChange={setSearchQuery}
-              placeholder="Search 75+ tools (e.g. 'FastAPI', 'Postgres', 'Free AI', 'Student perks')..."
+              placeholder="Search trending repos, stars, tools (e.g. 'Ollama', 'Supabase', 'Coolify', 'DeepSeek', 'FastAPI')..."
               showSuggestions={true}
               onSelectSuggestion={handleSearchSubmit}
             />
@@ -87,29 +95,155 @@ export function HomePage() {
                   onClick={() => handleSearchSubmit(searchQuery)}
                   className="inline-flex items-center gap-1 text-xs text-indigo-400 hover:text-indigo-300 font-medium"
                 >
-                  <span>Press Enter or click here to explore results</span>
+                  <span>Press Enter to explore all matching tools</span>
                   <ArrowRight className="w-3 h-3" />
                 </button>
               </div>
             )}
           </div>
 
-          {/* Quick value badges */}
+          {/* Quick Value Metrics */}
           <div className="mt-8 flex flex-wrap items-center justify-center gap-4 text-xs font-mono text-slate-400">
             <div className="flex items-center gap-1.5">
-              <ShieldCheck className="w-4 h-4 text-emerald-400" />
-              <span>Verified Pricing & Free Tiers</span>
+              <Star className="w-4 h-4 text-amber-400 fill-amber-400" />
+              <span>Real Star Counts & Highlights</span>
             </div>
             <span className="text-slate-700 hidden sm:inline">•</span>
             <div className="flex items-center gap-1.5">
-              <GitBranch className="w-4 h-4 text-sky-400" />
-              <span>Open-Source First</span>
+              <Bot className="w-4 h-4 text-indigo-400" />
+              <span>Free & Local AI Models</span>
             </div>
             <span className="text-slate-700 hidden sm:inline">•</span>
             <div className="flex items-center gap-1.5">
-              <Bookmark className="w-4 h-4 text-indigo-400" />
-              <span>Personal Vault Collections</span>
+              <Lightbulb className="w-4 h-4 text-emerald-400" />
+              <span>Developer Tips & Tricks</span>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* TOP PRIORITY: Trending on Instagram & Social Media */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center gap-2">
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-pink-500/10 text-pink-400 border border-pink-500/20">
+              <Flame className="w-4 h-4" />
+            </div>
+            <div>
+              <h2 className="text-xl sm:text-2xl font-bold text-slate-100 tracking-tight">
+                Trending on Instagram & Social
+              </h2>
+              <p className="text-xs sm:text-sm text-slate-400 mt-0.5">
+                Viral open-source repositories with massive developer adoption and high stars
+              </p>
+            </div>
+          </div>
+          <Link
+            to="/explore?category=github&trending=true"
+            className="inline-flex items-center gap-1 text-xs sm:text-sm font-semibold text-pink-400 hover:text-pink-300 transition-colors"
+          >
+            <span>View all trending repos</span>
+            <ArrowRight className="w-4 h-4" />
+          </Link>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          {trendingRepos.map((res) => (
+            <ResourceCard key={res.id} resource={res} />
+          ))}
+        </div>
+      </section>
+
+      {/* TOP PRIORITY 2: Free & Open-Source AI Tools */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center gap-2">
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-indigo-600/10 text-indigo-400 border border-indigo-500/20">
+              <Bot className="w-4 h-4" />
+            </div>
+            <div>
+              <h2 className="text-xl sm:text-2xl font-bold text-slate-100 tracking-tight">
+                Free & Open Source AI Models & Tools
+              </h2>
+              <p className="text-xs sm:text-sm text-slate-400 mt-0.5">
+                Run local reasoning models (DeepSeek, Ollama, vLLM) with zero API bills
+              </p>
+            </div>
+          </div>
+          <Link
+            to="/explore?category=ai-tools"
+            className="inline-flex items-center gap-1 text-xs sm:text-sm font-semibold text-indigo-400 hover:text-indigo-300 transition-colors"
+          >
+            <span>View all AI tools</span>
+            <ArrowRight className="w-4 h-4" />
+          </Link>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-5">
+          {topAiTools.map((res) => (
+            <ResourceCard key={res.id} resource={res} />
+          ))}
+        </div>
+      </section>
+
+      {/* Pro Tips & Tricks Highlight Section */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="rounded-2xl border border-amber-500/30 bg-gradient-to-br from-amber-950/20 via-slate-900 to-slate-950 p-6 sm:p-8 shadow-xl">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-800">
+            <div className="flex items-center gap-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-400 shadow-sm">
+                <Lightbulb className="w-5 h-5" />
+              </div>
+              <div>
+                <h3 className="text-lg sm:text-xl font-bold text-slate-100">
+                  Developer Tips & Tricks Spotlight
+                </h3>
+                <p className="text-xs sm:text-sm text-slate-400">
+                  Actionable pro tips from open-source maintainers and viral engineering tutorials
+                </p>
+              </div>
+            </div>
+            <Link
+              to="/explore?tips=true"
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-amber-500/15 hover:bg-amber-500/25 border border-amber-500/30 text-amber-300 text-xs font-semibold transition-colors shrink-0"
+            >
+              <span>Explore All Tips</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+            {tipsResources.map((res) => (
+              <div
+                key={res.id}
+                className="p-4 rounded-xl border border-slate-800 bg-slate-900/80 space-y-2.5 flex flex-col justify-between"
+              >
+                <div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm font-bold text-slate-100">{res.name}</span>
+                    {res.stars && (
+                      <span className="text-[11px] font-mono text-amber-400 font-semibold">
+                        {res.stars}
+                      </span>
+                    )}
+                  </div>
+                  <div className="mt-2 space-y-1.5 text-xs text-slate-300">
+                    {res.proTips?.map((tip, idx) => (
+                      <div key={idx} className="flex items-start gap-1.5">
+                        <span className="text-amber-400 font-bold">•</span>
+                        <span className="leading-relaxed">{tip}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                {res.quickCommand && (
+                  <div className="mt-2 pt-2 border-t border-slate-800 flex items-center gap-1 text-[11px] font-mono text-indigo-300 bg-slate-950/60 px-2 py-1 rounded">
+                    <Terminal className="w-3 h-3 text-slate-500 shrink-0" />
+                    <span className="truncate">{res.quickCommand}</span>
+                  </div>
+                )}
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -122,7 +256,7 @@ export function HomePage() {
               Explore by Domain
             </h2>
             <p className="text-xs sm:text-sm text-slate-400 mt-0.5">
-              Structured datasets organized for fast technical discovery
+              Structured datasets curated for quick discovery and building
             </p>
           </div>
           <Link
@@ -134,7 +268,7 @@ export function HomePage() {
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {categoryMeta.map((cat) => {
             const Icon = getCategoryIcon(cat.iconName);
             return (
@@ -149,7 +283,7 @@ export function HomePage() {
                       <Icon className="w-5 h-5" />
                     </div>
                     <span className="px-2 py-0.5 rounded-full text-[11px] font-mono text-slate-400 bg-slate-800/80 border border-slate-700/50">
-                      {cat.count} tools
+                      {cat.count} indexed
                     </span>
                   </div>
                   <h3 className="text-base font-semibold text-slate-100 group-hover:text-indigo-300 transition-colors">
@@ -169,117 +303,26 @@ export function HomePage() {
         </div>
       </section>
 
-      {/* Featured Resources Section */}
+      {/* Social Media "I saw this" Capture Banner */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between mb-6">
-          <div className="flex items-center gap-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-amber-500/10 text-amber-400 border border-amber-500/20">
-              <Sparkles className="w-4 h-4" />
-            </div>
-            <div>
-              <h2 className="text-xl sm:text-2xl font-bold text-slate-100 tracking-tight">
-                Featured Highlights
-              </h2>
-              <p className="text-xs sm:text-sm text-slate-400 mt-0.5">
-                Hand-picked tools with generous developer tiers and outstanding DX
-              </p>
-            </div>
-          </div>
-          <Link
-            to="/explore"
-            className="inline-flex items-center gap-1 text-xs sm:text-sm font-medium text-indigo-400 hover:text-indigo-300 transition-colors"
-          >
-            <span>See all resources</span>
-            <ArrowRight className="w-4 h-4" />
-          </Link>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {featured.map((res) => (
-            <ResourceCard key={res.id} resource={res} />
-          ))}
-        </div>
-      </section>
-
-      {/* Feature Highlight: Stack Builder Teaser */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="relative rounded-2xl border border-indigo-500/30 bg-gradient-to-br from-indigo-950/40 via-slate-900 to-slate-950 p-6 sm:p-10 overflow-hidden shadow-2xl">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-            <div className="space-y-4">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-indigo-500/40 bg-indigo-500/15 text-indigo-300 text-xs font-mono font-medium">
-                <Layers className="w-3.5 h-3.5" />
-                <span>Feature: "Build With These"</span>
-              </div>
-              <h2 className="text-2xl sm:text-3xl font-bold text-slate-100 tracking-tight leading-snug">
-                Need to build an AI SaaS, Dev Tool, or Hackathon demo?
-              </h2>
-              <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
-                Skip architecture paralysis. Our Stack Builder recommends coordinated frontend, backend, database, auth, and payment layers, with 1-click links to documentation and free tier setups.
-              </p>
-              <div className="pt-2">
-                <Link
-                  to="/stack-builder"
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs sm:text-sm font-medium shadow-md shadow-indigo-600/20 transition-all"
-                >
-                  <Layers className="w-4 h-4" />
-                  <span>Launch Stack Builder</span>
-                  <ArrowRight className="w-4 h-4 ml-1" />
-                </Link>
-              </div>
-            </div>
-
-            {/* Architecture Preview Illustration */}
-            <div className="rounded-xl border border-slate-800 bg-slate-900/90 p-5 space-y-2.5 font-mono text-xs shadow-inner">
-              <div className="flex items-center justify-between pb-2 border-b border-slate-800 text-slate-400">
-                <span className="flex items-center gap-1.5">
-                  <Terminal className="w-3.5 h-3.5 text-indigo-400" />
-                  <span>Modern AI SaaS Blueprint</span>
-                </span>
-                <span className="text-[10px] text-emerald-400">VERIFIED STACK</span>
-              </div>
-              <div className="grid grid-cols-2 gap-2 text-[11px]">
-                <div className="p-2 rounded bg-slate-800/60 border border-slate-700/50">
-                  <span className="text-slate-400 block text-[10px]">FRONTEND</span>
-                  <span className="text-indigo-300 font-semibold">React + Tailwind + shadcn</span>
-                </div>
-                <div className="p-2 rounded bg-slate-800/60 border border-slate-700/50">
-                  <span className="text-slate-400 block text-[10px]">BACKEND</span>
-                  <span className="text-sky-300 font-semibold">FastAPI (Python async)</span>
-                </div>
-                <div className="p-2 rounded bg-slate-800/60 border border-slate-700/50">
-                  <span className="text-slate-400 block text-[10px]">DATABASE</span>
-                  <span className="text-emerald-300 font-semibold">Supabase (PostgreSQL)</span>
-                </div>
-                <div className="p-2 rounded bg-slate-800/60 border border-slate-700/50">
-                  <span className="text-slate-400 block text-[10px]">AUTHENTICATION</span>
-                  <span className="text-purple-300 font-semibold">Clerk Auth</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Social Media "I saw this" Banner */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="rounded-2xl border border-slate-800 bg-slate-900/40 p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-6">
+        <div className="rounded-2xl border border-pink-500/30 bg-gradient-to-r from-pink-950/20 via-slate-900 to-indigo-950/20 p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-lg">
           <div className="space-y-2 text-center sm:text-left">
-            <div className="inline-flex items-center gap-1.5 text-xs font-mono text-indigo-400">
+            <div className="inline-flex items-center gap-1.5 text-xs font-mono text-pink-400 font-semibold">
               <Sparkles className="w-3.5 h-3.5" />
-              <span>Smart Social Capture</span>
+              <span>Smart Social Reel Parser</span>
             </div>
             <h3 className="text-lg sm:text-xl font-bold text-slate-100">
-              Saw a cool developer tool on Instagram or YouTube?
+              Saw a trending GitHub repo on Instagram or YouTube?
             </h3>
             <p className="text-xs sm:text-sm text-slate-400 max-w-xl">
-              Don't lose reel screenshots. Paste the caption or link into DevVault to parse metadata, extract pricing, and bookmark it to your personal vault in seconds.
+              Don't lose reel screenshots. Paste the caption or link into DevVault to automatically extract star counts, repo links, killer features, and save it to your personal vault in seconds.
             </p>
           </div>
           <Link
             to="/social-import"
-            className="shrink-0 px-4 py-2.5 rounded-xl border border-slate-700 bg-slate-800 hover:bg-slate-700 text-slate-100 text-xs sm:text-sm font-medium transition-colors"
+            className="shrink-0 px-5 py-2.5 rounded-xl bg-gradient-to-r from-pink-600 to-indigo-600 hover:from-pink-500 hover:to-indigo-500 text-white text-xs sm:text-sm font-semibold shadow-md shadow-pink-600/20 transition-all"
           >
-            Try Social Quick-Save
+            Try Instagram Quick-Save
           </Link>
         </div>
       </section>

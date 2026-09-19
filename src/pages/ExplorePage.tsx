@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { Compass, Sparkles, Filter, SlidersHorizontal, RotateCcw } from 'lucide-react';
+import { Compass, Sparkles, Filter, SlidersHorizontal, RotateCcw, Flame, Lightbulb, Star } from 'lucide-react';
 import { allResources, filterResources, categoryMeta } from '../data';
 import { ResourceFilterState, ResourceCategory, PricingType, DifficultyLevel } from '../types';
 import { SearchBar } from '../components/SearchBar';
@@ -25,7 +25,9 @@ export function ExplorePage() {
     hasApiOnly: searchParams.get('api') === 'true',
     selfHostedOnly: searchParams.get('selfhosted') === 'true',
     studentBenefitOnly: searchParams.get('student') === 'true',
-    sortBy: 'featured',
+    trendingOnSocialOnly: searchParams.get('trending') === 'true',
+    hasTipsOnly: searchParams.get('tips') === 'true',
+    sortBy: searchParams.get('trending') === 'true' ? 'stars' : 'featured',
   });
 
   // Keep URL parameters in sync when filters change
@@ -34,11 +36,11 @@ export function ExplorePage() {
     if (filters.searchQuery.trim()) params.q = filters.searchQuery.trim();
     if (filters.category && filters.category !== 'all') params.category = filters.category;
     if (filters.pricingType && filters.pricingType !== 'all') params.pricing = filters.pricingType;
-    if (filters.difficulty && filters.difficulty !== 'all') params.difficulty = filters.difficulty;
     if (filters.openSourceOnly) params.oss = 'true';
     if (filters.hasApiOnly) params.api = 'true';
     if (filters.selfHostedOnly) params.selfhosted = 'true';
-    if (filters.studentBenefitOnly) params.student = 'true';
+    if (filters.trendingOnSocialOnly) params.trending = 'true';
+    if (filters.hasTipsOnly) params.tips = 'true';
 
     setSearchParams(params, { replace: true });
   }, [filters, setSearchParams]);
@@ -58,6 +60,8 @@ export function ExplorePage() {
       hasApiOnly: false,
       selfHostedOnly: false,
       studentBenefitOnly: false,
+      trendingOnSocialOnly: false,
+      hasTipsOnly: false,
       sortBy: 'featured',
     });
     analytics.track('filter_used', { action: 'reset' });
@@ -84,11 +88,11 @@ export function ExplorePage() {
               <Compass className="w-4 h-4" />
             </div>
             <h1 className="text-2xl sm:text-3xl font-bold text-slate-100 tracking-tight">
-              Explore DevVault
+              Explore DevVault Catalog
             </h1>
           </div>
           <p className="text-xs sm:text-sm text-slate-400 mt-1">
-            Search across {allResources.length} verified developer tools, repositories, and APIs.
+            Search across {allResources.length} verified trending GitHub repos, open-source AI models, APIs, and developer tools.
           </p>
         </div>
 
@@ -109,7 +113,7 @@ export function ExplorePage() {
           onChange={handleSearchChange}
           showSuggestions={true}
           onSelectSuggestion={handleSelectSuggestion}
-          placeholder="Filter by keyword, tech tag, framework (e.g. 'React', 'Python', 'FastAPI', 'Free AI')..."
+          placeholder="Filter by keyword, tech tag, repo name (e.g. 'Supabase', 'Ollama', 'FastAPI', 'DeepSeek', 'Postgres')..."
         />
       </div>
 
