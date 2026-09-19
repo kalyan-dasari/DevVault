@@ -4,16 +4,14 @@ import { githubRepos } from './github-repos';
 import { developerApis } from './apis';
 import { developerTools } from './dev-tools';
 import { hostingCloudResources } from './hosting-cloud';
-import { learningResources } from './learning';
 
-// Aggregate all resources into a single source of truth
+// Aggregate all resources into a single clean source of truth
 export const allResources: Resource[] = [
-  ...aiTools,
   ...githubRepos,
+  ...aiTools,
   ...developerApis,
   ...developerTools,
   ...hostingCloudResources,
-  ...learningResources,
 ];
 
 export interface CategoryInfo {
@@ -23,72 +21,51 @@ export interface CategoryInfo {
   description: string;
   iconName: string;
   count: number;
+  badge?: string;
 }
 
 export const categoryMeta: CategoryInfo[] = [
   {
-    id: 'ai-tools',
-    name: 'AI Tools & Models',
-    slug: 'ai-tools',
-    description: 'Code copilots, local LLM runners, multimodal APIs, and inference engines.',
-    iconName: 'Bot',
-    count: aiTools.length,
-  },
-  {
     id: 'github',
-    name: 'GitHub Repositories',
+    name: 'Trending GitHub Repos',
     slug: 'github',
-    description: 'Battle-tested open-source repositories, developer toolkits, and starters.',
+    description: 'Viral open-source repositories trending on Instagram, high star counts, and battle-tested codebases.',
     iconName: 'GitBranch',
     count: githubRepos.length,
+    badge: '⭐ TOP PRIORITY',
+  },
+  {
+    id: 'ai-tools',
+    name: 'Free & Open Source AI',
+    slug: 'ai-tools',
+    description: 'Local LLM runners, reasoning models (DeepSeek, Ollama), free AI gateways, and open weights.',
+    iconName: 'Bot',
+    count: aiTools.length,
+    badge: '🤖 FREE & OSS',
   },
   {
     id: 'apis',
-    name: 'Developer APIs',
+    name: 'Free Developer APIs',
     slug: 'apis',
-    description: 'Authentication, payments, transactional email, analytics, and weather APIs.',
+    description: 'Generous free tier APIs for auth, payments, database backends, transactional email, and analytics.',
     iconName: 'Zap',
     count: developerApis.length,
   },
   {
     id: 'developer-tools',
-    name: 'Developer Tools',
+    name: 'Free Developer Utilities',
     slug: 'developer-tools',
-    description: 'CLI terminals, native database GUIs, network tunnels, and design inspectors.',
+    description: 'CLI terminals, Postman alternatives, database GUIs, network tunnels, and code inspectors.',
     iconName: 'Wrench',
     count: developerTools.length,
   },
   {
     id: 'hosting',
-    name: 'Hosting & Cloud',
+    name: 'Free & Freemium Hosting',
     slug: 'hosting',
-    description: 'Serverless edges, container PaaS, serverless databases, and VPS providers.',
+    description: 'Serverless edges, container PaaS (Coolify, Render), Postgres databases, and zero-cost static hosting.',
     iconName: 'Cloud',
     count: hostingCloudResources.length,
-  },
-  {
-    id: 'courses',
-    name: 'Courses & Learning',
-    slug: 'courses',
-    description: 'Free university CS curricula, deep learning textbooks, and interactive coding tracks.',
-    iconName: 'GraduationCap',
-    count: learningResources.length,
-  },
-  {
-    id: 'student-benefits',
-    name: 'Student Pack & Benefits',
-    slug: 'student-pack',
-    description: 'Verified educational discounts, cloud credits, free domains, and student software.',
-    iconName: 'Award',
-    count: 10,
-  },
-  {
-    id: 'project-ideas',
-    name: 'Project Ideas',
-    slug: 'projects',
-    description: 'Curated software project concepts from 1st year to startup production apps.',
-    iconName: 'Lightbulb',
-    count: 10,
   },
 ];
 
@@ -104,8 +81,16 @@ export function getResourcesByCategory(category: ResourceCategory): Resource[] {
   return allResources.filter((r) => r.category === category);
 }
 
-export function getFeaturedResources(limit: number = 8): Resource[] {
+export function getFeaturedResources(limit: number = 6): Resource[] {
   return allResources.filter((r) => r.featured).slice(0, limit);
+}
+
+export function getTrendingSocialRepos(): Resource[] {
+  return allResources.filter((r) => r.trendingOnSocial || r.category === 'github');
+}
+
+export function getProTipsResources(): Resource[] {
+  return allResources.filter((r) => r.proTips && r.proTips.length > 0);
 }
 
 export function getRelatedResources(resource: Resource, limit: number = 4): Resource[] {
@@ -127,12 +112,12 @@ export function getRelatedResources(resource: Resource, limit: number = 4): Reso
  * - Tags
  * - Technologies
  * - Use cases
+ * - Pro tips & viral notes
  */
 export function searchResources(query: string, source: Resource[] = allResources): Resource[] {
   const q = query.trim().toLowerCase();
   if (!q) return source;
 
-  // Exact phrase match score
   return source.filter((r) => {
     const inName = r.name.toLowerCase().includes(q);
     const inShort = r.shortDescription.toLowerCase().includes(q);
@@ -142,8 +127,11 @@ export function searchResources(query: string, source: Resource[] = allResources
     const inTech = r.technologies.some((tech) => tech.toLowerCase().includes(q));
     const inUseCases = r.useCases.some((uc) => uc.toLowerCase().includes(q));
     const inPricing = r.pricingType.toLowerCase().includes(q) || (r.freeTier && r.freeTier.toLowerCase().includes(q));
+    const inStars = r.stars ? r.stars.toLowerCase().includes(q) : false;
+    const inSocial = r.socialHighlights ? r.socialHighlights.toLowerCase().includes(q) : false;
+    const inTips = r.proTips ? r.proTips.some((tip) => tip.toLowerCase().includes(q)) : false;
 
-    return inName || inShort || inLong || inCat || inTags || inTech || inUseCases || inPricing;
+    return inName || inShort || inLong || inCat || inTags || inTech || inUseCases || inPricing || inStars || inSocial || inTips;
   });
 }
 
@@ -174,6 +162,16 @@ export function filterResources(
       }
       return r.pricingType === filters.pricingType;
     });
+  }
+
+  // Trending on social / Instagram only
+  if (filters.trendingOnSocialOnly) {
+    result = result.filter((r) => r.trendingOnSocial);
+  }
+
+  // Has actionable tips & tricks only
+  if (filters.hasTipsOnly) {
+    result = result.filter((r) => Boolean(r.proTips && r.proTips.length > 0));
   }
 
   // Open Source only
@@ -213,6 +211,8 @@ export function sortResources(
 ): Resource[] {
   const cloned = [...resources];
   switch (sortBy) {
+    case 'stars':
+      return cloned.sort((a, b) => (b.starsCount || 0) - (a.starsCount || 0));
     case 'featured':
       return cloned.sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0));
     case 'alphabetical':
