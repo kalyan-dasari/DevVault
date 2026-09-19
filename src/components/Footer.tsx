@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { GitBranch, Heart, ShieldCheck, Sparkles, ExternalLink } from 'lucide-react';
+import { GitBranch, Heart, ShieldCheck, Sparkles, ExternalLink, Bot, Zap, Wrench, Cloud } from 'lucide-react';
 
 export function Footer() {
   return (
@@ -16,82 +16,77 @@ export function Footer() {
               <span className="text-base font-bold text-slate-200">DevVault</span>
             </div>
             <p className="text-slate-400 text-xs leading-relaxed">
-              Curated developer tools, open-source repositories, APIs, student benefits, and architecture stack builders.
+              Curated vault of trending GitHub repositories, open-source AI tools & models, free developer APIs, utilities, and actionable developer tips & tricks.
             </p>
             <div className="flex items-center gap-2 text-[11px] font-mono text-slate-500 pt-1">
               <span className="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              <span>75+ Verified Resources Indexed</span>
+              <span>Verified Repositories & Free AI Models</span>
             </div>
           </div>
 
-          {/* Col 2: Explore */}
+          {/* Col 2: High-Priority Categories */}
           <div>
             <h4 className="text-xs font-semibold text-slate-200 uppercase tracking-wider font-mono mb-3">
-              Explore Catalog
+              Core Catalog
             </h4>
             <ul className="space-y-2">
               <li>
-                <Link to="/explore?category=ai-tools" className="hover:text-indigo-400 transition-colors">
-                  AI Tools & Copilots
+                <Link to="/explore?category=github" className="hover:text-indigo-400 transition-colors flex items-center gap-1.5">
+                  <GitBranch className="w-3.5 h-3.5 text-sky-400" />
+                  <span>Trending GitHub Repos</span>
                 </Link>
               </li>
               <li>
-                <Link to="/explore?category=github" className="hover:text-indigo-400 transition-colors">
-                  GitHub Repositories
+                <Link to="/explore?category=ai-tools" className="hover:text-indigo-400 transition-colors flex items-center gap-1.5">
+                  <Bot className="w-3.5 h-3.5 text-indigo-400" />
+                  <span>Free & Open Source AI</span>
                 </Link>
               </li>
               <li>
-                <Link to="/explore?category=apis" className="hover:text-indigo-400 transition-colors">
-                  Developer APIs
+                <Link to="/explore?category=apis" className="hover:text-indigo-400 transition-colors flex items-center gap-1.5">
+                  <Zap className="w-3.5 h-3.5 text-amber-400" />
+                  <span>Free Developer APIs</span>
                 </Link>
               </li>
               <li>
-                <Link to="/explore?category=developer-tools" className="hover:text-indigo-400 transition-colors">
-                  Developer Utilities
+                <Link to="/explore?category=developer-tools" className="hover:text-indigo-400 transition-colors flex items-center gap-1.5">
+                  <Wrench className="w-3.5 h-3.5 text-emerald-400" />
+                  <span>Developer Utilities</span>
                 </Link>
               </li>
               <li>
-                <Link to="/explore?category=hosting" className="hover:text-indigo-400 transition-colors">
-                  Hosting & Cloud
-                </Link>
-              </li>
-              <li>
-                <Link to="/explore?category=courses" className="hover:text-indigo-400 transition-colors">
-                  Courses & Textbooks
+                <Link to="/explore?category=hosting" className="hover:text-indigo-400 transition-colors flex items-center gap-1.5">
+                  <Cloud className="w-3.5 h-3.5 text-purple-400" />
+                  <span>Free & Freemium Hosting</span>
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Col 3: Build & Save */}
+          {/* Col 3: Discovery & Capture */}
           <div>
             <h4 className="text-xs font-semibold text-slate-200 uppercase tracking-wider font-mono mb-3">
-              Build & Discover
+              Discovery & Social
             </h4>
             <ul className="space-y-2">
               <li>
-                <Link to="/stack-builder" className="hover:text-indigo-400 transition-colors">
-                  Stack Builder ("Build With These")
+                <Link to="/explore?trending=true" className="hover:text-indigo-400 transition-colors">
+                  🔥 Viral on Instagram / Social
                 </Link>
               </li>
               <li>
-                <Link to="/student-pack" className="hover:text-indigo-400 transition-colors">
-                  Student Developer Pack Perks
+                <Link to="/explore?tips=true" className="hover:text-indigo-400 transition-colors">
+                  💡 Developer Tips & Tricks
                 </Link>
               </li>
               <li>
-                <Link to="/project-ideas" className="hover:text-indigo-400 transition-colors">
-                  1st to Final Year Project Ideas
-                </Link>
-              </li>
-              <li>
-                <Link to="/social-import" className="hover:text-indigo-400 transition-colors">
-                  "I saw this on Instagram" Capture
+                <Link to="/social-import" className="text-pink-400 hover:text-pink-300 transition-colors font-medium">
+                  ✨ "Saw this on Insta" Quick Save
                 </Link>
               </li>
               <li>
                 <Link to="/my-vault" className="hover:text-indigo-400 transition-colors">
-                  My Vault & Collections
+                  🔖 My Vault & Collections
                 </Link>
               </li>
             </ul>
@@ -105,12 +100,12 @@ export function Footer() {
             <ul className="space-y-2">
               <li>
                 <Link to="/contribute" className="hover:text-indigo-400 transition-colors">
-                  Contribute a Resource
+                  Submit a Trending Repo or Tool
                 </Link>
               </li>
               <li>
                 <Link to="/open-source" className="hover:text-indigo-400 transition-colors">
-                  Open Source Guidelines
+                  Open Source Architecture
                 </Link>
               </li>
               <li>
@@ -120,13 +115,13 @@ export function Footer() {
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1 hover:text-indigo-400 transition-colors"
                 >
-                  <span>GitHub Repository</span>
+                  <span>GitHub Community</span>
                   <ExternalLink className="w-3 h-3" />
                 </a>
               </li>
             </ul>
             <div className="mt-4 p-2.5 rounded-lg border border-slate-800 bg-slate-900/60 text-[11px] text-slate-400 leading-relaxed">
-              <span className="font-medium text-slate-300">Verification Guarantee:</span> All listed free tiers and benefits are re-checked periodically against official vendor terms.
+              <span className="font-medium text-slate-300">Verified Free Guarantee:</span> We verify free models, open-source licenses, and zero-cost quotas before indexing.
             </div>
           </div>
         </div>
@@ -135,7 +130,7 @@ export function Footer() {
         <div className="mt-10 pt-6 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-3 text-slate-500 text-[11px]">
           <p>© {new Date().getFullYear()} DevVault. Free and Open-Source software for developers.</p>
           <p className="text-slate-500 text-center sm:text-right">
-            Not affiliated with GitHub, JetBrains, or listed companies. All product trademarks belong to their respective owners.
+            Curated by developers for developers. All trademarks belong to their respective owners.
           </p>
         </div>
       </div>
