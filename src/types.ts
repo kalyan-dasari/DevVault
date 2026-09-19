@@ -1,28 +1,10 @@
 export type ResourceCategory =
-  | 'ai-tools'
   | 'github'
+  | 'ai-tools'
   | 'apis'
   | 'developer-tools'
   | 'hosting'
-  | 'databases'
-  | 'auth'
-  | 'payments'
-  | 'email'
-  | 'analytics'
-  | 'monitoring'
-  | 'testing'
-  | 'devops'
-  | 'cloud'
-  | 'courses'
-  | 'certifications'
-  | 'datasets'
-  | 'ui-ux'
-  | 'icons'
-  | 'fonts'
-  | 'templates'
-  | 'open-source'
-  | 'student-benefits'
-  | 'project-ideas';
+  | 'student-benefits';
 
 export type PricingType =
   | 'Free'
@@ -47,7 +29,6 @@ export interface Resource {
     | 'repo'
     | 'api'
     | 'platform'
-    | 'course'
     | 'service'
     | 'dataset'
     | 'library'
@@ -60,8 +41,6 @@ export interface Resource {
   pricingDescription?: string;
   freeTier?: string;
   studentBenefit?: string;
-  duration?: string;
-  eligibility?: string;
   limitations?: string;
   features: string[];
   useCases: string[];
@@ -78,6 +57,15 @@ export interface Resource {
   sourceUrls: string[];
   createdAt: string;
   updatedAt: string;
+
+  // Social & Trending specific fields
+  stars?: string;
+  starsCount?: number;
+  trendingOnSocial?: boolean;
+  socialHighlights?: string;
+  proTips?: string[];
+  quickCommand?: string;
+  whyDevelopersLoveIt?: string;
 }
 
 export interface Collection {
@@ -89,78 +77,6 @@ export interface Collection {
   isDefault?: boolean;
   createdAt: string;
   updatedAt: string;
-}
-
-export interface StackLayer {
-  layerName: string;
-  role: string;
-  recommendedResourceId: string;
-  recommendedName: string;
-  alternativeIds: string[];
-}
-
-export interface StackTemplate {
-  id: string;
-  slug: string;
-  title: string;
-  tagline: string;
-  category: string;
-  description: string;
-  difficulty: DifficultyLevel;
-  layers: StackLayer[];
-}
-
-export type ProjectDifficulty =
-  | '1st Year'
-  | '2nd Year'
-  | '3rd Year'
-  | 'Final Year'
-  | 'Beginner'
-  | 'Intermediate'
-  | 'Advanced';
-
-export type ProjectCategory =
-  | 'AI/ML'
-  | 'Web Development'
-  | 'Developer Tools'
-  | 'Mobile'
-  | 'IoT'
-  | 'Data Science'
-  | 'Open Source'
-  | 'Hackathon'
-  | 'Startup';
-
-export interface ProjectIdea {
-  id: string;
-  slug: string;
-  title: string;
-  description: string;
-  difficulty: ProjectDifficulty;
-  category: ProjectCategory;
-  technologies: string[];
-  features: string[];
-  whatYouLearn: string[];
-  suggestedResourceSlugs: string[];
-  estimatedHours: string;
-}
-
-export interface LearningPathStep {
-  stepNumber: number;
-  title: string;
-  subtitle: string;
-  description: string;
-  recommendedResourceSlugs: string[];
-  actionableAdvice: string;
-}
-
-export interface LearningPath {
-  id: string;
-  slug: string;
-  title: string;
-  tagline: string;
-  iconName: string;
-  category: string;
-  steps: LearningPathStep[];
 }
 
 export interface StudentOffer {
@@ -192,6 +108,8 @@ export interface CommunitySubmission {
   source: string;
   submittedAt: string;
   status: 'pending' | 'approved' | 'rejected';
+  stars?: string;
+  proTips?: string[];
 }
 
 export interface ResourceFilterState {
@@ -202,6 +120,8 @@ export interface ResourceFilterState {
   hasApiOnly?: boolean;
   selfHostedOnly?: boolean;
   studentBenefitOnly?: boolean;
+  trendingOnSocialOnly?: boolean;
+  hasTipsOnly?: boolean;
   difficulty?: DifficultyLevel | 'all';
-  sortBy: 'featured' | 'alphabetical' | 'recent' | 'verified';
+  sortBy: 'featured' | 'stars' | 'alphabetical' | 'recent' | 'verified';
 }
