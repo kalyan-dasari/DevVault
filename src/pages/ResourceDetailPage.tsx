@@ -8,15 +8,16 @@ import {
   Bookmark,
   Sparkles,
   ShieldCheck,
-  GraduationCap,
   ArrowLeft,
   Check,
   CheckCircle2,
   Copy,
-  Layers,
   Terminal,
+  Star,
+  Flame,
+  Lightbulb,
 } from 'lucide-react';
-import { getResourceBySlug, getRelatedResources, allResources } from '../data';
+import { getResourceBySlug, getRelatedResources } from '../data';
 import { PricingBadge } from '../components/PricingBadge';
 import { VerificationBadge } from '../components/VerificationBadge';
 import { SaveButton } from '../components/SaveButton';
@@ -33,6 +34,7 @@ export function ResourceDetailPage() {
   const { customResources } = useVault();
   const [collectionModalOpen, setCollectionModalOpen] = useState(false);
   const [copiedLink, setCopiedLink] = useState(false);
+  const [copiedCommand, setCopiedCommand] = useState(false);
 
   // Search in static resources, or in user's custom captured resources
   const resource =
@@ -75,6 +77,14 @@ export function ResourceDetailPage() {
     setCopiedLink(true);
     toast('Link copied to clipboard', 'info');
     setTimeout(() => setCopiedLink(false), 2000);
+  };
+
+  const handleCopyCommand = () => {
+    if (!resource.quickCommand) return;
+    navigator.clipboard.writeText(resource.quickCommand);
+    setCopiedCommand(true);
+    toast('Command copied to clipboard!', 'success');
+    setTimeout(() => setCopiedCommand(false), 2000);
   };
 
   return (
@@ -121,9 +131,21 @@ export function ResourceDetailPage() {
                 <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-100 tracking-tight">
                   {resource.name}
                 </h1>
+                {resource.stars && (
+                  <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-mono font-bold bg-amber-500/15 text-amber-300 border border-amber-500/30">
+                    <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+                    <span>{resource.stars}</span>
+                  </span>
+                )}
+                {resource.trendingOnSocial && (
+                  <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-mono font-bold bg-pink-500/15 text-pink-300 border border-pink-500/30 animate-pulse">
+                    <Flame className="w-3.5 h-3.5 text-pink-400" />
+                    <span>Viral on Social</span>
+                  </span>
+                )}
                 {resource.featured && (
-                  <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-medium bg-amber-500/15 text-amber-300 border border-amber-500/30">
-                    <Sparkles className="w-3 h-3 text-amber-400" />
+                  <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-medium bg-indigo-500/15 text-indigo-300 border border-indigo-500/30">
+                    <Sparkles className="w-3 h-3 text-indigo-400" />
                     <span>Featured</span>
                   </span>
                 )}
@@ -163,14 +185,14 @@ export function ResourceDetailPage() {
                 rel="noopener noreferrer"
                 className="w-full inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl border border-slate-700 bg-slate-800/80 hover:bg-slate-700 text-slate-200 text-xs font-medium transition-colors"
               >
-                <GitBranch className="w-3.5 h-3.5" />
+                <GitBranch className="w-3.5 h-3.5 text-sky-400" />
                 <span>GitHub Repository</span>
               </a>
             )}
 
-            {resource.docsUrl && (
+            {resource.documentationUrl && (
               <a
-                href={resource.docsUrl}
+                href={resource.documentationUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl border border-slate-800 bg-slate-900 hover:bg-slate-800 text-slate-400 hover:text-slate-200 text-xs font-medium transition-colors"
@@ -183,10 +205,74 @@ export function ResourceDetailPage() {
         </div>
       </div>
 
+      {/* Social Viral Highlight Banner (if applicable) */}
+      {resource.socialHighlights && (
+        <div className="rounded-xl border border-pink-500/30 bg-pink-950/20 p-4 sm:p-5 flex items-start gap-3">
+          <Flame className="w-5 h-5 text-pink-400 shrink-0 mt-0.5" />
+          <div className="space-y-1">
+            <h3 className="text-xs font-mono uppercase tracking-wider text-pink-300 font-bold">
+              Why This Is Trending on Instagram & Social Media
+            </h3>
+            <p className="text-sm text-pink-100/90 leading-relaxed">
+              {resource.socialHighlights}
+            </p>
+          </div>
+        </div>
+      )}
+
+      {/* Quick Setup Command Bar */}
+      {resource.quickCommand && (
+        <div className="rounded-xl border border-slate-800 bg-slate-950 p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 font-mono text-xs shadow-inner">
+          <div className="flex items-center gap-2 text-indigo-300 overflow-x-auto no-scrollbar">
+            <Terminal className="w-4 h-4 text-slate-500 shrink-0" />
+            <span className="text-slate-500">$</span>
+            <span className="text-slate-100 font-semibold">{resource.quickCommand}</span>
+          </div>
+          <button
+            type="button"
+            onClick={handleCopyCommand}
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-sans font-medium transition-colors shrink-0"
+          >
+            {copiedCommand ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
+            <span>{copiedCommand ? 'Copied' : 'Copy Command'}</span>
+          </button>
+        </div>
+      )}
+
       {/* Grid of Details: Left Main, Right Sidebar */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        {/* Left Column: Full Description, Key Features, Use Cases */}
+        {/* Left Column: Full Description, Pro Tips, Key Features, Use Cases */}
         <div className="lg:col-span-2 space-y-8">
+          {/* Pro Tips & Tricks Section */}
+          {resource.proTips && resource.proTips.length > 0 && (
+            <div className="p-5 sm:p-6 rounded-2xl border border-amber-500/30 bg-amber-950/15 space-y-3">
+              <div className="flex items-center gap-2 text-amber-300 font-mono text-xs uppercase tracking-wider font-bold">
+                <Lightbulb className="w-4 h-4 text-amber-400" />
+                <span>Actionable Developer Pro Tips & Tricks</span>
+              </div>
+              <ul className="space-y-2.5 pt-1">
+                {resource.proTips.map((tip, idx) => (
+                  <li key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-200 leading-relaxed">
+                    <span className="text-amber-400 font-bold mt-0.5">•</span>
+                    <span>{tip}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {/* Why Developers Love It */}
+          {resource.whyDevelopersLoveIt && (
+            <div className="space-y-2">
+              <h2 className="text-base font-semibold text-slate-200 uppercase tracking-wider font-mono">
+                Why Thousands of Developers Use This
+              </h2>
+              <p className="text-sm text-slate-300 leading-relaxed bg-slate-900/40 p-4 rounded-xl border border-slate-800">
+                {resource.whyDevelopersLoveIt}
+              </p>
+            </div>
+          )}
+
           {/* Detailed Overview */}
           <div className="space-y-3">
             <h2 className="text-base font-semibold text-slate-200 uppercase tracking-wider font-mono">
@@ -251,37 +337,17 @@ export function ResourceDetailPage() {
           )}
         </div>
 
-        {/* Right Column: Pricing Breakdown, Student Benefit, Tech Stack */}
+        {/* Right Column: Pricing Breakdown & Tech Stack */}
         <div className="space-y-6">
           {/* Free Tier Card */}
           <div className="rounded-xl border border-slate-800 bg-slate-900/50 p-5 space-y-3">
             <h3 className="text-xs font-semibold text-slate-200 uppercase tracking-wider font-mono">
-              Free Tier & Pricing
+              Free Tier & Open Source Model
             </h3>
             <div className="text-xs text-slate-300 leading-relaxed bg-slate-800/50 p-3 rounded-lg border border-slate-700/60 font-mono">
-              {resource.freeTier || 'Refer to official pricing page for free plan allowances.'}
+              {resource.freeTier || resource.pricingDescription || '100% Free Open Source Software'}
             </div>
           </div>
-
-          {/* Student Perk Card */}
-          {Boolean(resource.studentBenefit) && (
-            <div className="rounded-xl border border-violet-500/30 bg-violet-950/20 p-5 space-y-2.5">
-              <div className="flex items-center gap-2 text-violet-300 text-xs font-semibold uppercase tracking-wider font-mono">
-                <GraduationCap className="w-4 h-4" />
-                <span>Student Benefit</span>
-              </div>
-              <p className="text-xs text-slate-300 leading-relaxed">
-                {resource.studentBenefit}
-              </p>
-              <Link
-                to="/student-pack"
-                className="inline-flex items-center gap-1 text-[11px] text-violet-400 hover:text-violet-300 font-medium pt-1"
-              >
-                <span>View all student perks in Student Pack</span>
-                <ExternalLink className="w-3 h-3" />
-              </Link>
-            </div>
-          )}
 
           {/* Tech Stack & Tags */}
           <div className="rounded-xl border border-slate-800 bg-slate-900/50 p-5 space-y-3">
