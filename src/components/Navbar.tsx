@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import {
   Compass,
-  Layers,
   Bookmark,
   Share2,
   GitBranch,
@@ -11,47 +10,45 @@ import {
   Menu,
   X,
   Sparkles,
-  Zap,
-  GraduationCap,
+  Bot,
   Lightbulb,
-  Search,
-  ExternalLink,
+  Zap,
 } from 'lucide-react';
 import { useVault } from '../context/VaultContext';
 import { useTheme } from '../context/ThemeContext';
 
-interface NavbarProps {
-  onOpenQuickSave?: () => void;
-}
-
-export function Navbar({ onOpenQuickSave }: NavbarProps) {
+export function Navbar() {
   const location = useLocation();
   const { savedCount } = useVault();
   const { actualTheme, toggleTheme } = useTheme();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const isActive = (path: string) => {
-    if (path === '/') return location.pathname === '/';
+    if (path === '/') return location.pathname === '/' && !location.search;
+    if (path.includes('?')) {
+      const [p, query] = path.split('?');
+      return location.pathname === p && location.search.includes(query);
+    }
     return location.pathname.startsWith(path);
   };
 
   const navLinks = [
     { label: 'Explore', path: '/explore', icon: Compass },
-    { label: 'Stack Builder', path: '/stack-builder', icon: Layers },
-    { label: 'Student Pack', path: '/student-pack', icon: GraduationCap },
-    { label: 'Project Ideas', path: '/project-ideas', icon: Lightbulb },
+    { label: 'Trending Repos', path: '/explore?category=github&trending=true', icon: GitBranch, highlight: true },
+    { label: 'Free AI Tools', path: '/explore?category=ai-tools', icon: Bot },
+    { label: 'Tips & Tricks', path: '/explore?tips=true', icon: Lightbulb },
     { label: 'My Vault', path: '/my-vault', icon: Bookmark, badge: savedCount },
   ];
 
   const secondaryLinks = [
-    { label: 'Contribute', path: '/contribute', icon: Share2 },
-    { label: 'Open Source', path: '/open-source', icon: GitBranch },
+    { label: 'Contribute a Repo/Tool', path: '/contribute', icon: Share2 },
+    { label: 'Open Source Code', path: '/open-source', icon: GitBranch },
   ];
 
   return (
     <header
       id="main-navigation"
-      className="sticky top-0 z-40 w-full border-b border-slate-800/80 bg-slate-950/85 backdrop-blur-md dark:border-slate-800/80 dark:bg-[#0b0f17]/90 transition-colors"
+      className="sticky top-0 z-40 w-full border-b border-slate-800/80 bg-slate-950/90 backdrop-blur-md dark:border-slate-800/80 dark:bg-[#0b0f17]/90 transition-colors"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
@@ -71,11 +68,11 @@ export function Navbar({ onOpenQuickSave }: NavbarProps) {
                     DevVault
                   </span>
                   <span className="px-1.5 py-0.2 rounded text-[10px] font-mono font-semibold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
-                    BETA
+                    TRENDING
                   </span>
                 </div>
                 <span className="text-[10px] text-slate-400 font-mono hidden sm:inline">
-                  Discover • Save • Build
+                  Trending Repos • Free AI • Dev Tools
                 </span>
               </div>
             </Link>
@@ -91,7 +88,9 @@ export function Navbar({ onOpenQuickSave }: NavbarProps) {
                     to={item.path}
                     className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
                       active
-                        ? 'bg-indigo-600/15 text-indigo-400 border border-indigo-500/30'
+                        ? 'bg-indigo-600/15 text-indigo-300 border border-indigo-500/30'
+                        : item.highlight
+                        ? 'text-amber-300/90 hover:text-amber-200 hover:bg-amber-500/10'
                         : 'text-slate-300 hover:text-slate-100 hover:bg-slate-800/60'
                     }`}
                   >
@@ -110,15 +109,14 @@ export function Navbar({ onOpenQuickSave }: NavbarProps) {
 
           {/* Right Header Actions */}
           <div className="flex items-center gap-2 sm:gap-2.5">
-            {/* Quick "I saw this" capture button */}
+            {/* Quick "I saw this on Insta" capture button */}
             <Link
               to="/social-import"
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg border border-indigo-500/40 bg-indigo-500/10 text-indigo-300 hover:bg-indigo-500/20 hover:border-indigo-400 transition-all shadow-sm"
-              title="Save developer tool from Instagram, YouTube or Reel caption"
+              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-semibold rounded-lg border border-pink-500/40 bg-gradient-to-r from-pink-500/10 to-indigo-500/10 text-pink-300 hover:from-pink-500/20 hover:to-indigo-500/20 hover:border-pink-400 transition-all shadow-sm"
+              title="Save developer repo/tool from Instagram reels, TikTok, or YouTube"
             >
-              <Sparkles className="w-3.5 h-3.5 text-indigo-400 animate-pulse" />
-              <span className="hidden sm:inline">"I saw this"</span>
-              <span className="sm:hidden">Import</span>
+              <Sparkles className="w-3.5 h-3.5 text-pink-400 animate-pulse" />
+              <span>Saw on Insta?</span>
             </Link>
 
             {/* Theme Toggle */}
@@ -185,8 +183,17 @@ export function Navbar({ onOpenQuickSave }: NavbarProps) {
 
           <div className="pt-2 border-t border-slate-800/80 space-y-1">
             <span className="px-3 text-[11px] font-mono uppercase tracking-wider text-slate-500 font-semibold">
-              Community & Code
+              Community & Capture
             </span>
+            <Link
+              to="/social-import"
+              onClick={() => setMobileMenuOpen(false)}
+              className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-sm font-medium text-pink-300 bg-pink-500/10 border border-pink-500/20"
+            >
+              <Sparkles className="w-4 h-4 text-pink-400" />
+              <span>Saw on Instagram? Quick Import</span>
+            </Link>
+
             {secondaryLinks.map((item) => {
               const Icon = item.icon;
               const active = isActive(item.path);
