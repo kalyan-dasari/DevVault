@@ -137,13 +137,6 @@ export function HomePage() {
               </p>
             </div>
           </div>
-          <Link
-            to="/explore?category=github&trending=true"
-            className="inline-flex items-center gap-1 text-xs sm:text-sm font-semibold text-pink-400 hover:text-pink-300 transition-colors"
-          >
-            <span>View all trending repos</span>
-            <ArrowRight className="w-4 h-4" />
-          </Link>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -195,13 +188,6 @@ export function HomePage() {
                 </p>
               </div>
             </div>
-            <Link
-              to="/explore?tips=true"
-              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-amber-500/15 hover:bg-amber-500/25 border border-amber-500/30 text-amber-300 text-xs font-semibold transition-colors shrink-0"
-            >
-              <span>Explore All Tips</span>
-              <ArrowRight className="w-3.5 h-3.5" />
-            </Link>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
