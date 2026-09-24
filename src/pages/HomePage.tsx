@@ -237,13 +237,6 @@ export function HomePage() {
               Structured datasets curated for quick discovery and building
             </p>
           </div>
-          <Link
-            to="/explore"
-            className="inline-flex items-center gap-1 text-xs sm:text-sm font-medium text-indigo-400 hover:text-indigo-300 transition-colors"
-          >
-            <span>View All</span>
-            <ArrowRight className="w-4 h-4" />
-          </Link>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
