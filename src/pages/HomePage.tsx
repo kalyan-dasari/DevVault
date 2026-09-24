@@ -33,7 +33,7 @@ export function HomePage() {
   const tipsResources = allResources.filter((r) => r.proTips && r.proTips.length > 0).slice(0, 3);
 
   const handleSearchSubmit = (query: string) => {
-    navigate(`/explore?q=${encodeURIComponent(query)}`);
+    navigate(`/?q=${encodeURIComponent(query)}`);
   };
 
   const getCategoryIcon = (iconName: string) => {
