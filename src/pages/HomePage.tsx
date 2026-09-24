@@ -245,7 +245,7 @@ export function HomePage() {
             return (
               <Link
                 key={cat.id}
-                to={`/explore?category=${cat.id}`}
+                to="/"
                 className="group flex flex-col justify-between p-5 rounded-xl border border-slate-800 bg-slate-900/50 hover:bg-slate-900/90 hover:border-slate-700 transition-all duration-150 hover:-translate-y-0.5 shadow-sm"
               >
                 <div>
