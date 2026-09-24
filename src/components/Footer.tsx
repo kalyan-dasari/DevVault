@@ -31,7 +31,7 @@ export function Footer() {
             </h4>
             <ul className="space-y-2">
               <li>
-                <Link to="/explore?category=github" className="hover:text-indigo-400 transition-colors flex items-center gap-1.5">
+                <Link to="/" className="hover:text-indigo-400 transition-colors flex items-center gap-1.5">
                   <GitBranch className="w-3.5 h-3.5 text-sky-400" />
                   <span>Trending GitHub Repos</span>
                 </Link>
