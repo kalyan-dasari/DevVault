@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import {
-  Compass,
   Bookmark,
   Share2,
   GitBranch,
@@ -33,7 +32,6 @@ export function Navbar() {
   };
 
   const navLinks = [
-    { label: 'Explore', path: '/explore', icon: Compass },
     { label: 'Trending Repos', path: '/explore?category=github&trending=true', icon: GitBranch, highlight: true },
     { label: 'Free AI Tools', path: '/explore?category=ai-tools', icon: Bot },
     { label: 'Tips & Tricks', path: '/explore?tips=true', icon: Lightbulb },
