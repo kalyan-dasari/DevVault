@@ -169,13 +169,6 @@ export function HomePage() {
               </p>
             </div>
           </div>
-          <Link
-            to="/explore?category=ai-tools"
-            className="inline-flex items-center gap-1 text-xs sm:text-sm font-semibold text-indigo-400 hover:text-indigo-300 transition-colors"
-          >
-            <span>View all AI tools</span>
-            <ArrowRight className="w-4 h-4" />
-          </Link>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-5">
