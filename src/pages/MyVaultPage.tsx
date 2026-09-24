@@ -8,7 +8,6 @@ import {
   Download,
   Share2,
   Search,
-  ArrowRight,
   Sparkles,
   ExternalLink,
   Edit2,
@@ -374,11 +373,10 @@ export function MyVaultPage() {
               </p>
               <div className="pt-2">
                 <Link
-                  to="/explore"
+                  to="/"
                   className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-medium"
                 >
                   <span>Explore Resources</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
                 </Link>
               </div>
             </div>

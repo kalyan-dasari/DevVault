@@ -60,11 +60,11 @@ export function ResourceDetailPage() {
           The resource "{slug}" may have been moved or removed from the vault.
         </p>
         <Link
-          to="/explore"
+          to="/"
           className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-indigo-600 text-white text-xs font-medium hover:bg-indigo-500"
         >
           <ArrowLeft className="w-4 h-4" />
-          <span>Return to Explore</span>
+          <span>Return to Home</span>
         </Link>
       </div>
     );
