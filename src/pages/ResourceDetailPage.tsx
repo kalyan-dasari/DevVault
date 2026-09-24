@@ -379,17 +379,9 @@ export function ResourceDetailPage() {
       {/* Related Resources */}
       {related.length > 0 && (
         <div className="pt-8 border-t border-slate-800 space-y-4">
-          <div className="flex items-center justify-between">
-            <h3 className="text-lg font-bold text-slate-100">
-              Related Developer Tools
-            </h3>
-            <Link
-              to={`/explore?category=${resource.category}`}
-              className="text-xs text-indigo-400 hover:text-indigo-300"
-            >
-              Browse all in {resource.category}
-            </Link>
-          </div>
+          <h3 className="text-lg font-bold text-slate-100">
+            Related Developer Tools
+          </h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {related.map((r) => (
               <ResourceCard key={r.id} resource={r} />
