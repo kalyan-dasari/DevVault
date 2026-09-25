@@ -122,7 +122,10 @@ export function HomePage() {
       </section>
 
       {/* TOP PRIORITY: Trending on Instagram & Social Media */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section
+        id="trending-repos"
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-20"
+      >
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center gap-2">
             <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-pink-500/10 text-pink-400 border border-pink-500/20">
@@ -147,7 +150,10 @@ export function HomePage() {
       </section>
 
       {/* TOP PRIORITY 2: Free & Open-Source AI Tools */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section
+        id="free-ai-tools"
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-20"
+      >
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center gap-2">
             <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-indigo-600/10 text-indigo-400 border border-indigo-500/20">
@@ -172,7 +178,10 @@ export function HomePage() {
       </section>
 
       {/* Pro Tips & Tricks Highlight Section */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section
+        id="tips-tricks"
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-20"
+      >
         <div className="rounded-2xl border border-amber-500/30 bg-gradient-to-br from-amber-950/20 via-slate-900 to-slate-950 p-6 sm:p-8 shadow-xl">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-800">
             <div className="flex items-center gap-3">

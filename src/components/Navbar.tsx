@@ -24,6 +24,10 @@ export function Navbar() {
 
   const isActive = (path: string) => {
     if (path === '/') return location.pathname === '/' && !location.search;
+    if (path.includes('#')) {
+      const [p, hash] = path.split('#');
+      return location.pathname === p && location.hash === `#${hash}`;
+    }
     if (path.includes('?')) {
       const [p, query] = path.split('?');
       return location.pathname === p && location.search.includes(query);
@@ -32,9 +36,9 @@ export function Navbar() {
   };
 
   const navLinks = [
-    { label: 'Trending Repos', path: '/', icon: GitBranch, highlight: true },
-    { label: 'Free AI Tools', path: '/', icon: Bot },
-    { label: 'Tips & Tricks', path: '/', icon: Lightbulb },
+    { label: 'Trending Repos', path: '/#trending-repos', icon: GitBranch, highlight: true },
+    { label: 'Free AI Tools', path: '/#free-ai-tools', icon: Bot },
+    { label: 'Tips & Tricks', path: '/#tips-tricks', icon: Lightbulb },
     { label: 'My Vault', path: '/my-vault', icon: Bookmark, badge: savedCount },
   ];
 
