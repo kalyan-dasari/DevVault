@@ -12,6 +12,7 @@ import {
   Bot,
   Lightbulb,
   Zap,
+  Compass,
 } from 'lucide-react';
 import { useVault } from '../context/VaultContext';
 import { useTheme } from '../context/ThemeContext';
@@ -24,10 +25,6 @@ export function Navbar() {
 
   const isActive = (path: string) => {
     if (path === '/') return location.pathname === '/' && !location.search;
-    if (path.includes('#')) {
-      const [p, hash] = path.split('#');
-      return location.pathname === p && location.hash === `#${hash}`;
-    }
     if (path.includes('?')) {
       const [p, query] = path.split('?');
       return location.pathname === p && location.search.includes(query);

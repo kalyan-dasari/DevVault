@@ -16,25 +16,29 @@ import {
   Terminal,
   Compass,
 } from 'lucide-react';
-import { categoryMeta, getTrendingSocialRepos, allResources } from '../data';
+import { categoryMeta, getTrendingSocialRepos, getResourcesByCategory, getProTipsResources, allResources } from '../data';
 import { ResourceCard } from '../components/ResourceCard';
 import { SearchBar } from '../components/SearchBar';
+
+const PREVIEW_COUNT = 3;
 
 export function HomePage() {
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
 
-  // Trending social repos
-  const trendingRepos = getTrendingSocialRepos().slice(0, 6);
+  // Landing page keeps a small teaser of each collection; the full catalog
+  // lives on /explore with filters.
+  const trendingRepos = getTrendingSocialRepos().slice(0, PREVIEW_COUNT);
+  const trendingTotal = getTrendingSocialRepos().length;
 
-  // Top free & open-source AI tools
-  const topAiTools = allResources.filter((r) => r.category === 'ai-tools').slice(0, 4);
+  const topAiTools = getResourcesByCategory('ai-tools').slice(0, PREVIEW_COUNT);
+  const aiToolsTotal = getResourcesByCategory('ai-tools').length;
 
-  // Resources with pro tips
-  const tipsResources = allResources.filter((r) => r.proTips && r.proTips.length > 0).slice(0, 3);
+  const tipsResources = getProTipsResources().slice(0, PREVIEW_COUNT);
+  const tipsTotal = getProTipsResources().length;
 
   const handleSearchSubmit = (query: string) => {
-    navigate(`/?q=${encodeURIComponent(query)}`);
+    navigate(`/explore?q=${encodeURIComponent(query)}`);
   };
 
   const getCategoryIcon = (iconName: string) => {
