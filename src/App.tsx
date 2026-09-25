@@ -5,6 +5,7 @@ import { ToastProvider } from './context/ToastContext';
 import { VaultProvider } from './context/VaultContext';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
+import { ScrollToHash } from './components/ScrollToHash';
 
 // Pages
 import { HomePage } from './pages/HomePage';
@@ -20,6 +21,7 @@ export default function App() {
       <ToastProvider>
         <VaultProvider>
           <BrowserRouter>
+            <ScrollToHash />
             <div className="flex flex-col min-h-screen bg-[#0b0f17] text-slate-100 font-sans selection:bg-indigo-500/30 selection:text-indigo-200 antialiased">
               <Navbar />
 

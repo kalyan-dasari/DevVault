@@ -14,6 +14,7 @@ import {
   Flame,
   Lightbulb,
   Terminal,
+  Compass,
 } from 'lucide-react';
 import { categoryMeta, getTrendingSocialRepos, allResources } from '../data';
 import { ResourceCard } from '../components/ResourceCard';
