@@ -2,9 +2,9 @@ import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
 /**
- * React Router does not perform native anchor scrolling, so hash links such as
- * /#trending-repos only update the URL. This scrolls to the matching element
- * on every navigation and resets to the top when no hash is present.
+ * React Router does not perform native anchor scrolling nor reset scroll on
+ * navigation. This scrolls to the matching element when a hash is present and
+ * returns to the top otherwise, so route changes always land somewhere useful.
  */
 export function ScrollToHash() {
   const { pathname, hash, key } = useLocation();

@@ -16,7 +16,7 @@ import {
   Terminal,
   Compass,
 } from 'lucide-react';
-import { categoryMeta, getTrendingSocialRepos, getResourcesByCategory, getProTipsResources, allResources } from '../data';
+import { categoryMeta, getTrendingSocialRepos, getResourcesByCategory, getProTipsResources } from '../data';
 import { ResourceCard } from '../components/ResourceCard';
 import { SearchBar } from '../components/SearchBar';
 
