@@ -84,7 +84,7 @@ export function ResourceCard({ resource, className = '' }: ResourceCardProps) {
                   )}
                   {resource.trendingOnSocial && (
                     <span
-                      title={resource.socialHighlights || 'Trending on Instagram/Social Media'}
+                      title="Trending on social media"
                       className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded text-[10px] font-mono font-bold bg-pink-500/15 text-pink-300 border border-pink-500/30 animate-pulse"
                     >
                       <Flame className="w-3 h-3 text-pink-400" />
@@ -115,14 +115,6 @@ export function ResourceCard({ resource, className = '' }: ResourceCardProps) {
               />
             </div>
           </div>
-
-          {/* Social Viral Highlight Callout */}
-          {resource.socialHighlights && (
-            <div className="mb-3 px-2.5 py-1.5 rounded-lg border border-pink-500/20 bg-pink-500/5 text-[11px] text-pink-200 flex items-start gap-1.5 leading-snug">
-              <Flame className="w-3.5 h-3.5 text-pink-400 shrink-0 mt-0.5" />
-              <span className="line-clamp-2">{resource.socialHighlights}</span>
-            </div>
-          )}
 
           {/* Short Description */}
           <p className="text-sm text-slate-300 line-clamp-2 leading-relaxed mb-3">
