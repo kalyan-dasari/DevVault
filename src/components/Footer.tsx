@@ -31,31 +31,31 @@ export function Footer() {
             </h4>
             <ul className="space-y-2">
               <li>
-                <Link to="/" className="hover:text-indigo-400 transition-colors flex items-center gap-1.5">
+                <Link to="/explore?category=github" className="hover:text-indigo-400 transition-colors flex items-center gap-1.5">
                   <GitBranch className="w-3.5 h-3.5 text-sky-400" />
                   <span>Trending GitHub Repos</span>
                 </Link>
               </li>
               <li>
-                <Link to="/" className="hover:text-indigo-400 transition-colors flex items-center gap-1.5">
+                <Link to="/explore?category=ai-tools" className="hover:text-indigo-400 transition-colors flex items-center gap-1.5">
                   <Bot className="w-3.5 h-3.5 text-indigo-400" />
                   <span>Free & Open Source AI</span>
                 </Link>
               </li>
               <li>
-                <Link to="/" className="hover:text-indigo-400 transition-colors flex items-center gap-1.5">
+                <Link to="/explore?category=apis" className="hover:text-indigo-400 transition-colors flex items-center gap-1.5">
                   <Zap className="w-3.5 h-3.5 text-amber-400" />
                   <span>Free Developer APIs</span>
                 </Link>
               </li>
               <li>
-                <Link to="/" className="hover:text-indigo-400 transition-colors flex items-center gap-1.5">
+                <Link to="/explore?category=developer-tools" className="hover:text-indigo-400 transition-colors flex items-center gap-1.5">
                   <Wrench className="w-3.5 h-3.5 text-emerald-400" />
                   <span>Developer Utilities</span>
                 </Link>
               </li>
               <li>
-                <Link to="/" className="hover:text-indigo-400 transition-colors flex items-center gap-1.5">
+                <Link to="/explore?category=hosting" className="hover:text-indigo-400 transition-colors flex items-center gap-1.5">
                   <Cloud className="w-3.5 h-3.5 text-purple-400" />
                   <span>Free & Freemium Hosting</span>
                 </Link>
@@ -70,12 +70,17 @@ export function Footer() {
             </h4>
             <ul className="space-y-2">
               <li>
-                <Link to="/" className="hover:text-indigo-400 transition-colors">
+                <Link to="/explore" className="hover:text-indigo-400 transition-colors">
+                  🧭 Explore Full Catalog
+                </Link>
+              </li>
+              <li>
+                <Link to="/explore?trending=true" className="hover:text-indigo-400 transition-colors">
                   🔥 Viral on Instagram / Social
                 </Link>
               </li>
               <li>
-                <Link to="/" className="hover:text-indigo-400 transition-colors">
+                <Link to="/explore?tips=true" className="hover:text-indigo-400 transition-colors">
                   💡 Developer Tips & Tricks
                 </Link>
               </li>

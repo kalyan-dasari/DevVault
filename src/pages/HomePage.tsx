@@ -131,7 +131,7 @@ export function HomePage() {
         id="trending-repos"
         className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-20"
       >
-        <div className="flex items-center justify-between mb-6">
+        <div className="flex items-center justify-between mb-6 gap-4 flex-wrap">
           <div className="flex items-center gap-2">
             <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-pink-500/10 text-pink-400 border border-pink-500/20">
               <Flame className="w-4 h-4" />
@@ -145,6 +145,13 @@ export function HomePage() {
               </p>
             </div>
           </div>
+          <Link
+            to="/explore?category=github"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold border border-slate-700/80 bg-slate-800/70 text-slate-200 hover:text-indigo-300 hover:border-indigo-500/40 transition-colors"
+          >
+            <span>View all {trendingTotal} trending repos</span>
+            <ArrowRight className="w-3.5 h-3.5" />
+          </Link>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -159,7 +166,7 @@ export function HomePage() {
         id="free-ai-tools"
         className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-20"
       >
-        <div className="flex items-center justify-between mb-6">
+        <div className="flex items-center justify-between mb-6 gap-4 flex-wrap">
           <div className="flex items-center gap-2">
             <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-indigo-600/10 text-indigo-400 border border-indigo-500/20">
               <Bot className="w-4 h-4" />
@@ -173,9 +180,16 @@ export function HomePage() {
               </p>
             </div>
           </div>
+          <Link
+            to="/explore?category=ai-tools"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold border border-slate-700/80 bg-slate-800/70 text-slate-200 hover:text-indigo-300 hover:border-indigo-500/40 transition-colors"
+          >
+            <span>View all {aiToolsTotal} AI tools</span>
+            <ArrowRight className="w-3.5 h-3.5" />
+          </Link>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {topAiTools.map((res) => (
             <ResourceCard key={res.id} resource={res} />
           ))}
@@ -202,6 +216,13 @@ export function HomePage() {
                 </p>
               </div>
             </div>
+            <Link
+              to="/explore?tips=true"
+              className="inline-flex items-center gap-1.5 self-start sm:self-auto px-3 py-1.5 rounded-lg text-xs font-semibold border border-amber-500/30 bg-amber-500/10 text-amber-300 hover:bg-amber-500/20 hover:border-amber-400/60 transition-colors"
+            >
+              <span>View all {tipsTotal} tip guides</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
@@ -259,7 +280,7 @@ export function HomePage() {
             return (
               <Link
                 key={cat.id}
-                to="/"
+                to={`/explore?category=${cat.id}`}
                 className="group flex flex-col justify-between p-5 rounded-xl border border-slate-800 bg-slate-900/50 hover:bg-slate-900/90 hover:border-slate-700 transition-all duration-150 hover:-translate-y-0.5 shadow-sm"
               >
                 <div>
