@@ -24,11 +24,13 @@ export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const isActive = (path: string) => {
-    if (path === '/') return location.pathname === '/' && !location.search;
     if (path.includes('?')) {
       const [p, query] = path.split('?');
-      return location.pathname === p && location.search.includes(query);
+      if (location.pathname !== p) return false;
+      // A query-less /explore link only lights up when no filter is applied
+      return query ? location.search.includes(query) : !location.search;
     }
+    if (path === '/') return location.pathname === '/' && !location.search;
     return location.pathname.startsWith(path);
   };
 
