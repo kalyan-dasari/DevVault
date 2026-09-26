@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { GitBranch, Heart, ShieldCheck, Sparkles, ExternalLink, Bot, Zap, Wrench, Cloud } from 'lucide-react';
+import { Logo } from './Logo';
 
 export function Footer() {
   return (
@@ -9,12 +10,7 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Col 1: Brand & Tagline */}
           <div className="md:col-span-1 space-y-3">
-            <div className="flex items-center gap-2">
-              <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-indigo-600 font-mono font-bold text-white text-xs">
-                &gt;_
-              </div>
-              <span className="text-base font-bold text-slate-200">DevVault</span>
-            </div>
+            <Logo size="sm" showTagline={false} />
             <p className="text-slate-400 text-xs leading-relaxed">
               Curated vault of trending GitHub repositories, open-source AI tools & models, free developer APIs, utilities, and actionable developer tips & tricks.
             </p>
@@ -63,17 +59,12 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Col 3: Discovery & Capture */}
+          {/* Col 3: Discovery & Shortcuts */}
           <div>
             <h4 className="text-xs font-semibold text-slate-200 uppercase tracking-wider font-mono mb-3">
-              Discovery & Social
+              Discovery & Tools
             </h4>
             <ul className="space-y-2">
-              <li>
-                <Link to="/explore" className="hover:text-indigo-400 transition-colors">
-                  🧭 Explore Full Catalog
-                </Link>
-              </li>
               <li>
                 <Link to="/explore?trending=true" className="hover:text-indigo-400 transition-colors">
                   🔥 Viral on Instagram / Social
@@ -82,11 +73,6 @@ export function Footer() {
               <li>
                 <Link to="/explore?tips=true" className="hover:text-indigo-400 transition-colors">
                   💡 Developer Tips & Tricks
-                </Link>
-              </li>
-              <li>
-                <Link to="/social-import" className="text-pink-400 hover:text-pink-300 transition-colors font-medium">
-                  ✨ "Saw this on Insta" Quick Save
                 </Link>
               </li>
               <li>
