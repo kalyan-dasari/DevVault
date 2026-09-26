@@ -8,10 +8,8 @@ import {
   Moon,
   Menu,
   X,
-  Sparkles,
   Bot,
   Lightbulb,
-  Zap,
   Compass,
 } from 'lucide-react';
 import { useVault } from '../context/VaultContext';
@@ -118,16 +116,6 @@ export function Navbar() {
 
           {/* Right Header Actions */}
           <div className="flex items-center gap-2 sm:gap-2.5">
-            {/* Quick "I saw this on Insta" capture button */}
-            <Link
-              to="/social-import"
-              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-semibold rounded-lg border border-pink-500/40 bg-gradient-to-r from-pink-500/10 to-indigo-500/10 text-pink-300 hover:from-pink-500/20 hover:to-indigo-500/20 hover:border-pink-400 transition-all shadow-sm"
-              title="Save developer repo/tool from Instagram reels, TikTok, or YouTube"
-            >
-              <Sparkles className="w-3.5 h-3.5 text-pink-400 animate-pulse" />
-              <span>Saw on Insta?</span>
-            </Link>
-
             {/* Theme Toggle */}
             <button
               type="button"
@@ -192,17 +180,8 @@ export function Navbar() {
 
           <div className="pt-2 border-t border-slate-800/80 space-y-1">
             <span className="px-3 text-[11px] font-mono uppercase tracking-wider text-slate-500 font-semibold">
-              Community & Capture
+              Community
             </span>
-            <Link
-              to="/social-import"
-              onClick={() => setMobileMenuOpen(false)}
-              className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-sm font-medium text-pink-300 bg-pink-500/10 border border-pink-500/20"
-            >
-              <Sparkles className="w-4 h-4 text-pink-400" />
-              <span>Saw on Instagram? Quick Import</span>
-            </Link>
-
             {secondaryLinks.map((item) => {
               const Icon = item.icon;
               const active = isActive(item.path);
