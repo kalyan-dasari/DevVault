@@ -14,6 +14,7 @@ import {
 } from 'lucide-react';
 import { useVault } from '../context/VaultContext';
 import { useTheme } from '../context/ThemeContext';
+import { Logo } from './Logo';
 
 export function Navbar() {
   const location = useLocation();
@@ -61,28 +62,7 @@ export function Navbar() {
         <div className="flex items-center justify-between h-16">
           {/* Logo Brand */}
           <div className="flex items-center gap-6">
-            <Link
-              to="/"
-              className="flex items-center gap-2.5 group focus:outline-none"
-              aria-label="DevVault Home"
-            >
-              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-tr from-indigo-600 via-indigo-500 to-sky-400 text-white font-mono font-bold text-base shadow-md shadow-indigo-500/20 group-hover:scale-105 transition-transform">
-                <span className="tracking-tighter">&gt;_</span>
-              </div>
-              <div className="flex flex-col">
-                <div className="flex items-center gap-1.5">
-                  <span className="text-base font-bold tracking-tight text-slate-100 group-hover:text-indigo-300 transition-colors">
-                    DevVault
-                  </span>
-                  <span className="px-1.5 py-0.2 rounded text-[10px] font-mono font-semibold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
-                    TRENDING
-                  </span>
-                </div>
-                <span className="text-[10px] text-slate-400 font-mono hidden sm:inline">
-                  Trending Repos • Free AI • Dev Tools
-                </span>
-              </div>
-            </Link>
+            <Logo size="md" />
 
             {/* Desktop Navigation Links */}
             <nav className="hidden md:flex items-center gap-1">
