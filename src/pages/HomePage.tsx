@@ -20,22 +20,18 @@ import { categoryMeta, getTrendingSocialRepos, getResourcesByCategory, getProTip
 import { ResourceCard } from '../components/ResourceCard';
 import { SearchBar } from '../components/SearchBar';
 
-const PREVIEW_COUNT = 3;
-
 export function HomePage() {
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
 
-  // Landing page keeps a small teaser of each collection; the full catalog
-  // lives on /explore with filters.
-  const trendingRepos = getTrendingSocialRepos().slice(0, PREVIEW_COUNT);
-  const trendingTotal = getTrendingSocialRepos().length;
+  const trendingRepos = getTrendingSocialRepos();
+  const trendingTotal = trendingRepos.length;
 
-  const topAiTools = getResourcesByCategory('ai-tools').slice(0, PREVIEW_COUNT);
-  const aiToolsTotal = getResourcesByCategory('ai-tools').length;
+  const topAiTools = getResourcesByCategory('ai-tools');
+  const aiToolsTotal = topAiTools.length;
 
-  const tipsResources = getProTipsResources().slice(0, PREVIEW_COUNT);
-  const tipsTotal = getProTipsResources().length;
+  const tipsResources = getProTipsResources();
+  const tipsTotal = tipsResources.length;
 
   const handleSearchSubmit = (query: string) => {
     navigate(`/explore?q=${encodeURIComponent(query)}`);
@@ -126,6 +122,50 @@ export function HomePage() {
         </div>
       </section>
 
+      {/* Quick Jump Bar across Core Sections */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-wrap items-center justify-between gap-3 p-3.5 rounded-2xl border border-slate-800 bg-slate-900/60 backdrop-blur-sm">
+          <div className="flex items-center gap-2 text-xs font-mono text-slate-400">
+            <Sparkles className="w-4 h-4 text-indigo-400" />
+            <span className="font-semibold text-slate-200">Vault Shortcuts:</span>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-2 text-xs font-medium">
+            <a
+              href="#trending-repos"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-pink-500/10 text-pink-300 border border-pink-500/20 hover:bg-pink-500/20 transition-colors"
+            >
+              <Flame className="w-3.5 h-3.5 text-pink-400" />
+              <span>Trending Repos</span>
+            </a>
+
+            <a
+              href="#free-ai-tools"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-indigo-500/10 text-indigo-300 border border-indigo-500/20 hover:bg-indigo-500/20 transition-colors"
+            >
+              <Bot className="w-3.5 h-3.5 text-indigo-400" />
+              <span>Free AI Tools</span>
+            </a>
+
+            <a
+              href="#tips-tricks"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-amber-500/10 text-amber-300 border border-amber-500/20 hover:bg-amber-500/20 transition-colors"
+            >
+              <Lightbulb className="w-3.5 h-3.5 text-amber-400" />
+              <span>Tips & Tricks</span>
+            </a>
+
+            <Link
+              to="/explore"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 border border-slate-700/60 hover:text-slate-100 hover:bg-slate-700 transition-colors"
+            >
+              <Compass className="w-3.5 h-3.5 text-sky-400" />
+              <span>All Resources</span>
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* TOP PRIORITY: Trending on Instagram & Social Media */}
       <section
         id="trending-repos"
@@ -154,7 +194,7 @@ export function HomePage() {
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           {trendingRepos.map((res) => (
             <ResourceCard key={res.id} resource={res} />
           ))}
@@ -189,7 +229,7 @@ export function HomePage() {
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           {topAiTools.map((res) => (
             <ResourceCard key={res.id} resource={res} />
           ))}
@@ -225,8 +265,8 @@ export function HomePage() {
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
-            {tipsResources.map((res) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
+            {tipsResources.slice(0, 3).map((res) => (
               <div
                 key={res.id}
                 className="p-4 rounded-xl border border-slate-800 bg-slate-900/80 space-y-2.5 flex flex-col justify-between"
@@ -272,6 +312,13 @@ export function HomePage() {
               Structured datasets curated for quick discovery and building
             </p>
           </div>
+          <Link
+            to="/explore"
+            className="inline-flex items-center gap-1 text-xs sm:text-sm font-medium text-indigo-400 hover:text-indigo-300 transition-colors"
+          >
+            <span>View All</span>
+            <ArrowRight className="w-4 h-4" />
+          </Link>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
