@@ -24,14 +24,21 @@ export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const isActive = (path: string) => {
-    if (path.includes('?')) {
-      const [p, query] = path.split('?');
-      if (location.pathname !== p) return false;
-      // A query-less /explore link only lights up when no filter is applied
-      return query ? location.search.includes(query) : !location.search;
+    const [pathUrl, query] = path.split('?');
+    if (location.pathname !== pathUrl) return false;
+
+    if (query) {
+      return location.search.includes(query);
     }
-    if (path === '/') return location.pathname === '/' && !location.search;
-    return location.pathname.startsWith(path);
+
+    // When the link path has no query params (e.g. /explore, /, /my-vault)
+    if (path === '/explore') {
+      return !location.search || location.search === '?';
+    }
+    if (path === '/') {
+      return !location.search || location.search === '?';
+    }
+    return true;
   };
 
   const navLinks = [
@@ -90,7 +97,7 @@ export function Navbar() {
                     to={item.path}
                     className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
                       active
-                        ? 'bg-indigo-600/15 text-indigo-300 border border-indigo-500/30'
+                        ? 'bg-indigo-600/15 text-indigo-300 border border-indigo-500/30 font-semibold'
                         : item.highlight
                         ? 'text-amber-300/90 hover:text-amber-200 hover:bg-amber-500/10'
                         : 'text-slate-300 hover:text-slate-100 hover:bg-slate-800/60'
