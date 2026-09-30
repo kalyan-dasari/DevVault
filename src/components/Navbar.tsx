@@ -3,17 +3,12 @@ import { Link, useLocation } from 'react-router-dom';
 import {
   GitBranch,
   Bot,
-  Zap,
-  Wrench,
-  Cloud,
   Lightbulb,
   Bookmark,
-  Compass,
   Sun,
   Moon,
   Menu,
   X,
-  Share2,
 } from 'lucide-react';
 import { useVault } from '../context/VaultContext';
 import { useTheme } from '../context/ThemeContext';
@@ -45,9 +40,6 @@ export function Navbar() {
   const navLinks = [
     { label: 'Trending Repos', path: '/explore?category=github', icon: GitBranch, highlight: true },
     { label: 'Free AI Tools', path: '/explore?category=ai-tools', icon: Bot },
-    { label: 'Developer APIs', path: '/explore?category=apis', icon: Zap },
-    { label: 'Dev Tools', path: '/explore?category=developer-tools', icon: Wrench },
-    { label: 'Free Hosting', path: '/explore?category=hosting', icon: Cloud },
     { label: 'Tips & Tricks', path: '/explore?tips=true', icon: Lightbulb },
     { label: 'My Vault', path: '/my-vault', icon: Bookmark, badge: savedCount },
   ];
@@ -64,7 +56,7 @@ export function Navbar() {
             <Logo size="md" />
 
             {/* Desktop Navigation Links */}
-            <nav className="hidden lg:flex items-center gap-1">
+            <nav className="hidden md:flex items-center gap-1.5 ml-2">
               {navLinks.map((item) => {
                 const Icon = item.icon;
                 const active = isActive(item.path);
@@ -113,7 +105,7 @@ export function Navbar() {
             <button
               type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-2 rounded-xl border border-slate-800 bg-slate-900/60 text-slate-300 hover:bg-slate-800"
+              className="md:hidden p-2 rounded-xl border border-slate-800 bg-slate-900/60 text-slate-300 hover:bg-slate-800"
               aria-label="Toggle mobile menu"
             >
               {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -124,7 +116,7 @@ export function Navbar() {
 
       {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
-        <div className="lg:hidden border-b border-slate-800 bg-slate-950/98 px-4 pt-2 pb-6 space-y-3 animate-in slide-in-from-top-3">
+        <div className="md:hidden border-b border-slate-800 bg-slate-950/98 px-4 pt-2 pb-6 space-y-3 animate-in slide-in-from-top-3">
           <div className="space-y-1">
             <span className="px-3 text-[11px] font-mono uppercase tracking-wider text-slate-500 font-semibold">
               Navigation
