@@ -174,4 +174,93 @@ Includes tools across coding (Gemini CLI, Gemini Code Assist, Jules, Antigravity
     whyDevelopersLoveIt:
       'Every single tool on the list includes an honest "catch" section describing exact daily caps, waitlists, and limitations, cutting through marketing hype to deliver real developer utility.',
   },
+  {
+    id: 'freellmapi',
+    slug: 'freellmapi',
+    name: 'FreeLLMAPI',
+    shortDescription:
+      '7.4 Billion free tokens/month across 34 AI providers and 635 endpoints behind one self-hosted OpenAI-compatible /v1 router with automatic failover.',
+    longDescription: `FreeLLMAPI is a self-hosted API router and unified proxy that aggregates free tiers from 34 major AI providers (Google AI Studio, Groq, NVIDIA NIM, Mistral, ModelScope, Cloudflare, etc.) into a single, unified /v1 OpenAI-compatible endpoint.
+
+It provides automatic failover on 429/5xx errors, AES-256 encrypted API key vaulting, prompt compression, multi-model consensus fusion, sticky conversation sessions, and zero-config agent launchers for Claude Code, Codex, Cursor, Aider, and OpenCode.`,
+    category: 'ai-tools',
+    subcategory: 'AI API Gateway & Router',
+    type: 'tool',
+    websiteUrl: 'https://freellmapi.co',
+    githubUrl: 'https://github.com/tashfeenahmed/freellmapi',
+    documentationUrl: 'https://freellmapi.co/models.html',
+    pricingType: 'Open Source',
+    pricingDescription:
+      '100% Free & Open Source (MIT License). Self-hosted locally or via Docker with zero subscription fees.',
+    freeTier:
+      'Aggregates 7.4 billion free tokens/month across 34 providers and 635 endpoints behind a single local endpoint.',
+    features: [
+      'Unified OpenAI-Compatible /v1 API: Chat, embeddings, audio, vision, video & speech',
+      '7.4 Billion Free Tokens/Month: Routes across 34 providers and 635 free endpoints',
+      'Automatic Intelligent Failover: Retries the next free provider on 429 rate limits or 5xx outages',
+      'AES-256-GCM Encrypted Vault: Stores keys locally in SQLite, exposing only 1 master bearer token',
+      'Anthropic Messages & Gemini Native: Speaks /v1/messages and /v1beta wire formats natively',
+      '1-Command Agent Auto-Configuration: Instant setup for Claude Code, Codex, Cursor, Aider, Zed & Roo',
+      'Multi-Model Fusion: Fans prompts out to diverse models and synthesizes a single consensus answer',
+      'Desktop Tray App & Web Dashboard: Native macOS/Windows menu bar app with latency analytics',
+    ],
+    useCases: [
+      'Powering coding agents (Claude Code, Cursor, Codex) with unlimited free LLM capacity',
+      'Eliminating API billing surprises by setting automatic failovers across free providers',
+      'Running a unified AI gateway for teams and homelabs on Raspberry Pi or Docker',
+      'Multiplexing prompts across models for high-quality consensus answers with Fusion',
+    ],
+    tags: [
+      'free-llm',
+      'ai-gateway',
+      'openai-proxy',
+      'load-balancer',
+      'ai-routing',
+      'claude-code',
+      'cursor',
+      'open-source',
+      'self-hosted',
+    ],
+    technologies: [
+      'TypeScript',
+      'Node.js',
+      'React',
+      'SQLite',
+      'Docker',
+      'OpenAI API',
+      'Anthropic API',
+      'FastAPI',
+    ],
+    difficulty: 'Intermediate',
+    openSource: true,
+    apiAvailable: true,
+    selfHosted: true,
+    featured: true,
+    verified: true,
+    lastVerified: '2026-08-10',
+    verificationNotes:
+      'Audited MIT license, active releases with Docker/desktop installers, and verified OpenAI/Anthropic proxy routing.',
+    sourceUrls: [
+      'https://github.com/tashfeenahmed/freellmapi',
+      'https://freellmapi.co',
+    ],
+    createdAt: '2026-06-01T00:00:00Z',
+    updatedAt: '2026-08-10T00:00:00Z',
+
+    // Social & Trending specific fields
+    stars: '24.2k+ ⭐',
+    starsCount: 24200,
+    trendingOnSocial: true,
+    socialHighlights:
+      'Trending across developer GitHub & Reddit as the all-in-one free LLM stack that turns 34 individual free tiers into 7.4 billion monthly tokens behind a single OpenAI endpoint.',
+    proTips: [
+      'Run `curl -fsSL https://freellmapi.co/install.sh | bash` to spin up the local Docker router in 30 seconds.',
+      'Auto-configure Claude Code instantly with `npx freellmapi setup-claude --url http://localhost:3001 --api-key <unified-key>`.',
+      'Use `model="auto:fast"` for low-latency coding completions or `model="fusion"` for multi-model answer synthesis.',
+      'Point your OpenAI SDK base URL to `http://localhost:3001/v1` and use your single local master token.',
+    ],
+    quickCommand: 'curl -fsSL https://freellmapi.co/install.sh | bash',
+    whyDevelopersLoveIt:
+      'Instead of configuring dozens of individual SDKs and juggling separate rate limits, FreeLLMAPI gives you a single drop-in OpenAI URL that never runs out of free quota.',
+  },
 ];
