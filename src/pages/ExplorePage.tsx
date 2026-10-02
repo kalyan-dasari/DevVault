@@ -179,6 +179,22 @@ export function ExplorePage() {
         </div>
       )}
 
+      {/* Dedicated Tips Cheat Sheet Banner */}
+      {isTipsView && (
+        <div className="flex items-center justify-between p-4 rounded-2xl border border-amber-500/30 bg-amber-500/10 text-amber-200 text-xs">
+          <div className="flex items-center gap-2.5">
+            <span className="text-base">💡</span>
+            <span>Looking for copyable terminal commands, cheat sheet cards, and quick hacks?</span>
+          </div>
+          <Link
+            to="/tips"
+            className="px-3 py-1.5 rounded-lg font-semibold bg-amber-500 text-slate-950 hover:bg-amber-400 transition-colors shrink-0"
+          >
+            Open Cheat Sheet View →
+          </Link>
+        </div>
+      )}
+
       {/* Global Search Bar */}
       <div>
         <SearchBar
