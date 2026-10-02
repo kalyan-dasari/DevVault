@@ -261,4 +261,87 @@ Supporting Ollama, LM Studio, Groq, vLLM, and all OpenAI-compatible APIs, it bri
     whyDevelopersLoveIt:
       'Open WebUI provides the most polished, ChatGPT-grade UI for local AI with zero cloud lock-in, effortless RAG ingestion, and instant multi-model comparison.',
   },
+  {
+    id: 'ponytail',
+    slug: 'ponytail',
+    name: 'Ponytail',
+    shortDescription:
+      'Makes your AI agent think like the laziest senior dev in the room. Cuts 54% to 94% of unnecessary AI code bloat while staying 100% safe.',
+    longDescription: `Ponytail is a viral AI agent skill and plugin that stops LLMs from over-engineering solutions. Instead of letting your AI agent install heavy dependencies or write 400 lines of boilerplate for simple UI tasks, Ponytail forces the agent through a strict 7-rung decision ladder: (1) Does this need to exist? (2) Is it already in this codebase? (3) Does stdlib do it? (4) Native platform feature? (5) Installed dependency? (6) One-liner? (7) Only then: minimum viable code.
+
+Tested across Claude Code, Codex, Cursor, Antigravity, OpenCode, Qoder, and Devin, Ponytail delivers ~54% less code, ~20% lower API costs, and ~27% faster completions without sacrificing security, validation, or accessibility.`,
+    category: 'github',
+    subcategory: 'AI Coding Agent Skills & Optimization',
+    type: 'repo',
+    websiteUrl: 'https://github.com/DietrichGebert/ponytail',
+    githubUrl: 'https://github.com/DietrichGebert/ponytail',
+    documentationUrl: 'https://github.com/DietrichGebert/ponytail#how-it-works',
+    pricingType: 'Open Source',
+    pricingDescription: '100% Free & Open Source (MIT License).',
+    freeTier:
+      'Free for all supported agents (Claude Code, Cursor, Codex, Antigravity, Gemini CLI, OpenCode, Devin).',
+    features: [
+      '54% to 94% Code Reduction: Stops AI agents from generating bloatware and unnecessary packages',
+      'Strict 7-Rung Decision Ladder: Prioritizes YAGNI, existing codebase reuse, stdlib, and native browser APIs',
+      'Universal Agent Compatibility: Claude Code, Cursor, Codex CLI, Antigravity, OpenCode, Grok, Devin & Qoder',
+      '100% Safety Guarantee: Never cuts trust boundaries, error handling, security checks, or accessibility',
+      '20% Cost Reduction & 27% Faster: Cuts generated token volume for faster streaming and cheaper billing',
+      '4 Optimization Levels: Switch modes on the fly via /ponytail lite, /ponytail full, or /ponytail ultra',
+      'Codebase Auditing Tools: Includes /ponytail-review, /ponytail-audit, /ponytail-debt, and /ponytail-gain',
+    ],
+    useCases: [
+      'Preventing Claude Code and Cursor from overcomplicating pull requests with unwanted npm packages',
+      'Refactoring bloated legacy components down to native HTML5/CSS and built-in standard libraries',
+      'Reducing LLM token usage and billable API costs during agentic pair-programming workflows',
+      'Auditing existing codebases for accidental complexity and unnecessary technical debt',
+    ],
+    tags: [
+      'agent-skills',
+      'claude-code',
+      'cursor-skill',
+      'code-optimization',
+      'minimalism',
+      'antigravity',
+      'yagni',
+      'developer-tools',
+      'open-source',
+    ],
+    technologies: [
+      'JavaScript',
+      'Node.js',
+      'Python',
+      'Markdown',
+      'Shell',
+      'Claude Code Plugin',
+      'Cursor Hooks',
+    ],
+    difficulty: 'Beginner',
+    openSource: true,
+    apiAvailable: true,
+    selfHosted: true,
+    featured: true,
+    verified: true,
+    lastVerified: '2026-06-18',
+    verificationNotes:
+      'Audited real-world benchmarks on tiangolo/full-stack-fastapi-template. Verified multi-agent plugins across Claude Code, Codex, and Cursor.',
+    sourceUrls: ['https://github.com/DietrichGebert/ponytail'],
+    createdAt: '2026-05-01T00:00:00Z',
+    updatedAt: '2026-06-18T00:00:00Z',
+
+    // Social & Trending specific fields
+    stars: '14.8k+ ⭐',
+    starsCount: 14800,
+    trendingOnSocial: true,
+    socialHighlights:
+      'Viral on tech Twitter and LinkedIn as the hilarious and brilliant AI plugin that makes Claude and Cursor act like the cynical senior engineer who deletes 200 lines instead of adding a new library.',
+    proTips: [
+      'In Claude Code, install with `/plugin marketplace add DietrichGebert/ponytail` then `/plugin install ponytail@ponytail`.',
+      'In Antigravity CLI, install directly with `agy plugin install https://github.com/DietrichGebert/ponytail`.',
+      'Use `/ponytail-review` on any PR to have your agent point out over-engineered abstractions and suggest native 1-liners.',
+      'Switch to `/ponytail ultra` when refactoring legacy code for maximum dependency reduction.',
+    ],
+    quickCommand: 'agy plugin install https://github.com/DietrichGebert/ponytail',
+    whyDevelopersLoveIt:
+      'AI agents naturally suffer from verbosity bias and love writing 500 lines of code. Ponytail restores engineering sanity by enforcing "the best code is the code you never wrote."',
+  },
 ];
