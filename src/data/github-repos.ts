@@ -426,4 +426,79 @@ Everything is managed completely via GitOps: to claim your subdomain, simply for
     whyDevelopersLoveIt:
       'It solves the biggest barrier for students and indie hackers: getting a professional, clean custom URL for portfolio projects without recurring domain registry fees.',
   },
+  {
+    id: 'freedomain-digitalplat',
+    slug: 'freedomain-digitalplat',
+    name: 'DigitalPlat FreeDomain',
+    shortDescription:
+      'Free domain registration (.dpdns.org, .us.kg, .qzz.io, .xx.kg, .qd.je) with custom nameservers & DNS delegation for 500,000+ developers.',
+    longDescription: `DigitalPlat FreeDomain is a massive open-source free domain registry platform with over 500,000 registered domains and 200k+ GitHub stars. Founded by Edward Hsing (DigitalPlat Foundation), it provides developers, students, and indie hackers with 100% free domain registrations across popular extensions (.dpdns.org, .us.kg, .qzz.io, .xx.kg, .qd.je) with full custom nameserver (NS) delegation to Cloudflare, DNSPod, or Hurricane Electric.
+
+Includes a comprehensive web dashboard (dash.domain.digitalplat.org) and complete DNS tutorials from basic record creation to production email routing in LEARN.md.`,
+    category: 'github',
+    subcategory: 'Free Domain Registrars & DNS',
+    type: 'platform',
+    websiteUrl: 'https://dash.domain.digitalplat.org/',
+    githubUrl: 'https://github.com/DigitalPlatDev/FreeDomain',
+    documentationUrl: 'https://github.com/DigitalPlatDev/FreeDomain/blob/main/LEARN.md',
+    pricingType: 'Open Source',
+    pricingDescription:
+      '100% Free domain registration. No hidden renewal costs or mandatory fees.',
+    freeTier:
+      'Free domains across 5 extensions (.dpdns.org, .us.kg, .qzz.io, .xx.kg, .qd.je) with custom nameserver delegation and DNS records.',
+    features: [
+      '200k+ GitHub Stars: One of the largest open-source free domain services in the world',
+      '500,000+ Active Registered Domains across .dpdns.org, .us.kg, .qzz.io, .xx.kg, and .qd.je',
+      'Custom Nameserver (NS) Delegation: Delegate directly to Cloudflare, DNSPod, or Route 53',
+      'Full DNS Record Management: Supports A, AAAA, CNAME, TXT, MX, and CAA records',
+      'Open-Source Core: Web UI and backend registration engine maintained under Domain-OSS',
+      'Extensive DNS Learning Guide: Includes complete DNS and server deployment tutorials in LEARN.md',
+    ],
+    useCases: [
+      'Claiming legitimate free domains to link with Cloudflare, Vercel, Supabase, and homelab VPS servers',
+      'Setting up custom domain email routing and SSL certificates for developer side-projects without buying domains',
+      'Learning production DNS configuration, nameserver delegation, and reverse proxies',
+    ],
+    tags: [
+      'free-domain',
+      'dns',
+      'nameservers',
+      'cloudflare',
+      'digitalplat',
+      'open-source',
+      'student-benefits',
+      'free-tier',
+    ],
+    technologies: ['DNS', 'Cloudflare', 'Next.js', 'Python', 'Go', 'REST API'],
+    difficulty: 'Beginner',
+    openSource: true,
+    apiAvailable: true,
+    selfHosted: false,
+    featured: true,
+    verified: true,
+    lastVerified: '2026-08-01',
+    verificationNotes:
+      'Audited 202k+ star repository at DigitalPlatDev/FreeDomain. Verified active web dashboard at dash.domain.digitalplat.org and DNS delegation.',
+    sourceUrls: [
+      'https://github.com/DigitalPlatDev/FreeDomain',
+      'https://dash.domain.digitalplat.org/',
+    ],
+    createdAt: '2024-05-01T00:00:00Z',
+    updatedAt: '2026-08-01T00:00:00Z',
+
+    // Social & Trending specific fields
+    stars: '202k+ ⭐',
+    starsCount: 202000,
+    trendingOnSocial: true,
+    socialHighlights:
+      'Viral on international developer forums, Instagram, and Reddit with 200k+ stars as the premier modern successor to Freenom, giving developers real free domains with custom Cloudflare nameservers.',
+    proTips: [
+      'Register your free domain on `dash.domain.digitalplat.org` and immediately set your nameservers to Cloudflare for free DDoS protection, SSL, and edge caching.',
+      'Read the comprehensive `LEARN.md` in the repo for a beginner-to-advanced masterclass on DNS records (A, CNAME, MX, TXT, SPF, DKIM).',
+      'Extensions like `.us.kg` and `.dpdns.org` can be routed directly to Vercel and GitHub Pages using standard CNAME records.',
+    ],
+    quickCommand: 'gh repo clone DigitalPlatDev/FreeDomain',
+    whyDevelopersLoveIt:
+      'Following the shutdown of legacy providers like Freenom, DigitalPlat FreeDomain is the most dependable, community-backed platform for obtaining free domains with full custom NS control.',
+  },
 ];
