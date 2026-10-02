@@ -10,6 +10,7 @@ import { ScrollToHash } from './components/ScrollToHash';
 // Pages
 import { HomePage } from './pages/HomePage';
 import { ExplorePage } from './pages/ExplorePage';
+import { TipsPage } from './pages/TipsPage';
 import { ResourceDetailPage } from './pages/ResourceDetailPage';
 import { MyVaultPage } from './pages/MyVaultPage';
 import { SocialImportPage } from './pages/SocialImportPage';
@@ -30,6 +31,7 @@ export default function App() {
                 <Routes>
                   <Route path="/" element={<HomePage />} />
                   <Route path="/explore" element={<ExplorePage />} />
+                  <Route path="/tips" element={<TipsPage />} />
                   <Route path="/resource/:slug" element={<ResourceDetailPage />} />
                   <Route path="/my-vault" element={<MyVaultPage />} />
                   <Route path="/social-import" element={<SocialImportPage />} />
