@@ -505,15 +505,16 @@ Includes a comprehensive web dashboard (dash.domain.digitalplat.org) and complet
     id: 'free-for-dev',
     name: 'Free for Developers (free-for.dev)',
     slug: 'free-for-dev',
-    description:
+    shortDescription:
       'The definitive curated directory of 1,000+ SaaS, PaaS, IaaS, cloud hosting, APIs, and dev tools offering legitimate free tiers.',
     longDescription:
       'free-for.dev is the most famous and comprehensive open-source compilation of SaaS, PaaS, IaaS, and developer infrastructure offering genuine free tiers (not just time-limited trials). Maintained by R.I.Pienaar and 1,600+ contributors, it tracks verified free allowances across major cloud providers (AWS, GCP, Azure, Oracle Cloud Always Free), managed databases, CI/CD, CDNs, logging, analytics, email, and security.',
     category: 'github',
     subcategory: 'Free Cloud Infrastructure & SaaS Directory',
+    type: 'repo',
     websiteUrl: 'https://free-for.dev',
     githubUrl: 'https://github.com/ripienaar/free-for-dev',
-    docsUrl: 'https://free-for.dev/#table-of-contents',
+    documentationUrl: 'https://free-for.dev/#table-of-contents',
     pricingType: 'Open Source',
     pricingDescription:
       '100% Free & Open Source community directory (CC-BY-4.0). Completely free to browse, use, and contribute.',
