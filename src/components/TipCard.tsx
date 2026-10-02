@@ -5,7 +5,9 @@ import { DeveloperTip } from '../types';
 import { useToast } from '../context/ToastContext';
 
 interface TipCardProps {
+  key?: React.Key;
   tip: DeveloperTip;
+  className?: string;
 }
 
 export function TipCard({ tip }: TipCardProps) {
