@@ -112,6 +112,19 @@ export interface CommunitySubmission {
   proTips?: string[];
 }
 
+export interface DeveloperTip {
+  id: string;
+  resourceId: string;
+  resourceName: string;
+  resourceSlug: string;
+  resourceCategory: ResourceCategory;
+  tip: string;
+  quickCommand?: string;
+  tags: string[];
+  stars?: string;
+  whyItMatters?: string;
+}
+
 export interface ResourceFilterState {
   searchQuery: string;
   category?: ResourceCategory | 'all';
@@ -125,3 +138,4 @@ export interface ResourceFilterState {
   difficulty?: DifficultyLevel | 'all';
   sortBy: 'featured' | 'stars' | 'alphabetical' | 'recent' | 'verified';
 }
+
