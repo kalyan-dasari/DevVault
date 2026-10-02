@@ -501,4 +501,89 @@ Includes a comprehensive web dashboard (dash.domain.digitalplat.org) and complet
     whyDevelopersLoveIt:
       'Following the shutdown of legacy providers like Freenom, DigitalPlat FreeDomain is the most dependable, community-backed platform for obtaining free domains with full custom NS control.',
   },
+  {
+    id: 'free-for-dev',
+    name: 'Free for Developers (free-for.dev)',
+    slug: 'free-for-dev',
+    description:
+      'The definitive curated directory of 1,000+ SaaS, PaaS, IaaS, cloud hosting, APIs, and dev tools offering legitimate free tiers.',
+    longDescription:
+      'free-for.dev is the most famous and comprehensive open-source compilation of SaaS, PaaS, IaaS, and developer infrastructure offering genuine free tiers (not just time-limited trials). Maintained by R.I.Pienaar and 1,600+ contributors, it tracks verified free allowances across major cloud providers (AWS, GCP, Azure, Oracle Cloud Always Free), managed databases, CI/CD, CDNs, logging, analytics, email, and security.',
+    category: 'github',
+    subcategory: 'Free Cloud Infrastructure & SaaS Directory',
+    websiteUrl: 'https://free-for.dev',
+    githubUrl: 'https://github.com/ripienaar/free-for-dev',
+    docsUrl: 'https://free-for.dev/#table-of-contents',
+    pricingType: 'Open Source',
+    pricingDescription:
+      '100% Free & Open Source community directory (CC-BY-4.0). Completely free to browse, use, and contribute.',
+    freeTier:
+      'Tracks 1,000+ developer services offering permanent free tiers, free-forever allowances, and generous developer tiers without time limits.',
+    features: [
+      'Comprehensive breakdown of Major Cloud Providers\' Always-Free Tiers (AWS, GCP, Azure, Oracle Cloud)',
+      'Curated directories for Managed Databases, BaaS, CI/CD, CDNs, and DNS providers',
+      'Security, PKI, Authentication, Email APIs, Logging, and Observability services',
+      'Strict curation policy: Requires permanent free tiers (minimum 1-year bucketed) and rejects TLS paywalls',
+      'Lightning-fast web companion with instant full-text search and category filtering at free-for.dev',
+      'Massive community backing with 1,600+ contributors and continuous pull-request auditing',
+    ],
+    useCases: [
+      'Bootstrapping production web applications, startups, and side projects with zero infrastructure cost',
+      'Comparing always-free compute, storage, and bandwidth limits across AWS, GCP, Azure, and Oracle Cloud',
+      'Discovering developer-friendly free APIs for transactional email, auth, error logging, and analytics',
+      'Finding cost-effective alternatives to expensive enterprise SaaS and cloud services',
+    ],
+    tags: [
+      'free-tier',
+      'cloud-infrastructure',
+      'saas',
+      'paas',
+      'aws',
+      'gcp',
+      'azure',
+      'devops',
+      'open-source',
+      'curated-list',
+    ],
+    technologies: [
+      'Markdown',
+      'HTML',
+      'GitHub Actions',
+      'Cloudflare Pages',
+      'AWS',
+      'GCP',
+      'Azure',
+      'Docker',
+    ],
+    difficulty: 'Beginner',
+    openSource: true,
+    apiAvailable: true,
+    selfHosted: false,
+    featured: true,
+    verified: true,
+    lastVerified: '2026-08-01',
+    verificationNotes:
+      'Audited 139k+ star repository at ripienaar/free-for-dev. Verified active web companion at free-for.dev and strict PR review guidelines.',
+    sourceUrls: [
+      'https://github.com/ripienaar/free-for-dev',
+      'https://free-for.dev',
+    ],
+    createdAt: '2015-05-01T00:00:00Z',
+    updatedAt: '2026-08-01T00:00:00Z',
+
+    // Social & Trending specific fields
+    stars: '139k+ ⭐',
+    starsCount: 139000,
+    trendingOnSocial: true,
+    socialHighlights:
+      'The gold standard of developer free tier indexes on GitHub, universally referenced across developer communities, Reddit, and Hacker News for building $0 production architectures.',
+    proTips: [
+      'Check out the Oracle Cloud Always Free tier listed in the directory — it offers 4 ARM vCPUs, 24 GB RAM, and 200 GB NVMe storage forever at $0.',
+      'Bookmark `free-for.dev` before starting any new MVP or side project to save hundreds of dollars a month on hosting, auth, and database costs.',
+      'Review the "Major Cloud Providers Always-Free Limits" table to combine free serverless databases, edge functions, and object storage into a zero-cost stack.',
+    ],
+    quickCommand: 'gh repo clone ripienaar/free-for-dev',
+    whyDevelopersLoveIt:
+      'It cuts through marketing gimmicks and trial periods to give developers a strictly-audited catalog of real, permanent free resources to run production workloads for $0.',
+  },
 ];
