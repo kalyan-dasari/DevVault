@@ -344,4 +344,86 @@ Tested across Claude Code, Codex, Cursor, Antigravity, OpenCode, Qoder, and Devi
     whyDevelopersLoveIt:
       'AI agents naturally suffer from verbosity bias and love writing 500 lines of code. Ponytail restores engineering sanity by enforcing "the best code is the code you never wrote."',
   },
+  {
+    id: 'rweb-site',
+    slug: 'rweb-site',
+    name: 'rweb.site',
+    shortDescription:
+      'Free, guaranteed 10-year short *.rweb.site custom subdomains for developer portfolios, docs, and open-source projects managed via Git PR.',
+    longDescription: `rweb.site is a free community domain service providing developers, creators, and open-source maintainers with short, clean \`yourname.rweb.site\` subdomains.
+
+The parent domain is prepaid and guaranteed for 10+ years, allowing developers to connect vanity subdomains to GitHub Pages, Vercel, Netlify, Cloudflare Pages, or self-hosted VPS servers without paying annual domain registrar fees.
+
+Everything is managed completely via GitOps: to claim your subdomain, simply fork the repository, add your CNAME record to \`records.json\`, and open a Pull Request. Merges and Cloudflare DNS updates are automated within minutes.`,
+    category: 'github',
+    subcategory: 'Free Developer Domains & DNS',
+    type: 'repo',
+    websiteUrl: 'https://rweb.site',
+    githubUrl: 'https://github.com/katorlys/rweb.site',
+    documentationUrl: 'https://github.com/katorlys/rweb.site#readme',
+    pricingType: 'Open Source',
+    pricingDescription:
+      '100% Free forever (MIT License). No credit cards, renewal fees, or advertisements.',
+    freeTier:
+      'Free *.rweb.site subdomain with 10-year domain registry guarantee and unlimited DNS queries via Cloudflare.',
+    features: [
+      '100% Free Custom Subdomain (yourname.rweb.site) for any personal or open-source site',
+      '10-Year Registry Guarantee: Parent domain prepaid for 10 years to ensure zero link rot',
+      'GitOps-Driven DNS Management: Claim or update domains via GitHub Pull Requests in records.json',
+      'Universal Hosting Compatibility: Point CNAMEs to GitHub Pages, Vercel, Netlify, Cloudflare, or VPS',
+      'Fast Global DNS Resolution: Powered by Cloudflare DNS edge network with automated SSL generation',
+      'Minimum 2-Character Subdomains: Short, memorable URLs for developer portfolios and projects',
+    ],
+    useCases: [
+      'Giving personal portfolios and developer blogs a clean custom URL without buying a $15/yr .com domain',
+      'Hosting open-source documentation and demo apps on GitHub Pages / Vercel with a vanity subdomain',
+      'Students and early developers building web projects without credit card access for domain registrars',
+    ],
+    tags: [
+      'free-domain',
+      'subdomain',
+      'dns',
+      'gitops',
+      'github-pages',
+      'vercel',
+      'portfolio',
+      'open-source',
+      'free-tier',
+    ],
+    technologies: [
+      'GitOps',
+      'Cloudflare DNS',
+      'JSON',
+      'GitHub Actions',
+      'Vercel',
+      'GitHub Pages',
+    ],
+    difficulty: 'Beginner',
+    openSource: true,
+    apiAvailable: false,
+    selfHosted: false,
+    featured: true,
+    verified: true,
+    lastVerified: '2026-08-01',
+    verificationNotes:
+      'Audited repository at katorlys/rweb.site, verified 10-year domain WHOIS registration, and active PR automated merge pipeline.',
+    sourceUrls: ['https://github.com/katorlys/rweb.site', 'https://rweb.site'],
+    createdAt: '2024-03-01T00:00:00Z',
+    updatedAt: '2026-08-01T00:00:00Z',
+
+    // Social & Trending specific fields
+    stars: '⭐ Free Subdomains',
+    starsCount: 350,
+    trendingOnSocial: true,
+    socialHighlights:
+      'Popular on developer communities and student hackathons as the zero-cost trick to get a real custom vanity domain without needing a credit card or paying annual renewals.',
+    proTips: [
+      'Fork `katorlys/rweb.site`, add `"yourname": "your-project.vercel.app"` inside `records.json` under `"cname"`, and submit a PR.',
+      'On Vercel or GitHub Pages, add `yourname.rweb.site` under Custom Domains—SSL certificates will be generated automatically.',
+      'Check `records.json` with Ctrl+F before submitting your PR to verify your desired 2+ character subdomain is available.',
+    ],
+    quickCommand: 'gh repo fork katorlys/rweb.site --clone',
+    whyDevelopersLoveIt:
+      'It solves the biggest barrier for students and indie hackers: getting a professional, clean custom URL for portfolio projects without recurring domain registry fees.',
+  },
 ];
