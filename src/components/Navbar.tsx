@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import {
   GitBranch,
   Bot,
-  Lightbulb,
+  Wand2,
   Bookmark,
   Sun,
   Moon,
@@ -40,7 +40,7 @@ export function Navbar() {
   const navLinks = [
     { label: 'Trending Repos', path: '/explore?category=github', icon: GitBranch, highlight: true },
     { label: 'Free AI Tools', path: '/explore?category=ai-tools', icon: Bot },
-    { label: 'Tips & Tricks', path: '/tips', icon: Lightbulb },
+    { label: 'Prompts & Skills', path: '/tips', icon: Wand2 },
     { label: 'My Vault', path: '/my-vault', icon: Bookmark, badge: savedCount },
   ];
 
