@@ -93,6 +93,29 @@ export function getProTipsResources(): Resource[] {
   return allResources.filter((r) => r.proTips && r.proTips.length > 0);
 }
 
+export function getAllDeveloperTips(): DeveloperTip[] {
+  const tips: DeveloperTip[] = [];
+  allResources.forEach((res) => {
+    if (res.proTips && res.proTips.length > 0) {
+      res.proTips.forEach((tip, idx) => {
+        tips.push({
+          id: `${res.id}-tip-${idx + 1}`,
+          resourceId: res.id,
+          resourceName: res.name,
+          resourceSlug: res.slug,
+          resourceCategory: res.category,
+          tip,
+          quickCommand: res.quickCommand,
+          tags: res.tags,
+          stars: res.stars,
+          whyItMatters: res.whyDevelopersLoveIt,
+        });
+      });
+    }
+  });
+  return tips;
+}
+
 export function getRelatedResources(resource: Resource, limit: number = 4): Resource[] {
   return allResources
     .filter(
