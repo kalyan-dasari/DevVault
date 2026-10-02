@@ -250,3 +250,6 @@ export function sortResources(
       return cloned;
   }
 }
+
+export * from './tips-and-skills';
+
