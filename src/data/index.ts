@@ -1,4 +1,4 @@
-import { Resource, ResourceCategory, ResourceFilterState } from '../types';
+import { Resource, ResourceCategory, ResourceFilterState, DeveloperTip } from '../types';
 import { aiTools } from './ai-tools';
 import { githubRepos } from './github-repos';
 import { developerApis } from './apis';
