@@ -1,14 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Sparkles, GitBranch, Bot, Lightbulb, ArrowRight, Flame, Terminal } from 'lucide-react';
-import { allResources, getTrendingSocialRepos, getAllDeveloperTips } from '../data';
+import { Sparkles, GitBranch, Bot, Wand2, ArrowRight, Flame, FileCode, Terminal } from 'lucide-react';
+import { allResources, getTrendingSocialRepos, getFeaturedPromptSkills, getAllPromptSkills } from '../data';
 import { ResourceCard } from '../components/ResourceCard';
-import { TipCard } from '../components/TipCard';
+import { PromptSkillCard } from '../components/PromptSkillCard';
 
 export function HomePage() {
   const trendingRepos = getTrendingSocialRepos();
-  const allTips = getAllDeveloperTips();
-  const topTips = allTips.slice(0, 6);
+  const featuredSkills = getFeaturedPromptSkills(6);
+  const totalSkills = getAllPromptSkills().length;
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 space-y-16">
@@ -22,14 +22,14 @@ export function HomePage() {
         </div>
 
         <h1 className="text-3xl sm:text-5xl font-black tracking-tight text-slate-100 leading-tight">
-          Trending GitHub Repos &amp;{' '}
+          Trending GitHub Repos, AI Tools &amp;{' '}
           <span className="bg-gradient-to-r from-indigo-400 via-sky-300 to-cyan-300 bg-clip-text text-transparent">
-            Free AI Tools
+            Prompts &amp; Skills
           </span>
         </h1>
 
         <p className="text-sm sm:text-base text-slate-400 max-w-2xl mx-auto leading-relaxed">
-          Discover viral open-source repositories trending on Instagram, local-first AI tools, actionable developer pro-tips, and 1-command installs.
+          Discover viral open-source repositories, free local-first AI models, ChatGPT &amp; Claude master prompts, production <code>.cursorrules</code>, and emergency Git cheat skills.
         </p>
 
         {/* Quick Nav Badges */}
@@ -52,10 +52,10 @@ export function HomePage() {
 
           <Link
             to="/tips"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-medium border border-amber-500/40 bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 transition-colors"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-medium border border-indigo-500/40 bg-indigo-500/10 hover:bg-indigo-500/20 text-indigo-300 transition-colors"
           >
-            <Lightbulb className="w-4 h-4 text-amber-400" />
-            <span>Tips &amp; Tricks</span>
+            <Wand2 className="w-4 h-4 text-indigo-400" />
+            <span>AI Prompts &amp; Skills</span>
           </Link>
 
           <Link
@@ -99,42 +99,43 @@ export function HomePage() {
         )}
       </div>
 
-      {/* Distinct Tips & Tricks Section */}
+      {/* Distinct AI Prompts, Cursor Rules & Cheat Skills Section */}
       <div className="space-y-6 pt-4">
         <div className="flex items-center justify-between pb-2 border-b border-slate-800">
           <div className="flex items-center gap-2">
-            <Lightbulb className="w-5 h-5 text-amber-400" />
+            <Wand2 className="w-5 h-5 text-indigo-400" />
             <div>
               <h2 className="text-lg sm:text-xl font-bold text-slate-100 tracking-tight flex items-center gap-2">
-                <span>Actionable Tips, Hacks &amp; 1-Click Commands</span>
-                <span className="px-2 py-0.5 rounded-full text-[10px] font-mono font-semibold bg-amber-500/10 text-amber-300 border border-amber-500/30">
-                  Cheat Sheet
+                <span>AI Prompts, .cursorrules &amp; Cheat Skills</span>
+                <span className="px-2 py-0.5 rounded-full text-[10px] font-mono font-semibold bg-indigo-500/10 text-indigo-300 border border-indigo-500/30">
+                  Ready to Copy
                 </span>
               </h2>
             </div>
           </div>
           <Link
             to="/tips"
-            className="text-xs font-medium text-amber-400 hover:text-amber-300 inline-flex items-center gap-1 transition-colors"
+            className="text-xs font-medium text-indigo-400 hover:text-indigo-300 inline-flex items-center gap-1 transition-colors"
           >
-            <span>Browse all {allTips.length} tips</span>
+            <span>Browse all {totalSkills} prompts &amp; skills</span>
             <ArrowRight className="w-3 h-3" />
           </Link>
         </div>
 
-        {topTips.length > 0 ? (
+        {featuredSkills.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {topTips.map((tip) => (
-              <TipCard key={tip.id} tip={tip} />
+            {featuredSkills.map((item) => (
+              <PromptSkillCard key={item.id} item={item} />
             ))}
           </div>
         ) : (
           <div className="p-8 text-center text-slate-500 text-sm border border-dashed border-slate-800 rounded-xl">
-            No pro-tips loaded yet.
+            No prompts loaded yet.
           </div>
         )}
       </div>
     </div>
   );
 }
+
 

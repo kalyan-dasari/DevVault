@@ -1,166 +1,161 @@
 import React, { useState, useMemo } from 'react';
-import { Link } from 'react-router-dom';
 import {
-  Lightbulb,
   Sparkles,
   Search,
-  Filter,
+  Wand2,
+  FileCode,
   Terminal,
-  Copy,
-  Check,
-  Flame,
   Bot,
-  GitBranch,
-  Cloud,
-  Code,
-  Wrench,
   Layers,
+  Check,
+  Copy,
+  Lightbulb,
 } from 'lucide-react';
-import { getAllDeveloperTips } from '../data';
-import { TipCard } from '../components/TipCard';
+import { getAllPromptSkills } from '../data';
+import { PromptSkillCard } from '../components/PromptSkillCard';
 import { useToast } from '../context/ToastContext';
-import { ResourceCategory } from '../types';
+import { TipType } from '../types';
 
 export function TipsPage() {
   const { showToast } = useToast();
-  const allTips = useMemo(() => getAllDeveloperTips(), []);
+  const allItems = useMemo(() => getAllPromptSkills(), []);
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState<string>('all');
+  const [selectedType, setSelectedType] = useState<string>('all');
   const [copiedAll, setCopiedAll] = useState(false);
 
-  const categories = [
-    { id: 'all', label: 'All Tips', icon: Layers, count: allTips.length },
+  const typeFilters: { id: string; label: string; icon: React.ComponentType<{ className?: string }>; count: number }[] = [
+    { id: 'all', label: 'All Prompts & Skills', icon: Layers, count: allItems.length },
     {
-      id: 'github',
-      label: 'Trending Repos',
-      icon: GitBranch,
-      count: allTips.filter((t) => t.resourceCategory === 'github').length,
+      id: 'prompt',
+      label: 'ChatGPT & Claude Prompts',
+      icon: Wand2,
+      count: allItems.filter((i) => i.type === 'prompt').length,
     },
     {
-      id: 'ai-tools',
-      label: 'Free AI Tools',
+      id: 'cursor-rule',
+      label: '.cursorrules & IDE Rules',
+      icon: FileCode,
+      count: allItems.filter((i) => i.type === 'cursor-rule').length,
+    },
+    {
+      id: 'cheat-sheet',
+      label: 'CLI & Git Cheat Skills',
+      icon: Terminal,
+      count: allItems.filter((i) => i.type === 'cheat-sheet').length,
+    },
+    {
+      id: 'agent-skill',
+      label: 'Agent Skills & Architecture',
       icon: Bot,
-      count: allTips.filter((t) => t.resourceCategory === 'ai-tools').length,
-    },
-    {
-      id: 'developer-tools',
-      label: 'Dev Tools & Utilities',
-      icon: Wrench,
-      count: allTips.filter((t) => t.resourceCategory === 'developer-tools').length,
-    },
-    {
-      id: 'hosting',
-      label: 'Cloud & Hosting',
-      icon: Cloud,
-      count: allTips.filter((t) => t.resourceCategory === 'hosting').length,
-    },
-    {
-      id: 'apis',
-      label: 'Developer APIs',
-      icon: Code,
-      count: allTips.filter((t) => t.resourceCategory === 'apis').length,
+      count: allItems.filter((i) => i.type === 'agent-skill' || i.type === 'system-instruction').length,
     },
   ];
 
-  const filteredTips = useMemo(() => {
-    return allTips.filter((tip) => {
-      // Category filter
-      if (selectedCategory !== 'all' && tip.resourceCategory !== selectedCategory) {
-        return false;
+  const filteredItems = useMemo(() => {
+    return allItems.filter((item) => {
+      // Type filter
+      if (selectedType !== 'all') {
+        if (selectedType === 'agent-skill') {
+          if (item.type !== 'agent-skill' && item.type !== 'system-instruction') return false;
+        } else if (item.type !== selectedType) {
+          return false;
+        }
       }
 
-      // Search query filter
+      // Search filter
       if (searchQuery.trim()) {
         const q = searchQuery.toLowerCase();
-        const inName = tip.resourceName.toLowerCase().includes(q);
-        const inTip = tip.tip.toLowerCase().includes(q);
-        const inCmd = tip.quickCommand ? tip.quickCommand.toLowerCase().includes(q) : false;
-        const inTags = tip.tags.some((tag) => tag.toLowerCase().includes(q));
-        const inWhy = tip.whyItMatters ? tip.whyItMatters.toLowerCase().includes(q) : false;
-        return inName || inTip || inCmd || inTags || inWhy;
+        const inTitle = item.title.toLowerCase().includes(q);
+        const inSummary = item.summary.toLowerCase().includes(q);
+        const inTool = item.targetTool.toLowerCase().includes(q);
+        const inContent = item.content.toLowerCase().includes(q);
+        const inTags = item.tags.some((t) => t.toLowerCase().includes(q));
+        const inPlaceholders = item.placeholders
+          ? item.placeholders.some((p) => p.toLowerCase().includes(q))
+          : false;
+        return inTitle || inSummary || inTool || inContent || inTags || inPlaceholders;
       }
 
       return true;
     });
-  }, [allTips, selectedCategory, searchQuery]);
+  }, [allItems, selectedType, searchQuery]);
 
-  const handleCopyAllCommands = () => {
-    const commands = filteredTips
-      .filter((t) => t.quickCommand)
-      .map((t) => `# ${t.resourceName} Pro-Tip:\n${t.quickCommand}`)
-      .join('\n\n');
+  const handleCopyAll = () => {
+    const text = filteredItems
+      .map((item) => `### ${item.title} (${item.targetTool})\n\n${item.content}`)
+      .join('\n\n---\n\n');
 
-    if (!commands) {
-      showToast('No commands to copy in current view', 'info');
+    if (!text) {
+      showToast('No prompts to copy', 'info');
       return;
     }
 
-    navigator.clipboard.writeText(commands);
+    navigator.clipboard.writeText(text);
     setCopiedAll(true);
-    showToast(`Copied ${filteredTips.filter((t) => t.quickCommand).length} commands!`, 'success');
+    showToast(`Copied ${filteredItems.length} prompts & skills!`, 'success');
     setTimeout(() => setCopiedAll(false), 2000);
   };
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 space-y-8">
-      {/* Page Header */}
+      {/* Header Banner */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b border-slate-800 relative">
         <div className="space-y-3 max-w-2xl">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-amber-500/30 bg-amber-500/10 text-amber-300 text-xs font-mono font-semibold">
-            <Lightbulb className="w-3.5 h-3.5 text-amber-400" />
-            <span>Curated Developer Cheat Sheet • Actionable Hacks</span>
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-indigo-500/30 bg-indigo-500/10 text-indigo-300 text-xs font-mono font-semibold">
+            <Sparkles className="w-3.5 h-3.5 text-indigo-400" />
+            <span>AI Prompts • .cursorrules • Developer Cheat Skills</span>
           </div>
 
           <h1 className="text-3xl sm:text-4xl font-black tracking-tight text-slate-100">
-            Developer Tips, Tricks &amp;{' '}
-            <span className="bg-gradient-to-r from-amber-400 via-orange-300 to-yellow-200 bg-clip-text text-transparent">
-              1-Click Commands
+            AI Prompts, Rules &amp;{' '}
+            <span className="bg-gradient-to-r from-indigo-400 via-sky-300 to-cyan-300 bg-clip-text text-transparent">
+              Developer Skills
             </span>
           </h1>
 
           <p className="text-sm text-slate-400 leading-relaxed">
-            High-leverage engineering pro-tips, $0 cloud architecture configurations, token compression setups, and verified 1-liner install commands straight from open-source maintainers.
+            Curated battle-tested system prompts for ChatGPT &amp; Claude, production <code>.cursorrules</code> files, Git emergency recovery commands, and architecture review templates.
           </p>
         </div>
 
-        {/* Quick Stats & Action */}
+        {/* Total Summary and Copy Action */}
         <div className="flex flex-wrap items-center gap-3 shrink-0">
           <div className="px-4 py-2 rounded-xl bg-slate-900 border border-slate-800 text-xs font-mono">
-            <span className="text-slate-400">Total Actionable Tips: </span>
-            <span className="font-bold text-amber-300">{allTips.length}</span>
+            <span className="text-slate-400">Total Curated Skills: </span>
+            <span className="font-bold text-indigo-300">{allItems.length}</span>
           </div>
 
           <button
             type="button"
-            onClick={handleCopyAllCommands}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold bg-amber-500 hover:bg-amber-400 text-slate-950 shadow-md transition-colors"
+            onClick={handleCopyAll}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold bg-indigo-600 hover:bg-indigo-500 text-white shadow-md transition-colors"
           >
             {copiedAll ? (
               <>
-                <Check className="w-4 h-4 text-slate-950" />
-                <span>Copied All Commands</span>
+                <Check className="w-4 h-4 text-white" />
+                <span>Copied All Visible</span>
               </>
             ) : (
               <>
-                <Terminal className="w-4 h-4" />
-                <span>Copy All Commands</span>
+                <Copy className="w-4 h-4" />
+                <span>Copy All Visible</span>
               </>
             )}
           </button>
         </div>
       </div>
 
-      {/* Search & Topic Categories Filter Bar */}
+      {/* Search and Type Filter Bar */}
       <div className="space-y-4">
-        {/* Search Bar */}
+        {/* Search Input */}
         <div className="relative">
           <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
           <input
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Search pro-tips by keyword, tool name, or terminal command (e.g. 'Docker', 'Oracle', 'Ollama', 'DNS', 'Token', 'Cursor')..."
-            className="w-full pl-11 pr-4 py-3 rounded-2xl bg-slate-900/80 border border-slate-800 text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-amber-500/50 focus:border-amber-500/50 transition-all shadow-inner"
+            placeholder="Search prompts, .cursorrules, and cheat skills (e.g. 'Next.js', 'Refactor', 'Git', 'FastAPI', 'Review', 'Docker')..."
+            className="w-full pl-11 pr-4 py-3 rounded-2xl bg-slate-900/80 border border-slate-800 text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500/50 transition-all shadow-inner"
           />
           {searchQuery && (
             <button
@@ -172,30 +167,30 @@ export function TipsPage() {
           )}
         </div>
 
-        {/* Category Pills */}
+        {/* Type Filter Pills */}
         <div className="flex flex-wrap items-center gap-2 pt-1">
-          {categories.map((cat) => {
-            const Icon = cat.icon;
-            const active = selectedCategory === cat.id;
+          {typeFilters.map((filter) => {
+            const Icon = filter.icon;
+            const active = selectedType === filter.id;
             return (
               <button
-                key={cat.id}
+                key={filter.id}
                 type="button"
-                onClick={() => setSelectedCategory(cat.id)}
+                onClick={() => setSelectedType(filter.id)}
                 className={`inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-medium transition-all ${
                   active
-                    ? 'bg-amber-500/20 text-amber-300 border border-amber-500/40 font-semibold shadow-sm'
+                    ? 'bg-indigo-600/25 text-indigo-200 border border-indigo-500/50 font-semibold shadow-sm'
                     : 'bg-slate-900/70 border border-slate-800 text-slate-300 hover:text-slate-100 hover:bg-slate-800'
                 }`}
               >
-                <Icon className={`w-3.5 h-3.5 ${active ? 'text-amber-400' : 'text-slate-400'}`} />
-                <span>{cat.label}</span>
+                <Icon className={`w-3.5 h-3.5 ${active ? 'text-indigo-400' : 'text-slate-400'}`} />
+                <span>{filter.label}</span>
                 <span
                   className={`text-[10px] font-mono px-1.5 py-0.2 rounded-full ${
-                    active ? 'bg-amber-500/30 text-amber-200' : 'bg-slate-800 text-slate-500'
+                    active ? 'bg-indigo-500/30 text-indigo-200' : 'bg-slate-800 text-slate-500'
                   }`}
                 >
-                  {cat.count}
+                  {filter.count}
                 </span>
               </button>
             );
@@ -203,53 +198,53 @@ export function TipsPage() {
         </div>
       </div>
 
-      {/* Filter summary status */}
+      {/* Filter Status */}
       <div className="flex items-center justify-between text-xs text-slate-400 font-mono px-1">
         <div>
-          Showing <span className="text-amber-300 font-bold">{filteredTips.length}</span> tips
-          {selectedCategory !== 'all' && (
-            <span> in <span className="text-slate-200 capitalize">{selectedCategory}</span></span>
+          Showing <span className="text-indigo-300 font-bold">{filteredItems.length}</span> prompts &amp; skills
+          {selectedType !== 'all' && (
+            <span> in <span className="text-slate-200 capitalize">{selectedType}</span></span>
           )}
           {searchQuery && <span> matching "{searchQuery}"</span>}
         </div>
 
-        {(selectedCategory !== 'all' || searchQuery) && (
+        {(selectedType !== 'all' || searchQuery) && (
           <button
             type="button"
             onClick={() => {
-              setSelectedCategory('all');
+              setSelectedType('all');
               setSearchQuery('');
             }}
-            className="text-amber-400 hover:text-amber-300 underline underline-offset-2"
+            className="text-indigo-400 hover:text-indigo-300 underline underline-offset-2"
           >
             Reset Filters
           </button>
         )}
       </div>
 
-      {/* Tips Cards Grid */}
-      {filteredTips.length > 0 ? (
+      {/* Prompts & Skills Grid */}
+      {filteredItems.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredTips.map((tip) => (
-            <TipCard key={tip.id} tip={tip} />
+          {filteredItems.map((item) => (
+            <PromptSkillCard key={item.id} item={item} />
           ))}
         </div>
       ) : (
         <div className="p-12 text-center space-y-3 rounded-2xl border border-dashed border-slate-800 bg-slate-900/30">
           <Lightbulb className="w-8 h-8 text-slate-600 mx-auto" />
-          <h3 className="text-base font-semibold text-slate-300">No tips found</h3>
+          <h3 className="text-base font-semibold text-slate-300">No prompts or skills found</h3>
           <p className="text-xs text-slate-500 max-w-sm mx-auto">
-            No developer tips matched your current search query or category filter. Try searching for different keywords like "Docker", "API", or "DNS".
+            No items matched your current search query. Try searching for "Git", "Next.js", "Docker", or "Refactor".
           </p>
           <button
             type="button"
             onClick={() => {
-              setSelectedCategory('all');
+              setSelectedType('all');
               setSearchQuery('');
             }}
             className="px-4 py-2 rounded-xl text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-200 transition-colors"
           >
-            Show All Tips
+            Show All Prompts
           </button>
         </div>
       )}
