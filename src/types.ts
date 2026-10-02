@@ -112,6 +112,31 @@ export interface CommunitySubmission {
   proTips?: string[];
 }
 
+export type TipType =
+  | 'prompt'
+  | 'cursor-rule'
+  | 'cheat-sheet'
+  | 'agent-skill'
+  | 'system-instruction';
+
+export interface PromptSkillItem {
+  id: string;
+  slug: string;
+  title: string;
+  type: TipType;
+  targetTool: string;
+  summary: string;
+  description: string;
+  content: string;
+  language?: string;
+  placeholders?: string[];
+  useCase: string;
+  tags: string[];
+  featured?: boolean;
+  authorOrSource?: string;
+  difficulty?: DifficultyLevel;
+}
+
 export interface DeveloperTip {
   id: string;
   resourceId: string;
@@ -138,4 +163,5 @@ export interface ResourceFilterState {
   difficulty?: DifficultyLevel | 'all';
   sortBy: 'featured' | 'stars' | 'alphabetical' | 'recent' | 'verified';
 }
+
 
