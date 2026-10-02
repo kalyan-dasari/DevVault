@@ -587,4 +587,93 @@ Includes a comprehensive web dashboard (dash.domain.digitalplat.org) and complet
     whyDevelopersLoveIt:
       'It cuts through marketing gimmicks and trial periods to give developers a strictly-audited catalog of real, permanent free resources to run production workloads for $0.',
   },
+  {
+    id: 'omniroute',
+    name: 'OmniRoute',
+    slug: 'omniroute',
+    shortDescription:
+      'Free MIT AI gateway & unified endpoint routing 359 providers (150+ free) and 1,200+ models with quota-aware auto-fallback and token compression.',
+    longDescription: `OmniRoute is a high-performance, open-source AI gateway and proxy server providing a unified OpenAI/Anthropic-compatible endpoint. It bridges 359 providers (including 150+ free tiers) and 1,200+ AI models (Claude, GPT-4o, Gemini 2.0, DeepSeek V3, Kimi, GLM, MiniMax, Qwen).
+
+Engineered specifically for developer tools and AI coding agents (Claude Code, Cursor Composer, OpenCode, Codex, Cline, and Copilot), OmniRoute features quota-aware load balancing with automatic fallback when rate limits (429) occur, a stacked RTK + Caveman context compression engine saving 15–95% of prompt tokens, native MCP/A2A server integration, and a local management dashboard PWA.`,
+    category: 'github',
+    subcategory: 'AI Gateway & Unified LLM Proxy',
+    type: 'repo',
+    websiteUrl: 'https://omniroute.online',
+    githubUrl: 'https://github.com/diegosouzapw/OmniRoute',
+    documentationUrl: 'https://omniroute.online',
+    pricingType: 'Open Source',
+    pricingDescription:
+      '100% Free & Open Source under the MIT License. Free to self-host and run locally with zero fees.',
+    freeTier:
+      'Aggregates 150+ permanently free provider endpoints and supports routing through free quotas across Gemini, Groq, DeepSeek, Together, Cloudflare Workers AI, and OpenRouter.',
+    features: [
+      'Unified Gateway: Single OpenAI & Anthropic compatible endpoint routing to 359 AI providers and 1,200+ LLMs',
+      '150+ Free Provider Tiers: Out-of-the-box presets for Groq, Gemini API, Cloudflare Workers AI, and OpenRouter free tiers',
+      'Quota-Aware Auto-Fallback: Automatic zero-downtime routing when hitting rate limits (429), timeouts, or context overflows',
+      'RTK + Caveman Token Compression: Multi-stage compression pipeline cutting prompt & context tokens by 15% to 95%',
+      'Drop-in IDE Compatibility: Seamless integration with Cursor Composer, Claude Code, Cline, Roo Code, and Codex',
+      'Built-in MCP & A2A Support: Full Model Context Protocol tooling and Agent-to-Agent communication protocols',
+      'Local Web Dashboard & PWA: Real-time latency tracking, token analytics, model status checks, and key management',
+      'Privacy & Security: 100% local execution, zero external telemetry, and encrypted local credential storage',
+    ],
+    useCases: [
+      'Running Cursor, Claude Code, and Cline continuously without rate limit interruptions or vendor lock-in',
+      'Slashing context token consumption by up to 95% when sending large codebase context and terminal outputs',
+      'Routing development and agent workloads across 150+ free AI model endpoints without subscription fees',
+      'Setting up a secure, auditable local proxy gateway for enterprise teams and self-hosted AI stacks',
+    ],
+    tags: [
+      'ai-gateway',
+      'llm-proxy',
+      'cursor',
+      'claude-code',
+      'cline',
+      'deepseek',
+      'free-ai',
+      'token-compression',
+      'mcp',
+      'open-source',
+    ],
+    technologies: [
+      'TypeScript',
+      'Node.js',
+      'Fastify',
+      'Docker',
+      'React',
+      'ONNX',
+      'PWA',
+      'REST API',
+    ],
+    difficulty: 'Intermediate',
+    openSource: true,
+    apiAvailable: true,
+    selfHosted: true,
+    featured: true,
+    verified: true,
+    lastVerified: '2026-08-24',
+    verificationNotes:
+      'Audited 72.3k+ star repository at diegosouzapw/OmniRoute. Verified multi-provider gateway, token compression pipeline, and IDE integrations.',
+    sourceUrls: [
+      'https://github.com/diegosouzapw/OmniRoute',
+      'https://omniroute.online',
+    ],
+    createdAt: '2024-03-01T00:00:00Z',
+    updatedAt: '2026-08-24T00:00:00Z',
+
+    // Social & Trending specific fields
+    stars: '72.3k+ ⭐',
+    starsCount: 72300,
+    trendingOnSocial: true,
+    socialHighlights:
+      'Exploding in popularity with 72k+ stars across GitHub and developer communities as the ultimate free MIT gateway to run Cursor, Claude Code, and Cline with automatic provider fallback and 95% token savings.',
+    proTips: [
+      'Set OmniRoute as the custom base URL in Cursor (`http://localhost:8080/v1`) with fallback chains so your coding agent never stops when hitting rate limits.',
+      'Enable the stacked RTK + Caveman compression mode to slash your prompt token usage by up to 95% when sending large codebase context.',
+      'Use OmniRoute\'s free provider presets to tap into 150+ free LLM endpoints (Gemini 2.0 Flash, Groq Llama 3.3 70B, DeepSeek V3) with zero credit card required.',
+    ],
+    quickCommand: 'npx omniroute start',
+    whyDevelopersLoveIt:
+      'It eliminates LLM provider lock-in and 429 rate limit frustrations while cutting token costs drastically through built-in context compression algorithms.',
+  },
 ];
