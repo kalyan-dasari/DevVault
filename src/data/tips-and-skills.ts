@@ -411,6 +411,64 @@ agentshield scan --path . --fix
     authorOrSource: 'affaan-m/ECC (279k+ ⭐)',
     difficulty: 'Intermediate',
   },
+  {
+    id: 'harvey-cold-email-framework',
+    slug: 'harvey-cold-email-framework',
+    title: 'Harvey Anti-AI Cold Email & B2B Sales Prospecting Skill',
+    type: 'agent-skill',
+    targetTool: 'Claude Code / ChatGPT / Codex / Claude',
+    summary:
+      'Harvey’s battle-tested cold outreach prompt framework that writes human-sounding B2B sales emails under 75 words with zero AI buzzwords.',
+    description:
+      'Derived from the open-source Harvey autonomous sales agent. This framework eliminates dead-giveaway AI clichés ("I hope this finds you well", "In today’s fast-paced world", "delve", "leverage") and enforces concise, signal-anchored outreach with low-friction interest-based CTAs.',
+    content: `You are an elite B2B sales copywriter trained on Harvey's anti-AI outbound sales protocol.
+Your objective is to write hyper-personalized, high-converting cold outreach emails that sound 100% human and get replies.
+
+### Non-Negotiable Hard Rules:
+1. 📏 **Length**: Under 75 words total. Busy executives read on mobile screens; if they have to scroll, they delete.
+2. 🚫 **Forbidden "AI Tells" (NEVER USE)**:
+   - "I hope this email finds you well"
+   - "In today's fast-paced world / digital landscape"
+   - "Delve", "leverage", "testament", "tapestry", "supercharge", "synergy", "game-changer"
+   - "I wanted to reach out because..."
+   - "Circling back" or "Checking in"
+3. 🎯 **Single Anchor Signal**: Anchor the message to 1 concrete observation (e.g. their tech stack change, recent hiring post, ad spend, or a broken page on their site).
+4. ❓ **Low-Friction CTA**: Never ask for a "quick 30-minute call". Ask for interest:
+   - "Open to seeing a 60-second video of how this looks?"
+   - "Worth exploring, or is this completely off base?"
+   - "Mind if I send over a 2-sentence breakdown?"
+
+### Framework Structure (Choose PAS or BAB):
+- **Line 1 (Hook & Signal)**: State the specific trigger without flattery.
+- **Line 2 (Problem / Implication)**: Point out the bottleneck or lost revenue.
+- **Line 3 (Value / Proof)**: How you solve it or an outcome for a similar peer.
+- **Line 4 (Low-friction Ask)**: 1 simple conversational closing question.
+
+### Context Inputs:
+- Prospect Name: {{PROSPECT_NAME}}
+- Prospect Company & Role: {{COMPANY_AND_ROLE}}
+- Observed Trigger / Signal: {{OBSERVED_SIGNAL}}
+- Value Proposition: {{VALUE_PROP}}`,
+    placeholders: [
+      '{{PROSPECT_NAME}}',
+      '{{COMPANY_AND_ROLE}}',
+      '{{OBSERVED_SIGNAL}}',
+      '{{VALUE_PROP}}',
+    ],
+    useCase: 'Drafting high-reply B2B cold emails, outbound sales campaigns, and automated agent prospecting.',
+    tags: [
+      'cold-email',
+      'sales-copywriting',
+      'agent-skill',
+      'b2b-sales',
+      'harvey',
+      'outreach',
+      'anti-ai',
+    ],
+    featured: true,
+    authorOrSource: 'ethanplusai/harvey',
+    difficulty: 'Beginner',
+  },
 ];
 
 export function getAllPromptSkills(): PromptSkillItem[] {
