@@ -676,4 +676,90 @@ Engineered specifically for developer tools and AI coding agents (Claude Code, C
     whyDevelopersLoveIt:
       'It eliminates LLM provider lock-in and 429 rate limit frustrations while cutting token costs drastically through built-in context compression algorithms.',
   },
+  {
+    id: 'ecc',
+    name: 'ECC (Everything Claude Code)',
+    slug: 'ecc',
+    shortDescription:
+      'The agent harness performance optimization system with 71 agents, 311 skills, instincts, memory, and AgentShield security scanning for Claude Code, Codex, and Cursor.',
+    longDescription: `ECC (Everything Claude Code) is an open-source agent harness performance optimization system and modular engineering framework. It transforms vanilla AI coding assistants from basic prompt-response tools into disciplined, coordinated engineering systems that plan before building, enforce test-driven development (TDD), audit changes across isolated contexts, learn continuously from git history, and persist memories across sessions.
+
+With 71 specialized agents, 311 plug-and-play skills, 97 CLI commands, continuous learning instincts, and the AgentShield security auditor (winner of the Claude Code Hackathon), ECC natively supports Claude Code, OpenAI Codex, Qoder, and provides adapters for Cursor, OpenCode, Gemini, and Antigravity.`,
+    category: 'github',
+    subcategory: 'Agent Harnesses, Skills & Performance Optimization',
+    type: 'repo',
+    websiteUrl: 'https://ecc.tools',
+    githubUrl: 'https://github.com/affaan-m/ECC',
+    documentationUrl: 'https://ecc.tools',
+    pricingType: 'Open Source',
+    pricingDescription:
+      '100% Free & Open Source under the MIT License. Optional hosted GitHub App available for private team repos.',
+    freeTier:
+      'Complete open-source system with all 71 agents, 311 skills, hooks, and local AgentShield scanner included forever.',
+    features: [
+      '71 Specialized Engineering Agents for architecture, planning, code review, TDD, and debugging',
+      '311 Modular Skills covering frontend, backend, security, DevOps, ML, and database operations',
+      'Continuous Learning v2: Learns your personal patterns and distills git history into reusable instincts',
+      'AgentShield Security Scanner: Static analysis and red-team audits for prompts, hooks, and MCP servers',
+      'Harness Agnostic: Deep support for Claude Code, Codex, Cursor, OpenCode, and Antigravity',
+      'Universal 1-Command Setup: Zero-friction guided installer via npx ecc-universal setup',
+    ],
+    useCases: [
+      'Transforming coding agents into disciplined engineers that write tests before writing implementation code',
+      'Auditing agent configurations, MCP servers, and hooks for security injection risks and credential leaks',
+      'Automatically extracting project patterns and team conventions from git commit history into permanent skills',
+      'Standardizing high-leverage workflows across Claude Code, Cursor, and Codex development teams',
+    ],
+    tags: [
+      'ai-agents',
+      'claude-code',
+      'cursor',
+      'codex',
+      'agent-skills',
+      'mcp',
+      'agentshield',
+      'open-source',
+      'developer-tools',
+    ],
+    technologies: [
+      'TypeScript',
+      'Shell',
+      'Python',
+      'Go',
+      'Node.js',
+      'Claude Code',
+      'Cursor',
+      'Codex',
+    ],
+    difficulty: 'Intermediate',
+    openSource: true,
+    apiAvailable: true,
+    selfHosted: true,
+    featured: true,
+    verified: true,
+    lastVerified: '2026-10-14',
+    verificationNotes:
+      'Audited 279k+ star repository at affaan-m/ECC. Verified ecc-universal setup, 311 skills, and AgentShield integration.',
+    sourceUrls: [
+      'https://github.com/affaan-m/ECC',
+      'https://ecc.tools',
+    ],
+    createdAt: '2025-09-01T00:00:00Z',
+    updatedAt: '2026-10-14T00:00:00Z',
+
+    // Social & Trending specific fields
+    stars: '279k+ ⭐',
+    starsCount: 279200,
+    trendingOnSocial: true,
+    socialHighlights:
+      'Trending #1 on GitHub globally with 279k+ stars and 41k+ forks as the definitive operating system and harness for Claude Code, Cursor, and agentic developers.',
+    proTips: [
+      'Run `npx ecc-universal setup` in any repo to interactively install the full suite of 311 skills and hooks in under 30 seconds.',
+      'Use `/security-scan` or `agentshield scan --path .` before merging agent PRs to catch malicious hook injections and leaked secrets.',
+      'Run `/skill-create --instincts` to have ECC analyze your recent git commits and turn your best bug fixes into persistent agent reflexes.',
+    ],
+    quickCommand: 'npx ecc-universal setup',
+    whyDevelopersLoveIt:
+      'It replaces messy single-shot prompts with a rigorous engineering lifecycle: plan -> test -> implement -> review -> verify -> remember -> improve.',
+  },
 ];
