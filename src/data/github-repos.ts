@@ -762,4 +762,91 @@ With 71 specialized agents, 311 plug-and-play skills, 97 CLI commands, continuou
     whyDevelopersLoveIt:
       'It replaces messy single-shot prompts with a rigorous engineering lifecycle: plan -> test -> implement -> review -> verify -> remember -> improve.',
   },
+  {
+    id: 'harvey',
+    slug: 'harvey',
+    name: 'Harvey',
+    shortDescription:
+      'Autonomous AI sales agent powered by Claude Code or Codex with $0 API token costs, deterministic outbox guardrails, and automated lead prospecting.',
+    longDescription: `Harvey is an open-source autonomous AI sales agent designed to run locally using your existing Claude Pro/Max or ChatGPT/Codex subscription—bypassing expensive per-token API bills. Built with a deterministic multi-agent architecture (Scout, Writer, Sender, Handler, and Analyst), Harvey identifies target accounts using 23 real-time buying signals (such as ad spend spikes, agency turnover, or tech stack changes), drafts hyper-personalized cold outreach emails under 75 words using proven sales frameworks (AIDA, PAS, BAB), queues outbound messages with strict quiet-hour and rate-limit guardrails, and classifies inbound replies with stop-on-reply protection.
+
+Includes an interactive web dashboard on localhost:5555 and built-in sales skills for lead qualification and objection handling.`,
+    category: 'github',
+    subcategory: 'Autonomous AI Sales & Lead Generation',
+    type: 'repo',
+    websiteUrl: 'https://github.com/ethanplusai/harvey',
+    githubUrl: 'https://github.com/ethanplusai/harvey',
+    documentationUrl: 'https://github.com/ethanplusai/harvey#readme',
+    pricingType: 'Open Source',
+    pricingDescription:
+      '100% Free & Open Source (MIT License). Runs via your existing Claude Code / Codex CLI subscription with $0 API token costs.',
+    freeTier:
+      'Completely free and self-hosted. Zero per-seat SaaS fees, zero API markup, and complete data privacy with local SQLite storage.',
+    features: [
+      'Zero API Key Cost: Leverages your local Claude Code or Codex subscription for all reasoning',
+      '5 Specialized Sub-Agents: Scout (prospector), Writer (drafter), Sender (queue), Handler (triage), Analyst (metrics)',
+      '23 Signal Buying Catalog: Detects ad spend, agency transitions, stale blogs, and missing schemas',
+      'Anti-AI Cold Email Engine: Generates concise, personalized emails under 75 words free of AI jargon',
+      'Deterministic Pre-Send Gate: Enforces quiet hours, daily velocity limits, CAN-SPAM, and GDPR compliance',
+      'Automated Stop-on-Reply: Inbound email classifier stops campaign sequences instantly upon prospect reply',
+      'Interactive Web Dashboard: Modern web UI on localhost:5555 for reviewing pipeline, outbox, and metrics',
+      'Modular Sales Skills: Built-in playbooks for AIDA, PAS, BAB, QVC, and LAARC objection loops',
+    ],
+    useCases: [
+      'Automating B2B outbound lead generation and cold outreach for indie hackers and agencies with $0 API overhead',
+      'Monitoring prospect websites for 23 high-intent buying signals before drafting hyper-relevant emails',
+      'Safely managing cold email sequences with deterministic outbox review gates and anti-spam protection',
+      'Classifying inbound client responses into meetings, objections, and unsubscribe requests automatically',
+    ],
+    tags: [
+      'ai-sales',
+      'claude-code',
+      'autonomous-agents',
+      'cold-email',
+      'sales-automation',
+      'lead-generation',
+      'codex',
+      'b2b-sales',
+      'open-source',
+    ],
+    technologies: [
+      'Python',
+      'FastAPI',
+      'SQLite',
+      'Claude Code',
+      'Codex',
+      'HTML5',
+      'JavaScript',
+    ],
+    difficulty: 'Intermediate',
+    openSource: true,
+    apiAvailable: true,
+    selfHosted: true,
+    featured: true,
+    verified: true,
+    lastVerified: '2026-10-14',
+    verificationNotes:
+      'Verified ethanplusai/harvey repository, MIT license, Python FastAPI backend, local SQLite database, and Claude Code agent workflow.',
+    sourceUrls: [
+      'https://github.com/ethanplusai/harvey',
+    ],
+    createdAt: '2025-10-01T00:00:00Z',
+    updatedAt: '2026-10-14T00:00:00Z',
+
+    // Social & Trending specific fields
+    stars: '482+ ⭐',
+    starsCount: 482,
+    trendingOnSocial: true,
+    socialHighlights:
+      'Trending open-source sales agent leveraging Claude Code subscriptions to deliver an entire outbound SDR team for $0 in API costs.',
+    proTips: [
+      'Run `claude` inside the repo and type "set up Harvey for me" to launch the guided interactive configuration wizard.',
+      'Use `harvey dashboard` to open the web interface on localhost:5555 and inspect your pre-send approval queue.',
+      'Train Harvey on your own agency or product by executing `harvey train <your-website-url>`.',
+    ],
+    quickCommand: 'git clone https://github.com/ethanplusai/harvey.git && cd harvey',
+    whyDevelopersLoveIt:
+      'Replaces expensive $500+/mo outbound sales platforms (like Apollo or Instantly) with a private, self-hosted agent powered by your flat-rate Claude subscription.',
+  },
 ];
+
