@@ -366,6 +366,51 @@ Here is the code to generate tests for:
     authorOrSource: 'TDD Collective',
     difficulty: 'Intermediate',
   },
+  {
+    id: 'ecc-agent-engineering-harness',
+    slug: 'ecc-agent-engineering-harness',
+    title: 'ECC: Autonomous Agent Engineering Harness & 7-Stage Lifecycle',
+    type: 'agent-skill',
+    targetTool: 'Claude Code / Cursor / Codex / Windsurf',
+    summary:
+      'The battle-tested 7-stage agent harness (plan -> test -> implement -> review -> verify -> remember -> improve) with continuous learning instincts.',
+    description:
+      'Transforms AI coding assistants from simple autocomplete into a coordinated engineering team. Enforces test-driven development, red-team review in fresh context windows, memory persistence across sessions, and automated git history pattern learning.',
+    content: `# 🧠 ECC (Everything Claude Code) Master Agent Harness
+
+You are operating under the ECC Autonomous Engineering Protocol.
+Follow the strict 7-stage engineering lifecycle for every non-trivial task:
+
+\`\`\`text
+plan -> test -> implement -> review -> verify -> remember -> improve
+\`\`\`
+
+### Execution Rules:
+1. 📋 **Plan First**: Never write implementation code blindly. Inspect codebase patterns, identify boundary conditions, and draft a structured plan.
+2. 🧪 **Test-Driven (TDD)**: Write failing reproduction/unit tests BEFORE writing the fix or feature.
+3. 🔨 **Minimal Implementation**: Write the minimal working change to satisfy the tests. Avoid over-engineering.
+4. 🔍 **Adversarial Self-Review**: Step back and review the diff from a fresh context: look for race conditions, unhandled rejections, edge cases, and security vulnerabilities.
+5. 🛡️ **Security & Validation**: Ensure user inputs are sanitized and no secrets/tokens are hardcoded. Run \`/security-scan\` or \`agentshield scan\`.
+6. 💾 **Memory & Instincts**: If this task solved a non-obvious bug or established a project convention, record it in local memory or \`SKILL.md\`.
+7. 🚀 **Verify**: Run the full test suite and type checker (\`npm test\` / \`npx tsc --noEmit\`) before marking done.
+
+### Quick Setup & Agent Tools:
+\`\`\`bash
+# Guided 1-command installer across Claude Code, Codex, or Cursor:
+npx ecc-universal setup
+
+# Audit agent configs, MCP servers & hooks for security risks:
+agentshield scan --path . --fix
+
+# Automatically distill your git history into reusable agent skills:
+/skill-create --instincts
+\`\`\``,
+    useCase: 'Structuring coding agents to execute complex refactors and features with zero regressions.',
+    tags: ['ecc', 'agent-skill', 'claude-code', 'cursor', 'tdd', 'system-instruction'],
+    featured: true,
+    authorOrSource: 'affaan-m/ECC (279k+ ⭐)',
+    difficulty: 'Intermediate',
+  },
 ];
 
 export function getAllPromptSkills(): PromptSkillItem[] {
