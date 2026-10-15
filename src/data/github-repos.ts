@@ -848,5 +848,92 @@ Includes an interactive web dashboard on localhost:5555 and built-in sales skill
     whyDevelopersLoveIt:
       'Replaces expensive $500+/mo outbound sales platforms (like Apollo or Instantly) with a private, self-hosted agent powered by your flat-rate Claude subscription.',
   },
+  {
+    id: 'filmcraft',
+    slug: 'filmcraft',
+    name: 'FilmCraft (by Storytold)',
+    shortDescription:
+      'Open-source nonlinear video editor written from scratch in pure Rust with built-in Model Context Protocol (MCP) for autonomous AI video editing.',
+    longDescription: `FilmCraft is an open-source, non-linear video editor (NLE) and clean-room reimplementation of professional editing workflows (such as Adobe Premiere Pro) written completely from scratch in pure Rust. Created by the Storytold (ArtCraft) collective, FilmCraft features a multitrack timeline, source/program monitors, media bins, effects, color grading, titles, and audio mixing.
+
+Unlike traditional NLEs, FilmCraft is built with a headless-first architecture where every action is an engine command registered in a centralized dispatch table. It ships with a native Model Context Protocol (MCP) server, allowing AI agents (like Claude Code, Cursor, and Codex) to autonomously cut clips, balance audio tracks, color grade footage, and render timelines via JSON-lines or stdio. Includes zero external C/C++ codec bloat with pure Rust decoders for H.264, HEVC, ProRes, VP9, AAC, Opus, MP4, and MKV.`,
+    category: 'github',
+    subcategory: 'Video Editing & Creative Automation',
+    type: 'repo',
+    websiteUrl: 'https://github.com/storytold/filmcraft',
+    githubUrl: 'https://github.com/storytold/filmcraft',
+    documentationUrl: 'https://github.com/storytold/filmcraft#readme',
+    pricingType: 'Open Source',
+    pricingDescription:
+      '100% Free & Open Source (Dual MIT / Apache-2.0 License). Zero subscription fees or proprietary cloud dependencies.',
+    freeTier:
+      'Fully unlocked, local-first workstation. No watermarks, export limits, or account requirements.',
+    features: [
+      '100% Pure Rust Implementation: Zero C/C++ dependencies with native decoders for H.264, HEVC, ProRes, AAC, VP9, and Opus',
+      'Built-in Model Context Protocol (MCP) Server: Allows AI agents (Claude, Cursor) to control the timeline over stdio',
+      'Headless-First Engine Architecture: Every editing function is exposed as an engine command with strict parameter schemas',
+      'Professional NLE Workflow: Multitrack timeline, source & program monitors, media bins, and razor-sharp trimming tools',
+      'Exact Integer Time Math: Nanosecond-precise time logic eliminating audio/video drift across long-form projects',
+      'GPU Linear-Light Compositor: Hardware-accelerated blending, color space transforms, and real-time effects rendering',
+      'Cross-Platform Native & WebAssembly: Runs on macOS, Windows, Linux (egui), and inside web browsers via Wasm',
+      'Part of the Storytold (ArtCraft) Creative Suite: Integrates with PhotoCraft, VectorCraft, FigCraft, and EffectCraft',
+    ],
+    useCases: [
+      'Replacing Adobe Premiere Pro with a blazing-fast, crash-resilient open-source Rust video editing workstation',
+      'Building automated AI video editing pipelines where Claude or Codex autonomously trims raw footage and adds B-roll',
+      'Running headless batch video rendering, caption burning, and timeline stitching on remote Linux CI/CD servers',
+      'Editing 4K ProRes and H.264 video with zero licensing fees or subscription lock-in',
+    ],
+    tags: [
+      'video-editor',
+      'nle',
+      'rust',
+      'mcp',
+      'ai-video',
+      'premiere-alternative',
+      'model-context-protocol',
+      'artcraft',
+      'open-source',
+    ],
+    technologies: [
+      'Rust',
+      'WebAssembly',
+      'MCP (Model Context Protocol)',
+      'egui',
+      'GPU Compute',
+      'Linear Light Compositing',
+    ],
+    difficulty: 'Intermediate',
+    openSource: true,
+    apiAvailable: true,
+    selfHosted: true,
+    featured: true,
+    verified: true,
+    lastVerified: '2026-10-15',
+    verificationNotes:
+      'Verified storytold/filmcraft repository (~14k stars), dual MIT/Apache-2.0 license, pure Rust NLE architecture, and cargo CLI MCP server.',
+    sourceUrls: [
+      'https://github.com/storytold/filmcraft',
+      'https://github.com/storytold',
+    ],
+    createdAt: '2025-08-01T00:00:00Z',
+    updatedAt: '2026-10-15T00:00:00Z',
+
+    // Social & Trending specific fields
+    stars: '14k+ ⭐',
+    starsCount: 14000,
+    trendingOnSocial: true,
+    socialHighlights:
+      'Trending open-source Rust NLE reimagining video editing with pure Rust codecs, zero-drift integer time math, and native AI agent control via MCP.',
+    proTips: [
+      'Start the headless MCP server for Claude Code or Cursor by executing: `cargo run --release -p filmcraft-cli -- mcp`',
+      'Run the native desktop GUI editor with GPU acceleration via: `cargo run --release -p filmcraft`',
+      'Explore Storytold’s other open-source Rust creative tools: PhotoCraft (Photoshop alternative), FigCraft (Figma), and VectorCraft (Illustrator).',
+    ],
+    quickCommand: 'cargo run --release -p filmcraft',
+    whyDevelopersLoveIt:
+      'It combines the speed and memory safety of pure Rust with a first-class MCP server that lets AI agents cut, grade, and export video projects programmatically.',
+  },
 ];
+
 
