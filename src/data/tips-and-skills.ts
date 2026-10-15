@@ -469,6 +469,74 @@ Your objective is to write hyper-personalized, high-converting cold outreach ema
     authorOrSource: 'ethanplusai/harvey',
     difficulty: 'Beginner',
   },
+  {
+    id: 'filmcraft-mcp-video-agent',
+    slug: 'filmcraft-mcp-video-agent',
+    title: 'FilmCraft MCP Autonomous Video Editor Agent Skill',
+    type: 'agent-skill',
+    targetTool: 'Claude Code / Cursor / Codex / MCP Clients',
+    summary:
+      'Configure AI agents to autonomously control FilmCraft via Model Context Protocol (MCP) to cut clips, assemble timelines, duck audio, and export video.',
+    description:
+      'Enables Claude Code, Cursor, or any MCP-compatible agent to act as your autonomous post-production assistant using FilmCraft’s headless command architecture. Includes MCP client configuration and system prompt for timeline manipulation.',
+    content: `### 1. FilmCraft MCP Configuration
+Add the following to your MCP client configuration (e.g. \`~/.claude/claude_desktop_config.json\` or project \`.mcp.json\`):
+
+\`\`\`json
+{
+  "mcpServers": {
+    "filmcraft": {
+      "command": "cargo",
+      "args": ["run", "--release", "-p", "filmcraft-cli", "--", "mcp"],
+      "env": {
+        "RUST_LOG": "info"
+      }
+    }
+  }
+}
+\`\`\`
+
+### 2. Autonomous Video Editor Agent Prompt
+Feed this prompt to Claude Code or your agent to operate FilmCraft:
+
+\`\`\`text
+You are an expert video editor operating FilmCraft via the Model Context Protocol (MCP).
+You have direct programmatic control over media bins, multitrack timeline tracks, cuts, transitions, and export queues.
+
+### Editing Standards:
+1. ⏱️ **Zero-Drift Cuts**: Always calculate clip in/out boundaries using exact integer time frames or milliseconds.
+2. 🔊 **Audio Ducking**: When background music (Track A2) coincides with dialogue (Track A1), duck the music track gain by -14dB to -18dB.
+3. ✂️ **Pacing & Trimming**: Cut dead air and filler hesitations (>400ms pauses) in speech clips unless natural pause is stylistically required.
+4. 🎨 **Color Grading Protocol**: Apply Rec.709 color space transforms before applying creative LUTs to ensure highlights are preserved in linear light.
+5. 📤 **Pre-Export Inspection**: Verify all track sync locks, check that audio peaks do not exceed -1.0 dBFS, and dispatch the render queue command.
+\`\`\`
+
+### 3. Quick Run & CLI Commands:
+\`\`\`bash
+# Launch interactive desktop UI:
+cargo run --release -p filmcraft
+
+# Start headless MCP server:
+cargo run --release -p filmcraft-cli -- mcp
+
+# Run CLI headless export:
+cargo run --release -p filmcraft-cli -- render --project ./project.fcproj --output ./final.mp4
+\`\`\``,
+    useCase:
+      'Automating video post-production, podcast clipping, YouTube editing, and social media shorts generation with AI agents.',
+    tags: [
+      'filmcraft',
+      'mcp',
+      'agent-skill',
+      'video-editing',
+      'rust',
+      'claude-code',
+      'automation',
+    ],
+    featured: true,
+    authorOrSource: 'storytold/filmcraft (~14k ⭐)',
+    difficulty: 'Intermediate',
+  },
 ];
 
 export function getAllPromptSkills(): PromptSkillItem[] {
