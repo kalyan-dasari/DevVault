@@ -590,6 +590,87 @@ cp -r replica-skill/replica-* .claude/skills/
     authorOrSource: 'Jakeschincariol/replica-skill (2.7k+ ⭐)',
     difficulty: 'Intermediate',
   },
+  {
+    id: 'rea-agent-reverse-engineering',
+    slug: 'rea-agent-reverse-engineering',
+    title: 'REA Reverse Engineer Anything Agent Skill & MCP Harness',
+    type: 'agent-skill',
+    targetTool: 'Claude Code / Cursor / Codex / MCP Clients',
+    summary:
+      'Arm AI coding agents with the REA protocol to decompile native binaries, unpack Electron ASARs, sniff private APIs, and inspect web bundles.',
+    description:
+      'Enables Claude Code, Cursor Composer, or Codex to operate as an automated reverse-engineering analyst. Includes the MCP configuration snippet and structured instructions for inspecting binaries with Ghidra, capturing WebSocket/HTTP payloads via CDP, and reconstructing undocumented data schemas.',
+    content: `### 1. REA MCP Configuration
+Add the REA server to your MCP configuration (e.g. \`~/.claude/claude_desktop_config.json\` or \`.mcp.json\`):
+
+\`\`\`json
+{
+  "mcpServers": {
+    "rea": {
+      "command": "npx",
+      "args": ["-y", "rea-agents", "serve"],
+      "env": {
+        "REA_LOCAL_MODE": "true"
+      }
+    }
+  }
+}
+\`\`\`
+
+### 2. Reverse Engineering Agent Instruction Prompt
+Feed this system prompt to your agent when analyzing binaries, Electron apps, or closed web services:
+
+\`\`\`text
+You are an expert security researcher and reverse-engineering agent using REA (Reverse Engineer Anything).
+Your goal is to inspect targets across execution layers to extract architectural models, data contracts, and protocol schemas.
+
+### Operational Methodology:
+1. 🌐 **Web & Protocol Interception (CDP)**:
+   - Attach via Chrome DevTools Protocol to observe client-server payloads.
+   - Catalog all REST endpoints, WebSocket event types, and authentication token handshakes into a clean OpenAPI/TypeScript spec.
+   - Look for client-side JavaScript source maps (.map files) to reconstruct original module layouts.
+
+2. 📦 **Desktop & Electron Extraction**:
+   - Extract .asar archives and audit package.json, main-process IPC channels, and preload scripts.
+   - Trace IPC calls between renderer and node processes to map exposed privileged APIs.
+
+3. ⚙️ **Binary & Native Code Analysis**:
+   - Inspect strings, imported dynamic libraries, exported symbols, and TLS certificate pins.
+   - Trace decompiled pseudocode starting from entry points and network socket dispatchers.
+   - Reconstruct C/Rust structs and memory layouts from disassembly offsets.
+
+4. 🛡️ **Clean-Room Output**:
+   - Never copy verbatim binary code or decompiled blobs into product implementations.
+   - Deliver high-level architectural specifications, typed interfaces, and clean-room documentation.
+\`\`\`
+
+### 3. Quick Run Commands:
+\`\`\`bash
+# Automated 1-command installer for Claude Code & Cursor:
+npx rea-agents setup
+
+# Launch web inspection proxy on a target URL:
+npx rea-agents inspect --url https://example.com --cdp
+
+# Decompile a local native executable or Electron app:
+npx rea-agents analyze --path ./target-binary-or-app
+\`\`\``,
+    useCase:
+      'Decompiling binaries, reverse-engineering undocumented API endpoints, recovering lost source code, and security audits.',
+    tags: [
+      'rea',
+      'reverse-engineering',
+      'binary-analysis',
+      'mcp',
+      'claude-code',
+      'security',
+      'electron',
+      'agent-skill',
+    ],
+    featured: true,
+    authorOrSource: 'morluto/rea (200k+ ⭐)',
+    difficulty: 'Advanced',
+  },
 ];
 
 export function getAllPromptSkills(): PromptSkillItem[] {
