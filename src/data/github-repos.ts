@@ -934,6 +934,93 @@ Unlike traditional NLEs, FilmCraft is built with a headless-first architecture w
     whyDevelopersLoveIt:
       'It combines the speed and memory safety of pure Rust with a first-class MCP server that lets AI agents cut, grade, and export video projects programmatically.',
   },
+  {
+    id: 'replica-skill',
+    slug: 'replica-skill',
+    name: 'Replica Skill',
+    shortDescription:
+      'Open-source 11-skill AI agent pipeline for Claude Code and Cursor to systematically reverse-engineer, rebuild, test, and improve any software application.',
+    longDescription: `Replica Skill is an open-source, modular agent harness comprising 11 specialized skills for Claude Code, Cursor, and LLM coding assistants. Built on clean-room software development principles, it allows developers and indie hackers to feed any existing web or mobile app (via URLs, screenshots, or design tokens) and systematically recreate a production-ready alternative with clean, original code.
+
+The pipeline spans the complete software lifecycle across 11 discrete stages: /replica-recon (reverse-engineering screens and flows), /replica-architect (tech stack & database schema), /replica-design (design token extraction), /replica-build (screen-by-screen code generation), /replica-backend (auth, database, Stripe, emails), /replica-test (Playwright E2E and visual diffing), /replica-diff (parity scoring), /replica-entrepreneur (scraping G2/Reddit complaints to fix competitor flaws), /replica-brand (naming and identity), /replica-launch (landing page copy & pricing), and /replica-deploy (automated production deployment).`,
+    category: 'github',
+    subcategory: 'AI Agent Harnesses & Reverse Engineering',
+    type: 'repo',
+    websiteUrl: 'https://github.com/Jakeschincariol/replica-skill',
+    githubUrl: 'https://github.com/Jakeschincariol/replica-skill',
+    documentationUrl: 'https://github.com/Jakeschincariol/replica-skill#readme',
+    pricingType: 'Open Source',
+    pricingDescription:
+      '100% Free & Open Source (MIT License). Zero cost, free to use, modify, and distribute.',
+    freeTier:
+      'Fully unlocked. Run locally with Claude Code, Cursor, or any markdown-compatible LLM.',
+    features: [
+      'Complete 11-Skill End-to-End Pipeline: From competitor reverse-engineering to live production deployment',
+      'Clean-Room Engineering: Recreates features, data models, and logic from first principles with original code',
+      'Claude Code Native: Integrates seamlessly via Claude Code plugin marketplace or ~/.claude/skills/',
+      '/replica-recon: Reverse-engineers target screens, state machines, and UX flows from URLs or screenshots',
+      '/replica-entrepreneur: Mines competitor 1-star reviews on G2 and Reddit to build features users actually want',
+      '/replica-backend: Generates Supabase migrations, Row Level Security (RLS), and Stripe billing integrations',
+      '/replica-test: Generates and executes automated Playwright tests to verify UI fidelity and functional parity',
+      'Cross-Harness Support: Compatible with Claude Code, Cursor Composer, Windsurf, and TypingMind',
+    ],
+    useCases: [
+      'Rapidly building clean-room SaaS alternatives to bloated, overpriced software tools',
+      'Prototyping complex full-stack web applications with validated database schemas and auth flows',
+      'Discovering and resolving competitor weaknesses by mining public complaints on Reddit and G2',
+      'Orchestrating multi-phase Claude Code workflows using persistent markdown skill guidelines',
+    ],
+    tags: [
+      'ai-agents',
+      'claude-code',
+      'claude-skills',
+      'reverse-engineering',
+      'cursor',
+      'saas-starter',
+      'open-source',
+      'clean-room',
+      'indie-hacking',
+    ],
+    technologies: [
+      'Markdown',
+      'Claude Code',
+      'TypeScript',
+      'Playwright',
+      'Next.js',
+      'Supabase',
+      'Stripe',
+    ],
+    difficulty: 'Beginner',
+    openSource: true,
+    apiAvailable: true,
+    selfHosted: true,
+    featured: true,
+    verified: true,
+    lastVerified: '2026-10-15',
+    verificationNotes:
+      'Verified Jakeschincariol/replica-skill repository (2.7k+ stars), MIT license, 11-skill pipeline structure, and Claude Code plugin compatibility.',
+    sourceUrls: [
+      'https://github.com/Jakeschincariol/replica-skill',
+    ],
+    createdAt: '2025-09-01T00:00:00Z',
+    updatedAt: '2026-10-15T00:00:00Z',
+
+    // Social & Trending specific fields
+    stars: '2.7k+ ⭐',
+    starsCount: 2700,
+    trendingOnSocial: true,
+    socialHighlights:
+      'Trending Claude Code skill suite enabling solo developers to reverse-engineer, improve upon, and launch complete web applications.',
+    proTips: [
+      'Install instantly in Claude Code via plugin command: `/plugin marketplace add Jakeschincariol/replica-skill && /plugin install replica-skill@replica-skill`',
+      'Run `/replica-entrepreneur` before writing any code to uncover the top complaints on Reddit and G2 about the incumbent product.',
+      'Store project artifacts in the `replica/` folder so all 11 skills share state and context seamlessly.',
+    ],
+    quickCommand: 'git clone https://github.com/Jakeschincariol/replica-skill.git && cp -r replica-skill/replica-* ~/.claude/skills/',
+    whyDevelopersLoveIt:
+      'It turns haphazard AI vibe-coding into a disciplined, 11-step product engineering pipeline with real parity checks.',
+  },
 ];
+
 
 
