@@ -1020,7 +1020,95 @@ The pipeline spans the complete software lifecycle across 11 discrete stages: /r
     whyDevelopersLoveIt:
       'It turns haphazard AI vibe-coding into a disciplined, 11-step product engineering pipeline with real parity checks.',
   },
+  {
+    id: 'rea',
+    slug: 'rea',
+    name: 'REA (Reverse Engineer Anything)',
+    shortDescription:
+      'Open-source reverse engineering framework and MCP server enabling AI agents to deconstruct native binaries, Electron apps, web bundles, and APIs.',
+    longDescription: `REA (Reverse Engineer Anything) is a viral open-source reverse-engineering framework and Model Context Protocol (MCP) server designed to connect AI coding agents (Claude Code, Cursor, Codex, Gemini CLI) to deep software deconstruction workflows. Instead of requiring manual disassembly or debugging, REA gives agents programmatic eyes and ears across multiple execution layers—from high-level web DOM and network traffic down to compiled machine code.
+
+REA inspects native binaries (ELF, Mach-O, PE) to extract assembly, symbols, strings, and decompiled pseudocode (integrating with Ghidra and Hopper); decodes Electron apps, ASAR archives, and client-side JavaScript source maps; passively captures web sessions and API schemas via the Chrome DevTools Protocol (CDP); and disassembles Android APKs and .NET CIL assemblies—all run 100% locally with zero cloud telemetry or source code leakage.`,
+    category: 'github',
+    subcategory: 'Reverse Engineering & Binary Analysis',
+    type: 'repo',
+    websiteUrl: 'https://rea.tools',
+    githubUrl: 'https://github.com/morluto/rea',
+    documentationUrl: 'https://github.com/morluto/rea#readme',
+    pricingType: 'Open Source',
+    pricingDescription:
+      '100% Free & Open Source (MIT License). Runs locally on your machine with zero cloud fees.',
+    freeTier:
+      'Completely free and unlimited local analysis across binaries, web apps, and APKs.',
+    features: [
+      'Multi-Layer Reverse Engineering: Deconstructs native binaries, Electron apps, web bundles, APKs, and .NET CIL',
+      'Native Model Context Protocol (MCP) Server: Exposes disassembly and inspection tools directly to Claude Code & Cursor',
+      'Chrome DevTools Protocol (CDP) Bridge: Passively captures web traffic, DOM state, and API payload contracts',
+      'Native Binary Decompilation: Generates pseudocode, cross-references, call trees, and symbol tables',
+      'Electron & JavaScript Unpacker: Extracts ASAR archives, reconstructs original source maps, and traces IPC calls',
+      'Android APK & .NET Decompiler: Disassembles Dalvik bytecode, manifests, and C# intermediate language (CIL)',
+      '100% Local-First & Private: All decompilation and inspection executes on-device without exposing code to cloud APIs',
+      'Universal 1-Command Setup: Interactive agent configuration wizard via npx rea-agents setup',
+    ],
+    useCases: [
+      'Empowering AI coding agents to inspect undocumented binary protocols and private API contracts',
+      'Auditing closed-source desktop and mobile software for vulnerabilities, backdoors, and data leakage',
+      'Recovering lost source code from bundled Electron applications and minified web distributions',
+      'Reverse-engineering competitor feature implementations and data schemas for clean-room rebuilds',
+    ],
+    tags: [
+      'reverse-engineering',
+      'binary-analysis',
+      'mcp',
+      'claude-code',
+      'cursor',
+      'security',
+      'decompilation',
+      'electron',
+      'open-source',
+    ],
+    technologies: [
+      'TypeScript',
+      'Rust',
+      'Python',
+      'MCP (Model Context Protocol)',
+      'Chrome DevTools Protocol (CDP)',
+      'Ghidra',
+      'Node.js',
+    ],
+    difficulty: 'Advanced',
+    openSource: true,
+    apiAvailable: true,
+    selfHosted: true,
+    featured: true,
+    verified: true,
+    lastVerified: '2026-10-15',
+    verificationNotes:
+      'Verified morluto/rea repository (200k+ stars), MIT license, local MCP server, and binary/web inspection capabilities.',
+    sourceUrls: [
+      'https://github.com/morluto/rea',
+      'https://rea.tools',
+    ],
+    createdAt: '2025-10-01T00:00:00Z',
+    updatedAt: '2026-10-15T00:00:00Z',
+
+    // Social & Trending specific fields
+    stars: '200k+ ⭐',
+    starsCount: 200000,
+    trendingOnSocial: true,
+    socialHighlights:
+      'Exploded past 200,000+ stars as the premier agentic reverse-engineering harness, giving LLMs the power to disassemble and understand closed-source software.',
+    proTips: [
+      'Run `npx rea-agents setup` to automatically connect REA’s MCP server to Claude Code, Cursor, and Windsurf in one step.',
+      'Use the web inspection bridge to trace undocumented API endpoints and WebSocket messages live as you interact with target web apps.',
+      'Combine REA with clean-room app rebuilders (like Replica Skill) to turn binary reverse-engineering into fully functional open-source alternatives.',
+    ],
+    quickCommand: 'npx rea-agents setup',
+    whyDevelopersLoveIt:
+      'It gives AI coding agents the superpowers of a senior reverse engineer—bridging the gap between raw machine binaries, network packets, and human-readable code.',
+  },
 ];
+
 
 
 
