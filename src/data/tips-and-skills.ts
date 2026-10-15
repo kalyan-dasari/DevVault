@@ -537,6 +537,59 @@ cargo run --release -p filmcraft-cli -- render --project ./project.fcproj --outp
     authorOrSource: 'storytold/filmcraft (~14k ⭐)',
     difficulty: 'Intermediate',
   },
+  {
+    id: 'replica-clean-room-pipeline',
+    slug: 'replica-clean-room-pipeline',
+    title: 'Replica 11-Step Clean-Room App Rebuilder & Competitor Diff Skill',
+    type: 'agent-skill',
+    targetTool: 'Claude Code / Cursor / Windsurf / ChatGPT',
+    summary:
+      'The battle-tested 11-stage skill harness from Jakeschincariol/replica-skill to reverse-engineer, architect, rebuild, test, and improve any software application.',
+    description:
+      'Enables coding agents to clone and out-compete existing applications using clean-room engineering. Decomposes any web or mobile app into user flows, data models, and screen matrices, while mining competitor review flaws from G2 and Reddit to build a superior, bug-free product.',
+    content: `You are an expert product engineer operating under the Replica Clean-Room Software Pipeline.
+Your goal is to recreate, test, and improve an application cleanly without copying proprietary assets or code.
+
+All project artifacts must be written to and read from the local \`./replica/\` directory.
+
+### The 11-Stage Pipeline Workflow:
+1. 🕵️ **/replica-recon**: Deconstruct target app URL/screenshots into screens, navigation flows, and interactive state machines -> writes \`replica/recon.md\`.
+2. 📐 **/replica-architect**: Plan modern tech stack (e.g. Next.js App Router, Supabase, Tailwind, TypeScript), database schema, and API routes -> writes \`replica/architecture.md\`.
+3. 🎨 **/replica-design**: Extract design tokens (colors, font weights, shadows, border radii) into CSS/Tailwind variables -> writes \`replica/design-tokens.json\`.
+4. 🔨 **/replica-build**: Implement the app screen-by-screen based on \`recon.md\` and \`architecture.md\`.
+5. ⚡ **/replica-backend**: Provision database migrations, Row Level Security (RLS), auth providers, and Stripe billing webhooks -> writes \`replica/backend.md\`.
+6. 🧪 **/replica-test**: Write and run Playwright E2E tests validating critical user paths -> writes \`replica/test-results.md\`.
+7. 🔍 **/replica-diff**: Score parity against the original target, cataloging missing edge cases and discrepancies -> writes \`replica/parity-report.md\`.
+8. 💡 **/replica-entrepreneur**: Scrape public reviews (Reddit, G2, App Store) for the competitor's #1 user complaints and implement direct solutions -> writes \`replica/competitive-edge.md\`.
+9. 🏷️ **/replica-brand**: Generate distinct branding, naming, tone, and visual identity.
+10. 🚀 **/replica-launch**: Generate high-converting landing page copy, FAQs, and tiered pricing tables.
+11. 🌐 **/replica-deploy**: Preflight checklist, environment variable audit, and production deployment.
+
+### Quick Installation:
+\`\`\`bash
+# In Claude Code:
+/plugin marketplace add Jakeschincariol/replica-skill
+/plugin install replica-skill@replica-skill
+
+# Or copy into project skills:
+git clone https://github.com/Jakeschincariol/replica-skill.git
+cp -r replica-skill/replica-* .claude/skills/
+\`\`\``,
+    useCase:
+      'Deconstructing competitor software, rapid MVP prototyping, full-stack app generation, and automated E2E testing.',
+    tags: [
+      'replica-skill',
+      'claude-code',
+      'agent-skill',
+      'reverse-engineering',
+      'clean-room',
+      'cursor',
+      'saas',
+    ],
+    featured: true,
+    authorOrSource: 'Jakeschincariol/replica-skill (2.7k+ ⭐)',
+    difficulty: 'Intermediate',
+  },
 ];
 
 export function getAllPromptSkills(): PromptSkillItem[] {
