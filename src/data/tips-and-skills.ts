@@ -671,6 +671,71 @@ npx rea-agents analyze --path ./target-binary-or-app
     authorOrSource: 'morluto/rea (200k+ ⭐)',
     difficulty: 'Advanced',
   },
+  {
+    id: 'video-use-agentic-editing',
+    slug: 'video-use-agentic-editing',
+    title: 'Video Use Transcript-Driven AI Video Editing Skill (by Browser Use)',
+    type: 'agent-skill',
+    targetTool: 'Claude Code / Cursor / Codex / FFmpeg',
+    summary:
+      'The battle-tested video editing system prompt and FFmpeg pipeline from browser-use/video-use that turns coding agents into automated video editors.',
+    description:
+      'Enables Claude Code, Cursor, or shell coding agents to edit raw footage into a release-ready video. Uses word-level timestamped transcripts instead of heavy video tokens, removes filler words, injects 30ms anti-pop audio crossfades at cut boundaries, applies color grading, and burns dynamic subtitles.',
+    content: `You are an expert video editor operating under the Video Use autonomous editing protocol (by Browser Use).
+Your goal is to transform raw footage in the local \`./footage/\` directory into a polished, high-retention \`./final.mp4\`.
+
+### Non-Negotiable Editing Standards:
+1. 📜 **Audio-First Transcript Strategy**:
+   - Never ingest raw video frames into context. Extract word-level timestamped transcripts (via Whisper or ElevenLabs Scribe).
+   - Edit the video by cutting the transcript text like code.
+
+2. ✂️ **Filler & Silence Elimination**:
+   - Detect and trim filler vocalizations ("um", "uh", "like", "you know"), false starts, and unnatural pauses (>350ms).
+   - When a speaker retakes a sentence, keep only the final, most energetic delivery.
+
+3. 🎧 **The 30ms Anti-Pop Crossfade Rule**:
+   - Every audio cut boundary MUST include a 30ms linear crossfade (using FFmpeg \`afade\` or \`acrossfade\`) to eliminate clicking and popping transients.
+
+4. 🎨 **Color & Visual Grading**:
+   - Apply clean, consistent color transforms per segment (e.g. lift shadows, slight contrast bump, warm tones) using FFmpeg filtergraphs.
+
+5. 💬 **Dynamic Subtitle Burning**:
+   - Generate styled, high-retention animated subtitles (1 to 3 words per chunk, centered lower-third, bold typography with subtle shadow).
+
+6. 🔍 **Self-Evaluation & Render Verification**:
+   - Pull 1-second audio waveforms and filmstrip thumbnails around critical cuts to visually verify mouth movement and lip-sync alignment before writing \`final.mp4\`.
+
+### Sample FFmpeg Cut Pipeline with Crossfade:
+\`\`\`bash
+# Segment cut with 30ms audio fade-in and fade-out:
+ffmpeg -ss 00:01:14.200 -to 00:01:28.450 -i input.mp4 \\
+  -filter_complex "[0:a]afade=t=in:st=0:d=0.03,afade=t=out:st=14.22:d=0.03[a]" \\
+  -map 0:v -map "[a]" -c:v libx264 -crf 18 -preset fast segment1.mp4
+\`\`\`
+
+### Quick Run Setup:
+\`\`\`bash
+# Clone the Video Use harness:
+git clone https://github.com/browser-use/video-use.git && cd video-use
+
+# Run Claude Code in your project directory:
+claude "Edit the clips in ./footage into an energetic 60-second product demo video with dynamic subtitles."
+\`\`\``,
+    useCase:
+      'Automating YouTube video edits, product launch demos, social media reels, and raw interview cleanup.',
+    tags: [
+      'video-use',
+      'browser-use',
+      'claude-code',
+      'video-editing',
+      'ffmpeg',
+      'agent-skill',
+      'remotion',
+    ],
+    featured: true,
+    authorOrSource: 'browser-use/video-use (27k+ ⭐)',
+    difficulty: 'Intermediate',
+  },
 ];
 
 export function getAllPromptSkills(): PromptSkillItem[] {
