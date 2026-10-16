@@ -1107,7 +1107,95 @@ REA inspects native binaries (ELF, Mach-O, PE) to extract assembly, symbols, str
     whyDevelopersLoveIt:
       'It gives AI coding agents the superpowers of a senior reverse engineer—bridging the gap between raw machine binaries, network packets, and human-readable code.',
   },
+  {
+    id: 'video-use',
+    slug: 'video-use',
+    name: 'Video Use (by Browser Use)',
+    shortDescription:
+      'Open-source autonomous video editor for coding agents that edits raw footage into polished videos using transcripts and FFmpeg.',
+    longDescription: `Video Use is an open-source autonomous video editing harness created by the Browser Use team, built specifically for shell-capable coding agents like Claude Code, Cursor, and Codex. Instead of relying on manual timeline GUIs or flooding LLM contexts with millions of video frames, Video Use pioneers an audio-first, transcript-driven approach.
+
+By converting raw video into millisecond-accurate word timestamps (via Whisper or ElevenLabs Scribe), coding agents edit video like text. The agent automatically cuts "ums", "uhs", and dead space; splices clips using deterministic FFmpeg filtergraphs; injects 30ms audio crossfades at cut boundaries to eliminate popping; color grades footage; burns dynamic word-level subtitles; and incorporates motion graphics via Remotion or Manim. Includes automated self-evaluation loops that inspect cut boundaries before exporting the final render.`,
+    category: 'github',
+    subcategory: 'AI Video Editing & Agent Automation',
+    type: 'repo',
+    websiteUrl: 'https://video-use.com',
+    githubUrl: 'https://github.com/browser-use/video-use',
+    documentationUrl: 'https://github.com/browser-use/video-use#readme',
+    pricingType: 'Open Source',
+    pricingDescription:
+      '100% Free & Open Source (MIT License). Runs locally with zero platform or SaaS subscription fees.',
+    freeTier:
+      'Completely free and local-first. Powered by local FFmpeg and your existing coding agent subscription.',
+    features: [
+      'Audio-First Transcript Editing: Edits video at word-level text granularity with millisecond timestamps',
+      'Automated Filler & Dead Air Removal: Cuts "um", "uh", retakes, and awkward pauses with zero manual slicing',
+      'Deterministic FFmpeg Pipelines: Lossless concatenation and 30ms audio crossfades to prevent pop artifacts',
+      'Dynamic Subtitle Burning: Generates styled karaoke and word-by-word subtitle overlays',
+      'Motion Graphics Integration: Programmatically generates overlays using Remotion, Manim, and HyperFrames',
+      'Self-Evaluation Inspection Loop: Inspects cut boundaries and renders filmstrip previews before final delivery',
+      'Agent Harness Agnostic: Native SKILL.md support for Claude Code, Cursor, Codex, and shell agents',
+      'Built by Browser Use: Created by the team behind the viral 50k+ star browser automation agent',
+    ],
+    useCases: [
+      'Turning raw screen recordings and webcam footage into polished product demo videos in minutes',
+      'Automating podcast clipping, YouTube video production, and TikTok/Reels short-form creation with AI agents',
+      'Batch cleaning raw interviews by removing stutters, false starts, and filler words programmatically',
+      'Programmatically burning dynamic subtitles and branded lower-third animations onto videos',
+    ],
+    tags: [
+      'video-editing',
+      'ai-agents',
+      'browser-use',
+      'claude-code',
+      'ffmpeg',
+      'video-use',
+      'remotion',
+      'open-source',
+      'automation',
+    ],
+    technologies: [
+      'Python',
+      'FFmpeg',
+      'Remotion',
+      'Claude Code',
+      'Whisper',
+      'ElevenLabs',
+      'Shell',
+    ],
+    difficulty: 'Intermediate',
+    openSource: true,
+    apiAvailable: true,
+    selfHosted: true,
+    featured: true,
+    verified: true,
+    lastVerified: '2026-10-16',
+    verificationNotes:
+      'Verified browser-use/video-use repository (27k+ stars), MIT license, audio-first transcript architecture, and FFmpeg filtergraph pipeline.',
+    sourceUrls: [
+      'https://github.com/browser-use/video-use',
+      'https://video-use.com',
+    ],
+    createdAt: '2025-10-01T00:00:00Z',
+    updatedAt: '2026-10-16T00:00:00Z',
+
+    // Social & Trending specific fields
+    stars: '27k+ ⭐',
+    starsCount: 27000,
+    trendingOnSocial: true,
+    socialHighlights:
+      'Trending on GitHub with 27k+ stars from the Browser Use team, turning Claude Code into an autonomous video editor using transcripts and FFmpeg.',
+    proTips: [
+      'Ensure FFmpeg is installed and accessible on your system PATH before running your agent.',
+      'Drop your raw video files into a local footage/ directory and prompt Claude Code: "Edit these raw clips into a fast-paced 60s product launch video."',
+      'Use local Whisper models to transcribe speech 100% offline with zero cloud API keys.',
+    ],
+    quickCommand: 'git clone https://github.com/browser-use/video-use.git && cd video-use',
+    whyDevelopersLoveIt:
+      'It eliminates the tedious manual work of slicing timelines and removing filler words—turning video editing into an interactive prompt.',
+  },
 ];
+
 
 
 
